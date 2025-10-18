@@ -1,6 +1,6 @@
 import random
 
-from solitaire_spy.constants import MANA_TYPES, STARTING_LIFE, MANA_STRATEGY_SCRBG
+from solitaire_spy.constants import *
 from solitaire_spy.mtg_engine import MtgEngine
 from solitaire_spy.spy_gui import ImageGridApp
 

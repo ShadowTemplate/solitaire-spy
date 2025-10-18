@@ -32,14 +32,10 @@ def main():
     seed_everything(SEED)
     deck = []
     deck.append(Forest())
-    deck.append(TinderWall())
-    deck.append(Swamp())
-    deck.append(Swamp())
-    deck.append(Swamp())
-    deck.append(DreadReturn())
-    deck.append(MesmericFiend())
-    deck.append(MesmericFiend())
-    deck.append(MesmericFiend())
+    deck.append(Forest())
+    deck.append(SaruliCaretaker())
+    deck.append(WallOfRoots())
+    deck.append(WindingWay())
     for _ in range(55):
         deck.append(GenerousEnt())
     # deck.append(Forest())

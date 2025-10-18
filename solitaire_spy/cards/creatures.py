@@ -328,3 +328,29 @@ class BalustradeSpy(MTGCreatureSpell):
             env.graveyard.append(card)
             if isinstance(card, MTGLand):
                 break
+
+
+class WallOfRoots(MTGCreatureSpell):
+    def __init__(self):
+        super().__init__("Wall of Roots", "1G", True)
+        self.minus_counters = 0
+
+    def actions(self, env):
+        return super().actions(env) + ["put_counter_for_mana_G"]
+
+    def enters_the_battlefield(self, env):
+        super().enters_the_battlefield(env)
+
+    def put_counter_for_mana_G(self, env):
+        print(f"Putting a -0/-1 counter on {self} to add G")
+        self.ability_once_per_turn_activated = True
+        env.engine.add_mana('G', 1)
+
+        self.minus_counters += 1
+        if self.minus_counters == 5:
+            print(f"Wall of Roots has 0 toughness and dies")
+            self.minus_counters = 0
+            env.engine.sacrifice_creature(self)
+
+    def put_counter_for_mana_G_available(self, env):
+        return self in env.battlefield and not self.ability_once_per_turn_activated and self.minus_counters < 5

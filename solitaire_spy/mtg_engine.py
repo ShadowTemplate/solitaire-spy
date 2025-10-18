@@ -1,7 +1,6 @@
 import random
 
-from solitaire_spy.constants import MANA_STRATEGY_SCRBG, MANA_STRATEGY_SCRGB, \
-    MANA_TYPES, MTG_MAX_CARDS_IN_HAND
+from solitaire_spy.constants import *
 
 
 class MtgEngine:
@@ -72,6 +71,7 @@ class MtgEngine:
         for permanent in self.env.battlefield:
             permanent.has_summoning_sickness = False
             permanent.is_tapped = False
+            permanent.ability_once_per_turn_activated = False
 
         self.env.played_land_this_turn = False
         self.system_switch_mana_strategy_allowed = True
