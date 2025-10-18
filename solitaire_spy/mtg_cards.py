@@ -160,6 +160,7 @@ class LandGrant(MTGSpell):
         return super().cast_available(env) and any(c.name == "Haunted Mire" for c in env.library)
 
     def cast_for_forest_for_free(self, env):
+        print("Casting Land Grant for free")
         env.engine.search_library_for("Forest")
         env.engine.put_from_hand_to_graveyard(self)
 
@@ -167,6 +168,7 @@ class LandGrant(MTGSpell):
         return self in env.hand and not any(isinstance(c, MTGLand) for c in env.hand) and any(c.name == "Forest" for c in env.library)
 
     def cast_for_mire_for_free(self, env):
+        print("Casting Land Grant for free")
         env.engine.search_library_for("Haunted Mire")
         env.engine.put_from_hand_to_graveyard(self)
 
@@ -387,3 +389,20 @@ class MesmericFiend(MTGCreatureSpell):
         super().__init__("Mesmeric Fiend", "1B", False)
 
     # for the Spy solitaire we don't need to implement other abilities/properties
+
+
+class WindingWay(MTGSpell):
+    def __init__(self):
+        MTGCard.__init__(self, "Winding Way", "1G")
+
+    def cast(self, env):
+        super().cast(env)
+        print("Choose Creature")  # always choose Creature
+        for _ in range(4):
+            card = env.library.pop(0)
+            print(f"Revealed {card}")
+            if isinstance(card, MTGCreatureSpell):
+                env.hand.append(card)
+            else:
+                env.graveyard.append(card)
+        env.engine.put_from_hand_to_graveyard(self)
