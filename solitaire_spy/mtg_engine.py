@@ -14,7 +14,7 @@ class MtgEngine:
         if "@" in action:  # action needs an indexed target
             action, target_index = action.split("@")
             action_method = action + "_available"
-            return getattr(card, action_method)(self.env, int(target_index))
+            return getattr(card, action_method)(self.env, target_index)
         else:
             action_method = action + "_available"
             return getattr(card, action_method)(self.env)
@@ -90,6 +90,10 @@ class MtgEngine:
 
     def play_land(self, land):
         self.change_card_zone(land, self.env.hand, self.env.lands)
+
+    def bounce_land_to_hand(self, land):
+        land.is_tapped = False
+        self.change_card_zone(land, self.env.lands, self.env.hand)
 
     def put_from_hand_to_battlefield(self, creature):
         self.change_card_zone(creature, self.env.hand, self.env.battlefield)

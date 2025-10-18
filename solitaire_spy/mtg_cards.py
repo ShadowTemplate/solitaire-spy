@@ -10,6 +10,7 @@ class MTGCard(ABC):
         self.is_tapped = False
         self.has_summoning_sickness = False
         self.is_defender = False
+        self.ability_once_per_turn_activated = False
 
     @abstractmethod
     def actions(self, env):
@@ -116,7 +117,7 @@ class Swamp(MTGLand):
         return super().tap_for_mana_available(env)
 
 
-class HauntedMire(Forest, Swamp):
+class HauntedMire(Swamp, Forest):
     def __init__(self):
         MTGCard.__init__(self, "Haunted Mire", "")
 
@@ -449,15 +450,17 @@ class SaruliCaretaker(MTGCreatureSpell):
         super().cast(env)
 
     def tap_creature_for_mana_G(self, env, i):
+        i = int(i)
         print(f"Tapping {self} and {env.battlefield[i]} for mana G")
         env.engine.add_mana('G', 1)
         env.battlefield[i].is_tapped = True
         self.is_tapped = True
 
     def tap_creature_for_mana_G_available(self, env, i):
-        return self in env.battlefield and not self.has_summoning_sickness and not self.is_tapped and not env.battlefield[i].is_tapped
+        return self in env.battlefield and not self.has_summoning_sickness and not self.is_tapped and not env.battlefield[int(i)].is_tapped
 
     def tap_creature_for_mana_B(self, env, i):
+        i = int(i)
         print(f"Tapping {self} and {env.battlefield[i]} for mana B")
         env.engine.add_mana('B', 1)
         env.battlefield[i].is_tapped = True
@@ -465,3 +468,32 @@ class SaruliCaretaker(MTGCreatureSpell):
 
     def tap_creature_for_mana_B_available(self, env, i):
         return self.tap_creature_for_mana_G_available(env, i)
+
+
+class QuirionRanger(MTGCreatureSpell):
+    def __init__(self):
+        super().__init__("Quirion Ranger", "G", True)
+
+    def actions(self, env):
+        actions = super().actions(env)
+        # we need to compute dynamically which creatures Quirion can untap
+        # and for each of them give the option to bounce a land
+        for i, creature in enumerate(env.battlefield):
+            for j, land in enumerate(env.lands):
+                if isinstance(land, Forest):
+                    actions.append(f"untap_creature_bouncing_land@{i},{j}")
+        return actions
+
+    def cast(self, env):
+        super().cast(env)
+
+    def untap_creature_bouncing_land(self, env, ij):
+        i, j = ij.split(",")
+        i, j = int(i), int(j)
+        print(f"Untapping {env.battlefield[i]} and bouncing {env.lands[j]}")
+        env.battlefield[i].is_tapped = False
+        env.engine.bounce_land_to_hand(env.lands[j])
+        self.ability_once_per_turn_activated = True
+
+    def untap_creature_bouncing_land_available(self, env, ij):
+        return self in env.battlefield and any(isinstance(c, Forest) for c in env.lands) and not self.ability_once_per_turn_activated

@@ -36,7 +36,7 @@ class MTGSolitaire:
             getattr(self.engine, action)()
         elif "@" in action:  # action needs an indexed target
             action, target_index = action.split("@")
-            getattr(card, action)(self, int(target_index))
+            getattr(card, action)(self, target_index)
         else:
             getattr(card, action)(self)
 
