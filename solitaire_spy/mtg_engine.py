@@ -104,11 +104,21 @@ class MtgEngine:
     def put_from_hand_to_library(self, card):
         self.change_card_zone(card, self.env.hand, self.env.library)
 
+    def put_from_graveyard_to_battlefield(self, creature):
+        self.change_card_zone(creature, self.env.graveyard, self.env.battlefield)
+        creature.enters_the_battlefield(self)
+
     def add_mana(self, color, quantity):
         self.env.mana_pool[color] += quantity
 
     def sacrifice_creature(self, creature):
+        creature.is_tapped = False
+        creature.has_summoning_sickness = False
+        creature.ability_once_per_turn_activated = False
         self.change_card_zone(creature, self.env.battlefield, self.env.graveyard)
+
+    def put_from_graveyard_to_exile(self, card):
+        self.change_card_zone(card, self.env.graveyard, self.env.exile)
 
     @staticmethod
     def change_card_zone(card, from_zone, to_zone):

@@ -1,3 +1,5 @@
+import itertools
+
 from solitaire_spy.cards.mtg_cards import MTGSpell, MTGCard, MTGLand, MTGCreatureSpell
 
 
@@ -97,3 +99,50 @@ class LeadTheStampede(MTGSpell):
             env.known_lands_bottom += 1
 
         env.engine.put_from_hand_to_graveyard(self)
+
+
+class DreadReturn(MTGSpell):
+    def __init__(self):
+        MTGCard.__init__(self, "Dread Return", "2BB")
+
+    def actions(self, env):
+        # we need to compute dynamically which creatures Dread Return can reanimate
+        # while cast from hand
+        actions = []
+        for i, creature in enumerate(env.graveyard):
+            actions.append(f"cast_with_target@{i}")
+
+        # we need to compute dynamically which creatures Dread Return can reanimate
+        # and which creatures have to be sacrificed while cast with flashback
+        for i, creature in enumerate(env.graveyard):
+            for triple in itertools.combinations(range(len(env.battlefield)), 3):
+                actions.append(f"flashback_with_target@{i},{'-'.join(str(c) for c in triple)}")
+        return actions
+
+    def cast(self, env):
+        raise ValueError("Dread Return: cast - Not implemented")
+
+    def cast_with_target(self, env, i):
+        super().cast(env)
+        target = env.graveyard[int(i)]
+        print(f"Targeting {target}")
+        env.engine.put_from_graveyard_to_battlefield(target)
+        env.engine.put_from_hand_to_graveyard(self)
+
+    def cast_with_target_available(self, env, i):
+        return super().cast_available(env) and isinstance(env.graveyard[int(i)], MTGCreatureSpell)
+
+    def flashback_with_target(self, env, itriple):
+        print(f"Flashing back {self}")
+        i, triple = itriple.split(",")
+        target = env.graveyard[int(i)]
+        creatures_to_sac = [env.battlefield[int(i)] for i in triple.split("-")]
+        print(f"Targeting {target} saccing {creatures_to_sac}")
+        env.engine.put_from_graveyard_to_exile(self)
+        for creature_to_sac in creatures_to_sac:
+            env.engine.sacrifice_creature(creature_to_sac)
+        env.engine.put_from_graveyard_to_battlefield(target)
+
+    def flashback_with_target_available(self, env, itriple):
+        i, triple = itriple.split(",")
+        return self in env.graveyard and isinstance(env.graveyard[int(i)], MTGCreatureSpell)

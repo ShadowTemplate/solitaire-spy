@@ -294,7 +294,8 @@ class QuirionRanger(MTGCreatureSpell):
         self.ability_once_per_turn_activated = True
 
     def untap_creature_bouncing_land_available(self, env, ij):
-        return self in env.battlefield and any(isinstance(c, Forest) for c in env.lands) and not self.ability_once_per_turn_activated
+        i, j = ij.split(",")
+        return self in env.battlefield and isinstance(env.lands[int(j)], Forest) and not self.ability_once_per_turn_activated
 
 
 class LotlethGiant(MTGCreatureSpell):
