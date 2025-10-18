@@ -1,0 +1,40 @@
+,,MV1,,,,,MV2,,,,,1T,,,Aggro,Sideboard,,,,
+,Creatures,Tinder Wall,Quirion Ranger,Saruli Caretaker,Portcullis Vine,Elves of Deep Shadow,Wall of Roots,Gatekeeper Vine,Overgrown Battlement,Masked Vandal,Mesmeric Fiend,Troll of Khazad-dûm,Sagu Wildling,Generous Ent,Avenging Hunter,Scattershot Archer,Fang Dragon,Faerie Macabre,Healer of the Glade,Nylea's Disciple
+MV1,Tinder Wall,0,0,0.7,1.5,0,1,0.5,1.7,1,0.5,0.7,0,0.7,1,0,1,0,0,1.5
+,Quirion Ranger,0,0,1.4,0.5,1.4,0.5,0,1.5,0,0,0,0,0,0,1.2,0,0,0,0.5
+,Saruli Caretaker,0.7,1.4,0.7,1.2,0.7,1.2,0.7,1.7,0.7,0.7,0,0,0,0.7,0.7,0,0,0.7,1.2
+,Portcullis Vine,1.5,0.5,1.2,1.4,0,1.7,0.7,1.9,0,0,0,0,0,0,0,0,0,0,0.5
+,Elves of Deep Shadow,0,1.4,0.7,0,0,1,0.5,1,0.5,0.5,0.7,0,0.7,0.5,0,0.5,0,0,1
+MV2,Wall of Roots,1,0.5,1.2,1.7,1,1,0.5,1.7,0.5,0.5,0.7,0.5,0.7,0.5,0.5,0.5,0,0.5,1
+,Gatekeeper Vine,0.5,0,0.7,0.7,0.5,0.5,0,1.2,0,0,0,0,0,0,0,0,0,0,0.5
+,Overgrown Battlement,1.7,1.5,1.7,1.9,1,1.7,1.2,2.4,1,0.5,0.7,0.5,0.7,1,0.5,0.5,0,0.5,1
+,Masked Vandal,1,0,0.7,0,0.5,0.5,0,1,0,0,0.5,0,0.5,0,0,0,0,0,0.5
+,Mesmeric Fiend,0.5,0,0.7,0,0.5,0.5,0,0.5,0,0,0,0,0,0,0,0,0,0,0
+1T,Troll of Khazad-dûm,0.7,0,0,0,0.7,0.7,0,0.7,0.5,0,0,0,0,0,0,0,0,0,0
+,Sagu Wildling,0,0,0,0,0,0.5,0,0.5,0,0,0,0.5,0,0,0,0,0,0,0
+,Generous Ent,0.7,0,0,0,0.7,0.7,0,0.7,0.5,0,0,0,0.7,0,0,0,0,0,0
+Aggro,Avenging Hunter,1,0,0.7,0,0.5,0.5,0,1,0,0,0,0,0,0.5,0,0,0,0,0.5
+Sideboard,Scattershot Archer,0,1.2,0.7,0,0,0.5,0,0.5,0,0,0,0,0,0,0.5,0.5,0,0,0.5
+,Fang Dragon,1,0,0,0,0.5,0.5,0,0.5,0,0,0,0,0,0,0.5,0,0,0,0
+,Faerie Macabre,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+,Healer of the Glade,0,0,0.7,0,0,0.5,0,0.5,0,0,0,0,0,0,0,0,0,0,0.5
+,Nylea's Disciple,1.5,0.5,1.2,0.5,1,1,0.5,1,0.5,0,0,0,0,0.5,0.5,0,0,0.5,1
+Score,Main,9.3,5.3,10.4,8.9,7.5,12,4.1,17.5,4.7,2.7,3.3,1.5,4,4.2,2.9,2.5,0,1.7,8.2
+,Side,2.5,1.7,2.6,0.5,1.5,2.5,0.5,2.5,0.5,0,0,0,0,0.5,1.5,0.5,0,0.5,2
+,Total,11.8,7,13,9.4,9,14.5,4.6,20,5.2,2.7,3.3,1.5,4,4.7,4.4,3,0,2.2,10.2
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+Legend,,,,,,,,,,,,,,,,,,,,
+2+,Very good interaction,,,,,,,,,,,,,,,,,,,
+[1.5 ; 2[,Good interaction,,,,,,,,,,,,,,,,,,,
+[1 ; 1.5[,Some interaction,,,,,,,,,,,,,,,,,,,
+[0 ; 1[,No relevant interaction,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,
+"Point system (count both ways, if possible)",,,,,,,,,,,,,,,,,,,,
++0.5 x mana,Helps to cast,,,,,,,,,,,,,,,,,,,
++0.5 x mana,Mana ramp synergy,,,,,,,,,,,,,,,,,,,
++0.5,Untap synergy,,,,,,,,,,,,,,,,,,,
++0.5,Creature type synergy,,,,,,,,,,,,,,,,,,,
++0.5,Cumulative effect,,,,,,,,,,,,,,,,,,,
++0.2,Item above at instant speed,,,,,,,,,,,,,,,,,,,
