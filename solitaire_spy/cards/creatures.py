@@ -1,4 +1,4 @@
-from solitaire_spy.cards.mtg_cards import MTGCreatureSpell
+from solitaire_spy.cards.mtg_cards import MTGCreatureSpell, MTGLand
 from solitaire_spy.cards.lands import Forest
 
 
@@ -307,3 +307,23 @@ class LotlethGiant(MTGCreatureSpell):
     def enters_the_battlefield(self, env):
         super().enters_the_battlefield(env)
         env.opponent_counter_life -= sum(isinstance(c, MTGCreatureSpell) for c in env.graveyard)
+
+
+class BalustradeSpy(MTGCreatureSpell):
+    def __init__(self):
+        super().__init__("Balustrade Spy", "3B", False)
+
+    def actions(self, env):
+        return super().actions(env)
+
+    def enters_the_battlefield(self, env):
+        super().enters_the_battlefield(env)
+        # always choose myself
+        while True:
+            if len(env.library) == 0:
+                break
+            card = env.library.pop(0)
+            print(f"Revealed {card}")
+            env.graveyard.append(card)
+            if isinstance(card, MTGLand):
+                break

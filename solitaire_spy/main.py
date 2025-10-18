@@ -32,13 +32,12 @@ def main():
     seed_everything(SEED)
     deck = []
     deck.append(Forest())
-    deck.append(TinderWall())
-    deck.append(TinderWall())
-    deck.append(LotlethGiant())
-    for _ in range(7):
-        deck.append(Swamp())
-    for _ in range(10):
-        deck.append(MaskedVandal())
+    deck.append(Swamp())
+    deck.append(Swamp())
+    deck.append(Swamp())
+    deck.append(BalustradeSpy())
+    for _ in range(55):
+        deck.append(GenerousEnt())
     # deck.append(Forest())
     # deck.append(HauntedMire())
     env = MTGSolitaire(deck, root)
