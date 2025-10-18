@@ -117,7 +117,7 @@ class SaguWildling(MTGCreatureSpell):
         env.engine.shuffle_library()
 
     def roost_seek_forest_available(self, env):
-        return self in env.hand and any(c.name == "Forest" for c in env.library) and env.mana_pool["G"] > 0
+        return self in env.hand and any(c.name == "Forest" for c in env.library) and env.mana_pool["G"] > 0 and not env.engine.passing
 
     def roost_seek_swamp(self, env):
         print(f"Casting Roost Seek {self} for Swamp")
@@ -127,7 +127,7 @@ class SaguWildling(MTGCreatureSpell):
         env.engine.shuffle_library()
 
     def roost_seek_swamp_available(self, env):
-        return self in env.hand and any(c.name == "Swamp" for c in env.library) and env.mana_pool["G"] > 0
+        return self in env.hand and any(c.name == "Swamp" for c in env.library) and env.mana_pool["G"] > 0 and not env.engine.passing
 
 
 class OrnithopterOfParadise(MTGCreatureSpell):

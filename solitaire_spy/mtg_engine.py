@@ -5,9 +5,11 @@ from solitaire_spy.constants import *
 
 class MtgEngine:
     def __init__(self, env):
-        from solitaire_spy.spy_solitaire import MTGSolitaire  # here to avoid circular deps
+        from solitaire_spy.spy_solitaire import MTGSolitaire  # avoids circular deps
         self.env: MTGSolitaire = env
         self.system_switch_mana_strategy_allowed = True
+        self.passing = False  # if True, only instant speed interaction can be used
+        # self.passing can be ~interpreted as "it's the opponent's turn"
 
     def is_action_possible(self, card, action):
         if "@" in action:  # action needs an indexed target
@@ -37,8 +39,13 @@ class MtgEngine:
             print(f"Available system action: system_switch_mana_strategy")
             possible_actions.append((None, "system_switch_mana_strategy"))
 
-        print(f"Available system action: system_pass")
-        possible_actions.append((None, "system_pass"))  # probably best to keep as last
+        # probably best to keep these as last
+        if not self.passing:
+            print(f"Available system action: system_pass")
+            possible_actions.append((None, "system_pass"))
+        else:
+            print(f"Available system action: system_start_new_turn")
+            possible_actions.append((None, "system_start_new_turn"))
         return possible_actions
 
     def discard_card(self, card):
@@ -57,6 +64,7 @@ class MtgEngine:
 
     def system_pass(self):
         print("Passing")
+        self.passing = True
         cards_to_discard = max(len(self.env.hand) - MTG_MAX_CARDS_IN_HAND, 0)
         # TODO: discard to hand size
         if cards_to_discard > 0:
@@ -64,8 +72,12 @@ class MtgEngine:
 
         for mana in self.env.mana_pool:
             self.env.mana_pool[mana] = 0
-        self.env.counter_turn += 1
+        for permanent in self.env.battlefield:
+            permanent.ability_once_per_turn_activated = False
 
+    def system_start_new_turn(self):
+        self.passing = False
+        self.env.counter_turn += 1
         for land in self.env.lands:
             land.is_tapped = False
         for permanent in self.env.battlefield:
@@ -76,7 +88,6 @@ class MtgEngine:
         self.env.played_land_this_turn = False
         self.system_switch_mana_strategy_allowed = True
         self.draw_cards(1)
-        # TODO: handle instant speed plays during opponent's turn
 
     def system_switch_mana_strategy(self):
         if self.env.mana_strategy == MANA_STRATEGY_SCRBG:

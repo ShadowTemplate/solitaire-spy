@@ -19,7 +19,7 @@ class LandGrant(MTGSpell):
         env.engine.put_from_hand_to_graveyard(self)
 
     def cast_for_forest_available(self, env):
-        return super().cast_available(env) and any(c.name == "Forest" for c in env.library)
+        return super().cast_available(env) and any(c.name == "Forest" for c in env.library) and not env.engine.passing
 
     def cast_for_mire(self, env):
         super().cast(env)
@@ -27,7 +27,7 @@ class LandGrant(MTGSpell):
         env.engine.put_from_hand_to_graveyard(self)
 
     def cast_for_mire_available(self, env):
-        return super().cast_available(env) and any(c.name == "Haunted Mire" for c in env.library)
+        return super().cast_available(env) and any(c.name == "Haunted Mire" for c in env.library) and not env.engine.passing
 
     def cast_for_forest_for_free(self, env):
         print("Casting Land Grant for free")
@@ -35,7 +35,7 @@ class LandGrant(MTGSpell):
         env.engine.put_from_hand_to_graveyard(self)
 
     def cast_for_forest_for_free_available(self, env):
-        return self in env.hand and not any(isinstance(c, MTGLand) for c in env.hand) and any(c.name == "Forest" for c in env.library)
+        return self in env.hand and not any(isinstance(c, MTGLand) for c in env.hand) and any(c.name == "Forest" for c in env.library) and not env.engine.passing
 
     def cast_for_mire_for_free(self, env):
         print("Casting Land Grant for free")
@@ -43,7 +43,7 @@ class LandGrant(MTGSpell):
         env.engine.put_from_hand_to_graveyard(self)
 
     def cast_for_mire_for_free_available(self, env):
-        return self in env.hand and not any(isinstance(c, MTGLand) for c in env.hand) and any(c.name == "Haunted Mire" for c in env.library)
+        return self in env.hand and not any(isinstance(c, MTGLand) for c in env.hand) and any(c.name == "Haunted Mire" for c in env.library) and not env.engine.passing
 
 
 class WindingWay(MTGSpell):
@@ -61,6 +61,9 @@ class WindingWay(MTGSpell):
             else:
                 env.graveyard.append(card)
         env.engine.put_from_hand_to_graveyard(self)
+
+    def cast_available(self, env):
+        return super().cast_available(env) and not env.engine.passing
 
 
 class LeadTheStampede(MTGSpell):
@@ -100,6 +103,9 @@ class LeadTheStampede(MTGSpell):
 
         env.engine.put_from_hand_to_graveyard(self)
 
+    def cast_available(self, env):
+        return super().cast_available(env) and not env.engine.passing
+
 
 class DreadReturn(MTGSpell):
     def __init__(self):
@@ -130,7 +136,7 @@ class DreadReturn(MTGSpell):
         env.engine.put_from_hand_to_graveyard(self)
 
     def cast_with_target_available(self, env, i):
-        return super().cast_available(env) and isinstance(env.graveyard[int(i)], MTGCreatureSpell)
+        return super().cast_available(env) and isinstance(env.graveyard[int(i)], MTGCreatureSpell) and not env.engine.passing
 
     def flashback_with_target(self, env, itriple):
         print(f"Flashing back {self}")
@@ -145,4 +151,4 @@ class DreadReturn(MTGSpell):
 
     def flashback_with_target_available(self, env, itriple):
         i, triple = itriple.split(",")
-        return self in env.graveyard and isinstance(env.graveyard[int(i)], MTGCreatureSpell)
+        return self in env.graveyard and isinstance(env.graveyard[int(i)], MTGCreatureSpell) and not env.engine.passing

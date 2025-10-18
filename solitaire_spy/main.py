@@ -16,7 +16,7 @@ def seed_everything(seed):
 
 
 def solitaire(env: MTGSolitaire):
-    for _ in range(50):
+    for _ in range(250):
         # time.sleep(3)
         print('---')
         possible_actions = env.engine.get_possible_actions()
@@ -32,12 +32,19 @@ def main():
     seed_everything(SEED)
     deck = []
     deck.append(Forest())
-    deck.append(Forest())
     deck.append(SaruliCaretaker())
+    deck.append(Forest())
     deck.append(WallOfRoots())
+    deck.append(MesmericFiend())
+    deck.append(MesmericFiend())
+    deck.append(MesmericFiend())
     deck.append(WindingWay())
-    for _ in range(55):
-        deck.append(GenerousEnt())
+    deck.append(SaruliCaretaker())
+    deck.append(SaruliCaretaker())
+    deck.append(SaruliCaretaker())
+    deck.append(GenerousEnt())
+    for _ in range(50):
+        deck.append(Forest())
     # deck.append(Forest())
     # deck.append(HauntedMire())
     env = MTGSolitaire(deck, root)

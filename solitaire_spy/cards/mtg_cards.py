@@ -46,7 +46,7 @@ class MTGLand(MTGCard):
         env.engine.play_land(self)
 
     def play_available(self, env):
-        return self in env.hand and not env.played_land_this_turn
+        return self in env.hand and not env.played_land_this_turn and not env.engine.passing
 
     def tap_for_mana(self, env):
         print(f"Tapping for mana {self}")
@@ -90,6 +90,9 @@ class MTGCreatureSpell(MTGSpell):
         super().cast(env)
         env.engine.put_from_hand_to_battlefield(self)
         self.enters_the_battlefield(env)
+
+    def cast_available(self, env):
+        return super().cast_available(env) and not env.engine.passing
 
     @abstractmethod
     def enters_the_battlefield(self, env):
