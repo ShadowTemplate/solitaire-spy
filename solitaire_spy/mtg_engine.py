@@ -7,7 +7,7 @@ class MtgEngine:
     def __init__(self, env):
         from solitaire_spy.mtg_env import MTGSolitaire  # here to avoid circular deps
         self.env: MTGSolitaire = env
-        self.system_switch_mana_strategy_allowed = False
+        self.system_switch_mana_strategy_allowed = True
 
     def is_action_possible(self, card, action):
         action_method = action + "_available"
@@ -83,6 +83,9 @@ class MtgEngine:
 
     def put_from_hand_to_battlefield(self, creature):
         self.change_card_zone(creature, self.env.hand, self.env.battlefield)
+
+    def put_from_hand_to_graveyard(self, spell):
+        self.change_card_zone(spell, self.env.hand, self.env.graveyard)
 
     def put_from_hand_to_library(self, card):
         self.change_card_zone(card, self.env.hand, self.env.library)

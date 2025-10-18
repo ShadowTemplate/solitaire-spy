@@ -132,6 +132,48 @@ class HauntedMire(Forest, Swamp):
         self.is_tapped = True
 
 
+class LandGrant(MTGSpell):
+    def __init__(self):
+        MTGCard.__init__(self, "Land Grant", "1G")
+
+    @property
+    def actions(self):
+        return ["cast_for_forest", "cast_for_mire", "cast_for_forest_for_free", "cast_for_mire_for_free"]
+
+    def cast(self, env):
+        raise ValueError("Land Grant: cast - Not implemented")
+
+    def cast_for_forest(self, env):
+        super().cast(env)
+        env.engine.search_library_for("Forest")
+        env.engine.put_from_hand_to_graveyard(self)
+
+    def cast_for_forest_available(self, env):
+        return super().cast_available(env) and any(c.name == "Forest" for c in env.library)
+
+    def cast_for_mire(self, env):
+        super().cast(env)
+        env.engine.search_library_for("Haunted Mire")
+        env.engine.put_from_hand_to_graveyard(self)
+
+    def cast_for_mire_available(self, env):
+        return super().cast_available(env) and any(c.name == "Haunted Mire" for c in env.library)
+
+    def cast_for_forest_for_free(self, env):
+        env.engine.search_library_for("Forest")
+        env.engine.put_from_hand_to_graveyard(self)
+
+    def cast_for_forest_for_free_available(self, env):
+        return self in env.hand and not any(isinstance(c, MTGLand) for c in env.hand) and any(c.name == "Forest" for c in env.library)
+
+    def cast_for_mire_for_free(self, env):
+        env.engine.search_library_for("Haunted Mire")
+        env.engine.put_from_hand_to_graveyard(self)
+
+    def cast_for_mire_for_free_available(self, env):
+        return self in env.hand and not any(isinstance(c, MTGLand) for c in env.hand) and any(c.name == "Haunted Mire" for c in env.library)
+
+
 class MTGCreatureSpell(MTGSpell):
     def __init__(self, name, mana_cost, is_defender):
         MTGCard.__init__(self, name, mana_cost)

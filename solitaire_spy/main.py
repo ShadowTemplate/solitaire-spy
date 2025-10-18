@@ -33,9 +33,9 @@ def main():
     deck = []
     deck.append(Forest())
     for _ in range(50):
-        deck.append(ElvesOfDeepShadow())
-        deck.append(MesmericFiend())
+        deck.append(LandGrant())
         deck.append(OvergrownBattlement())
+    deck.append(Forest())
     deck.append(HauntedMire())
     env = MTGSolitaire(deck, root)
     thread = threading.Thread(target=solitaire, args=[env], daemon=True)
