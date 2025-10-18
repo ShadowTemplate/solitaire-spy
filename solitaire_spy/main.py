@@ -1,13 +1,13 @@
 import threading
 import os
 import random
-import time
 import tkinter as tk
 
-
+from solitaire_spy.cards.creatures import *
+from solitaire_spy.cards.lands import *
+from solitaire_spy.cards.spells import *
 from solitaire_spy.constants import SEED
-from solitaire_spy.mtg_cards import *
-from solitaire_spy.mtg_env import MTGSolitaire
+from solitaire_spy.spy_solitaire import MTGSolitaire
 
 
 def seed_everything(seed):
@@ -16,8 +16,8 @@ def seed_everything(seed):
 
 
 def solitaire(env: MTGSolitaire):
-    for _ in range(25):
-        time.sleep(3)
+    for _ in range(30):
+        # time.sleep(3)
         print('---')
         possible_actions = env.engine.get_possible_actions()
         print('---')
@@ -31,12 +31,15 @@ def main():
     root.title("MTGO at home - Turn 0")
     seed_everything(SEED)
     deck = []
-    deck.append(Forest())
-    for _ in range(50):
-        deck.append(LandGrant())
-        deck.append(OvergrownBattlement())
-    deck.append(Forest())
     deck.append(HauntedMire())
+    deck.append(Swamp())
+    deck.append(SaruliCaretaker())
+    deck.append(QuirionRanger())
+    for _ in range(50):
+        deck.append(MaskedVandal())
+        deck.append(MesmericFiend())
+    # deck.append(Forest())
+    # deck.append(HauntedMire())
     env = MTGSolitaire(deck, root)
     thread = threading.Thread(target=solitaire, args=[env], daemon=True)
     thread.start()

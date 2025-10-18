@@ -6,7 +6,7 @@ from solitaire_spy.constants import MANA_STRATEGY_SCRBG, MANA_STRATEGY_SCRGB, \
 
 class MtgEngine:
     def __init__(self, env):
-        from solitaire_spy.mtg_env import MTGSolitaire  # here to avoid circular deps
+        from solitaire_spy.spy_solitaire import MTGSolitaire  # here to avoid circular deps
         self.env: MTGSolitaire = env
         self.system_switch_mana_strategy_allowed = True
 
