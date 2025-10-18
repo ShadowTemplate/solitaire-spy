@@ -1,6 +1,7 @@
 import random
 
-from solitaire_spy.constants import MANA_STRATEGY_SCRBG, MANA_STRATEGY_SCRGB, MANA_TYPES
+from solitaire_spy.constants import MANA_STRATEGY_SCRBG, MANA_STRATEGY_SCRGB, \
+    MANA_TYPES, MTG_MAX_CARDS_IN_HAND
 
 
 class MtgEngine:
@@ -10,8 +11,13 @@ class MtgEngine:
         self.system_switch_mana_strategy_allowed = True
 
     def is_action_possible(self, card, action):
-        action_method = action + "_available"
-        return getattr(card, action_method)(self.env)
+        if "@" in action:  # action needs an indexed target
+            action, target_index = action.split("@")
+            action_method = action + "_available"
+            return getattr(card, action_method)(self.env, int(target_index))
+        else:
+            action_method = action + "_available"
+            return getattr(card, action_method)(self.env)
 
     def get_possible_actions(self):
         possible_actions = []
@@ -23,7 +29,7 @@ class MtgEngine:
             (self.env.graveyard, "graveyard"),
         ]:
             for card in zone:
-                for action in card.actions:
+                for action in card.actions(self.env):
                     if self.is_action_possible(card, action):
                         print(f"Available action from {zone_name}: {card} -> {action}")
                         possible_actions.append((card, action))
@@ -52,8 +58,10 @@ class MtgEngine:
 
     def system_pass(self):
         print("Passing")
-        # cards_to_discard = max(len(self.env.hand) - MTG_MAX_CARDS_IN_HAND, 0)
+        cards_to_discard = max(len(self.env.hand) - MTG_MAX_CARDS_IN_HAND, 0)
         # TODO: discard to hand size
+        if cards_to_discard > 0:
+            raise ValueError("Discard to hand size not implemented yet")
 
         for mana in self.env.mana_pool:
             self.env.mana_pool[mana] = 0

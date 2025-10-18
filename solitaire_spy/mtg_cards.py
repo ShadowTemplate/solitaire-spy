@@ -11,9 +11,8 @@ class MTGCard(ABC):
         self.has_summoning_sickness = False
         self.is_defender = False
 
-    @property
     @abstractmethod
-    def actions(self):
+    def actions(self, env):
         pass
 
     def __str__(self):
@@ -36,14 +35,11 @@ class MTGCard(ABC):
 
 
 class MTGLand(MTGCard):
-    @property
-    def actions(self):
+    def actions(self, env):
         return ["play"]
 
     @abstractmethod
     def play(self, env):
-        # if not self.play_available(env):
-        #     raise ValueError("ERROR: unable to play")
         print(f"Playing {self}")
         env.played_land_this_turn = True
         env.engine.play_land(self)
@@ -60,8 +56,7 @@ class MTGLand(MTGCard):
 
 
 class MTGSpell(MTGCard):
-    @property
-    def actions(self):
+    def actions(self, env):
         return ["cast"]
 
     @abstractmethod
@@ -89,9 +84,8 @@ class Forest(MTGLand):
     def __init__(self):
         super().__init__("Forest", "")
 
-    @property
-    def actions(self):
-        return super().actions + ["tap_for_mana_G"]
+    def actions(self, env):
+        return super().actions(env) + ["tap_for_mana_G"]
 
     def play(self, env):
         super().play(env)
@@ -108,9 +102,8 @@ class Swamp(MTGLand):
     def __init__(self):
         super().__init__("Swamp", "")
 
-    @property
-    def actions(self):
-        return super().actions + ["tap_for_mana_B"]
+    def actions(self, env):
+        return super().actions(env) + ["tap_for_mana_B"]
 
     def play(self, env):
         super().play(env)
@@ -136,8 +129,7 @@ class LandGrant(MTGSpell):
     def __init__(self):
         MTGCard.__init__(self, "Land Grant", "1G")
 
-    @property
-    def actions(self):
+    def actions(self, env):
         return ["cast_for_forest", "cast_for_mire", "cast_for_forest_for_free", "cast_for_mire_for_free"]
 
     def cast(self, env):
@@ -191,10 +183,9 @@ class TinderWall(MTGCreatureSpell):
     def __init__(self):
         super().__init__("Tinder Wall", "G", True)
 
-    @property
-    def actions(self):
+    def actions(self, env):
         # for the Spy solitaire we don't need to implement other abilities/properties
-        return super().actions + ["sacrifice_for_mana_RR"]
+        return super().actions(env) + ["sacrifice_for_mana_RR"]
 
     def cast(self, env):
         super().cast(env)
@@ -212,10 +203,9 @@ class GenerousEnt(MTGCreatureSpell):
     def __init__(self):
         super().__init__("Generous Ent", "5G", False)
 
-    @property
-    def actions(self):
+    def actions(self, env):
         # for the Spy solitaire we don't need to implement other abilities/properties
-        return super().actions + ["forestcycling_forest", "forestcycling_mire"]
+        return super().actions(env) + ["forestcycling_forest", "forestcycling_mire"]
 
     def cast(self, env):
         super().cast(env)
@@ -245,10 +235,9 @@ class TrollOfKhazadDum(MTGCreatureSpell):
     def __init__(self):
         super().__init__("Troll of Khazad-dum", "5B", False)
 
-    @property
-    def actions(self):
+    def actions(self, env):
         # for the Spy solitaire we don't need to implement other abilities/properties
-        return super().actions + ["swampcycling_swamp", "swampcycling_mire"]
+        return super().actions(env) + ["swampcycling_swamp", "swampcycling_mire"]
 
     def cast(self, env):
         super().cast(env)
@@ -278,10 +267,9 @@ class SaguWildling(MTGCreatureSpell):
     def __init__(self):
         super().__init__("Sagu Wildling", "4B", False)
 
-    @property
-    def actions(self):
+    def actions(self, env):
         # for the Spy solitaire we don't need to implement other abilities/properties
-        return super().actions + ["roost_seek_forest", "roost_seek_swamp"]
+        return super().actions(env) + ["roost_seek_forest", "roost_seek_swamp"]
 
     def cast(self, env):
         super().cast(env)
@@ -311,10 +299,9 @@ class OrnithopterOfParadise(MTGCreatureSpell):
     def __init__(self):
         super().__init__("Ornithopter of Paradise", "2", False)
 
-    @property
-    def actions(self):
+    def actions(self, env):
         # for the Spy solitaire we don't need to implement other abilities/properties
-        return super().actions + ["tap_for_mana_G", "tap_for_mana_B"]
+        return super().actions(env) + ["tap_for_mana_G", "tap_for_mana_B"]
 
     def cast(self, env):
         super().cast(env)
@@ -333,16 +320,15 @@ class OrnithopterOfParadise(MTGCreatureSpell):
         self.is_tapped = True
 
     def tap_for_mana_B_available(self, env):
-        return self in env.battlefield and not self.has_summoning_sickness and not self.is_tapped
+        return self.tap_for_mana_G_available(env)
 
 
 class OvergrownBattlement(MTGCreatureSpell):
     def __init__(self):
         super().__init__("Overgrown Battlement", "1G", True)
 
-    @property
-    def actions(self):
-        return super().actions + ["tap_for_mana_G"]
+    def actions(self, env):
+        return super().actions(env) + ["tap_for_mana_G"]
 
     def cast(self, env):
         super().cast(env)
@@ -360,9 +346,8 @@ class ElvesOfDeepShadow(MTGCreatureSpell):
     def __init__(self):
         super().__init__("Elves of Deep Shadow", "G", False)
 
-    @property
-    def actions(self):
-        return super().actions + ["tap_for_mana_B"]
+    def actions(self, env):
+        return super().actions(env) + ["tap_for_mana_B"]
 
     def cast(self, env):
         super().cast(env)
@@ -444,3 +429,39 @@ class LeadTheStampede(MTGSpell):
             env.known_lands_bottom += 1
 
         env.engine.put_from_hand_to_graveyard(self)
+
+
+class SaruliCaretaker(MTGCreatureSpell):
+    def __init__(self):
+        super().__init__("Saruli Caretaker", "G", True)
+
+    def actions(self, env):
+        actions = super().actions(env)
+        # we need to compute dynamically which creatures Saruli can tap to make mana
+        # and for each of them give the option to produce B or G
+        for i, creature in enumerate(env.battlefield):
+            if creature != self and not creature.is_tapped:
+                actions.append(f"tap_creature_for_mana_G@{i}")
+                actions.append(f"tap_creature_for_mana_B@{i}")
+        return actions
+
+    def cast(self, env):
+        super().cast(env)
+
+    def tap_creature_for_mana_G(self, env, i):
+        print(f"Tapping {self} and {env.battlefield[i]} for mana G")
+        env.engine.add_mana('G', 1)
+        env.battlefield[i].is_tapped = True
+        self.is_tapped = True
+
+    def tap_creature_for_mana_G_available(self, env, i):
+        return self in env.battlefield and not self.has_summoning_sickness and not self.is_tapped and not env.battlefield[i].is_tapped
+
+    def tap_creature_for_mana_B(self, env, i):
+        print(f"Tapping {self} and {env.battlefield[i]} for mana B")
+        env.engine.add_mana('B', 1)
+        env.battlefield[i].is_tapped = True
+        self.is_tapped = True
+
+    def tap_creature_for_mana_B_available(self, env, i):
+        return self.tap_creature_for_mana_G_available(env, i)
