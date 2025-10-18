@@ -13,6 +13,9 @@ class TinderWall(MTGCreatureSpell):
     def cast(self, env):
         super().cast(env)
 
+    def enters_the_battlefield(self, env):
+        super().enters_the_battlefield(env)
+
     def sacrifice_for_mana_RR(self, env):
         print(f"Sacrificing {self} for RR")
         env.engine.sacrifice_creature(self)
@@ -32,6 +35,9 @@ class GenerousEnt(MTGCreatureSpell):
 
     def cast(self, env):
         super().cast(env)
+
+    def enters_the_battlefield(self, env):
+        super().enters_the_battlefield(env)
 
     def forestcycling_forest(self, env):
         print(f"Forestcycling {self} for Forest")
@@ -65,6 +71,9 @@ class TrollOfKhazadDum(MTGCreatureSpell):
     def cast(self, env):
         super().cast(env)
 
+    def enters_the_battlefield(self, env):
+        super().enters_the_battlefield(env)
+
     def swampcycling_swamp(self, env):
         print(f"Swampcycling {self} for Swamp")
         env.engine.pay_mana({"W": 0, "U": 0, "B": 0, "R": 0, "G": 0, "C": 1})
@@ -96,6 +105,9 @@ class SaguWildling(MTGCreatureSpell):
 
     def cast(self, env):
         super().cast(env)
+
+    def enters_the_battlefield(self, env):
+        super().enters_the_battlefield(env)
 
     def roost_seek_forest(self, env):
         print(f"Casting Roost Seek {self} for Forest")
@@ -129,6 +141,9 @@ class OrnithopterOfParadise(MTGCreatureSpell):
     def cast(self, env):
         super().cast(env)
 
+    def enters_the_battlefield(self, env):
+        super().enters_the_battlefield(env)
+
     def tap_for_mana_G(self, env):
         print(f"Tapping for mana {self}")
         env.engine.add_mana('G', 1)
@@ -156,6 +171,9 @@ class OvergrownBattlement(MTGCreatureSpell):
     def cast(self, env):
         super().cast(env)
 
+    def enters_the_battlefield(self, env):
+        super().enters_the_battlefield(env)
+
     def tap_for_mana_G(self, env):
         print(f"Tapping for mana {self}")
         env.engine.add_mana('G', sum(c.is_defender for c in env.battlefield))
@@ -175,6 +193,9 @@ class ElvesOfDeepShadow(MTGCreatureSpell):
     def cast(self, env):
         super().cast(env)
 
+    def enters_the_battlefield(self, env):
+        super().enters_the_battlefield(env)
+
     def tap_for_mana_B(self, env):
         print(f"Tapping for mana {self}")
         env.engine.add_mana('B', 1)
@@ -190,6 +211,8 @@ class MaskedVandal(MTGCreatureSpell):
         super().__init__("Masked Vandal", "1G", False)
 
     # for the Spy solitaire we don't need to implement other abilities/properties
+    def enters_the_battlefield(self, env):
+        super().enters_the_battlefield(env)
 
 
 class MesmericFiend(MTGCreatureSpell):
@@ -197,6 +220,8 @@ class MesmericFiend(MTGCreatureSpell):
         super().__init__("Mesmeric Fiend", "1B", False)
 
     # for the Spy solitaire we don't need to implement other abilities/properties
+    def enters_the_battlefield(self, env):
+        super().enters_the_battlefield(env)
 
 
 class SaruliCaretaker(MTGCreatureSpell):
@@ -215,6 +240,9 @@ class SaruliCaretaker(MTGCreatureSpell):
 
     def cast(self, env):
         super().cast(env)
+
+    def enters_the_battlefield(self, env):
+        super().enters_the_battlefield(env)
 
     def tap_creature_for_mana_G(self, env, i):
         i = int(i)
@@ -239,7 +267,7 @@ class SaruliCaretaker(MTGCreatureSpell):
 
 class QuirionRanger(MTGCreatureSpell):
     def __init__(self):
-        super().__init__("Quirion Ranger", "G", True)
+        super().__init__("Quirion Ranger", "G", False)
 
     def actions(self, env):
         actions = super().actions(env)
@@ -254,6 +282,9 @@ class QuirionRanger(MTGCreatureSpell):
     def cast(self, env):
         super().cast(env)
 
+    def enters_the_battlefield(self, env):
+        super().enters_the_battlefield(env)
+
     def untap_creature_bouncing_land(self, env, ij):
         i, j = ij.split(",")
         i, j = int(i), int(j)
@@ -264,3 +295,15 @@ class QuirionRanger(MTGCreatureSpell):
 
     def untap_creature_bouncing_land_available(self, env, ij):
         return self in env.battlefield and any(isinstance(c, Forest) for c in env.lands) and not self.ability_once_per_turn_activated
+
+
+class LotlethGiant(MTGCreatureSpell):
+    def __init__(self):
+        super().__init__("Lotleth Giant", "6B", False)
+
+    def actions(self, env):
+        return super().actions(env)
+
+    def enters_the_battlefield(self, env):
+        super().enters_the_battlefield(env)
+        env.opponent_counter_life -= sum(isinstance(c, MTGCreatureSpell) for c in env.graveyard)

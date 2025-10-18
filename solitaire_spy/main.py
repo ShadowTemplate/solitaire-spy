@@ -16,7 +16,7 @@ def seed_everything(seed):
 
 
 def solitaire(env: MTGSolitaire):
-    for _ in range(30):
+    for _ in range(40):
         # time.sleep(3)
         print('---')
         possible_actions = env.engine.get_possible_actions()
@@ -31,13 +31,14 @@ def main():
     root.title("MTGO at home - Turn 0")
     seed_everything(SEED)
     deck = []
-    deck.append(HauntedMire())
-    deck.append(Swamp())
-    deck.append(SaruliCaretaker())
-    deck.append(QuirionRanger())
-    for _ in range(50):
+    deck.append(Forest())
+    deck.append(TinderWall())
+    deck.append(TinderWall())
+    deck.append(LotlethGiant())
+    for _ in range(7):
+        deck.append(Swamp())
+    for _ in range(10):
         deck.append(MaskedVandal())
-        deck.append(MesmericFiend())
     # deck.append(Forest())
     # deck.append(HauntedMire())
     env = MTGSolitaire(deck, root)

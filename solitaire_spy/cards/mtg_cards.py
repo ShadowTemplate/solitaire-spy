@@ -89,4 +89,9 @@ class MTGCreatureSpell(MTGSpell):
     def cast(self, env):
         super().cast(env)
         env.engine.put_from_hand_to_battlefield(self)
+        self.enters_the_battlefield(env)
+
+    @abstractmethod
+    def enters_the_battlefield(self, env):
+        print(f"Enters the battlefield {self}")
         self.has_summoning_sickness = True
