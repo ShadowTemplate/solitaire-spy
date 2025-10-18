@@ -21,6 +21,7 @@ class MTGSolitaire:
         self.counter_life = STARTING_LIFE
         self.played_land_this_turn = False
         self.tk_root = tk_root
+        self.known_lands_bottom = 0
         self.gui_battlefield = ImageGridApp(self.tk_root, "Battlefield", self.battlefield, columns=10)
         self.gui_lands = ImageGridApp(self.tk_root, "Lands", self.lands, columns=10)
         self.gui_hand = ImageGridApp(self.tk_root, "Hand", self.hand, columns=10)

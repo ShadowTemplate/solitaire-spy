@@ -406,3 +406,41 @@ class WindingWay(MTGSpell):
             else:
                 env.graveyard.append(card)
         env.engine.put_from_hand_to_graveyard(self)
+
+
+class LeadTheStampede(MTGSpell):
+    def __init__(self):
+        MTGCard.__init__(self, "Lead the Stampede", "2G")
+
+    def cast(self, env):
+        super().cast(env)
+        cards = []
+        for _ in range(5):
+            card = env.library.pop(0)
+            print(f"Looking at {card}")
+            cards.append(card)
+
+        on_the_bottom = []
+        # never reveal Lotleth Giant
+        for card in cards:
+            if isinstance(card, MTGCreatureSpell) and not card.name == "Lotleth Giant":
+                print(f"Revealed {card}")
+                env.hand.append(card)
+            else:
+                on_the_bottom.append(card)
+
+        lands_on_the_bottom = []
+        # always put lands at the bottom, to enable an earlier Spy
+        for card in on_the_bottom:
+            if not isinstance(card, MTGLand):
+                print(f"Put bottom {card}")
+                env.library.append(card)
+            else:
+                lands_on_the_bottom.append(card)
+
+        for card in lands_on_the_bottom:
+            print(f"Put bottom {card} (we are pro!)")
+            env.library.append(card)
+            env.known_lands_bottom += 1
+
+        env.engine.put_from_hand_to_graveyard(self)

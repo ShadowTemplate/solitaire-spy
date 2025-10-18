@@ -64,7 +64,9 @@ class MtgEngine:
         for permanent in self.env.battlefield:
             permanent.has_summoning_sickness = False
             permanent.is_tapped = False
+
         self.env.played_land_this_turn = False
+        self.system_switch_mana_strategy_allowed = True
         self.draw_cards(1)
         # TODO: handle instant speed plays during opponent's turn
 
@@ -134,3 +136,4 @@ class MtgEngine:
 
     def shuffle_library(self):
         random.shuffle(self.env.library)
+        self.env.known_lands_bottom = 0
