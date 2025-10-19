@@ -52,7 +52,18 @@ class MTGSolitaire:
         print(f"Graveyard: {len(self.graveyard)} {self.graveyard}")
         print(f"Exile: {len(self.exile)} {self.exile}")
         print(f"Mana pool: {[f'{i} {self.mana_pool[i]}' for i in MANA_TYPES]}")
-        self.tk_root.title(f"MTGO at home | Turn {self.counter_turn} | Life {self.counter_life} vs {self.opponent_counter_life}")
+        if not self.engine.passing:
+            self.tk_root.title(
+                f"MTGO at home | "
+                f"Turn {self.counter_turn} (mine) | "
+                f"Life {self.counter_life} vs {self.opponent_counter_life}"
+            )
+        else:
+            self.tk_root.title(
+                f"MTGO at home | "
+                f"Turn {self.counter_turn} (opponent) | "
+                f"Life {self.counter_life} vs {self.opponent_counter_life}"
+            )
         self.gui_battlefield.load_images(self)
         self.gui_lands.load_images(self)
         self.gui_hand.load_images(self)

@@ -1,5 +1,6 @@
 import random
 
+from solitaire_spy.cards.creatures import WallOfRoots
 from solitaire_spy.constants import *
 
 
@@ -117,7 +118,7 @@ class MtgEngine:
 
     def put_from_graveyard_to_battlefield(self, creature):
         self.change_card_zone(creature, self.env.graveyard, self.env.battlefield)
-        creature.enters_the_battlefield(self)
+        creature.enters_the_battlefield(self.env)
 
     def add_mana(self, color, quantity):
         self.env.mana_pool[color] += quantity
@@ -126,6 +127,8 @@ class MtgEngine:
         creature.is_tapped = False
         creature.has_summoning_sickness = False
         creature.ability_once_per_turn_activated = False
+        if isinstance(creature, WallOfRoots):
+            creature.minus_counters = 0
         self.change_card_zone(creature, self.env.battlefield, self.env.graveyard)
 
     def put_from_graveyard_to_exile(self, card):

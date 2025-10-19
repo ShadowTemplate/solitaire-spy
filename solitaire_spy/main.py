@@ -1,6 +1,7 @@
 import threading
 import os
 import random
+import time
 import tkinter as tk
 
 from solitaire_spy.cards.creatures import *
@@ -15,15 +16,24 @@ def seed_everything(seed):
     random.seed(seed)
 
 
+def best_move(possible_actions):
+    for i, pair in enumerate(possible_actions):
+        card, action = pair
+        if card and card.name == "Balustrade Spy":
+            return i
+        if card and card.name == "Dread Return":
+            return 51
+    return 0
+
 def solitaire(env: MTGSolitaire):
-    for _ in range(250):
-        # time.sleep(3)
+    while env.opponent_counter_life > 0:
+        time.sleep(1)
         print('---')
         possible_actions = env.engine.get_possible_actions()
-        print('---')
-        card, action = possible_actions[0]
+        card, action = possible_actions[best_move(possible_actions)]
         env.step(card, action)
         env.render()
+    print("You won!")
 
 
 def main():
@@ -35,16 +45,24 @@ def main():
     deck.append(SaruliCaretaker())
     deck.append(Forest())
     deck.append(WallOfRoots())
-    deck.append(MesmericFiend())
-    deck.append(MesmericFiend())
-    deck.append(MesmericFiend())
     deck.append(WindingWay())
-    deck.append(SaruliCaretaker())
-    deck.append(SaruliCaretaker())
-    deck.append(SaruliCaretaker())
-    deck.append(GenerousEnt())
+    deck.append(BalustradeSpy())
+    deck.append(MesmericFiend())
+
+    deck.append(MesmericFiend())
+    deck.append(TrollOfKhazadDum())
+    deck.append(SaguWildling())
+    deck.append(MesmericFiend())
+
+    deck.append(MesmericFiend())
+
+    deck.append(MesmericFiend())
+    deck.append(Swamp())
+    deck.append(Forest())
     for _ in range(50):
-        deck.append(Forest())
+        deck.append(MesmericFiend())
+    deck.append(DreadReturn())
+    deck.append(LotlethGiant())
     # deck.append(Forest())
     # deck.append(HauntedMire())
     env = MTGSolitaire(deck, root)
