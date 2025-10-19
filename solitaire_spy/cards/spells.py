@@ -136,6 +136,7 @@ class DreadReturn(MTGSpell):
         env.engine.put_from_hand_to_graveyard(self)
 
     def cast_with_target_available(self, env, i):
+        # TODO: optimize - allow only for Spy/Giant
         return super().cast_available(env) and isinstance(env.graveyard[int(i)], MTGCreatureSpell) and not env.engine.passing
 
     def flashback_with_target(self, env, itriple):
@@ -150,5 +151,6 @@ class DreadReturn(MTGSpell):
         env.engine.put_from_graveyard_to_battlefield(target)
 
     def flashback_with_target_available(self, env, itriple):
+        # TODO: optimize - allow only for Spy/Giant
         i, triple = itriple.split(",")
         return self in env.graveyard and isinstance(env.graveyard[int(i)], MTGCreatureSpell) and not env.engine.passing

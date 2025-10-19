@@ -1,5 +1,6 @@
 import random
 
+from solitaire_spy.cards.mtg_cards import MTGLand
 from solitaire_spy.constants import *
 from solitaire_spy.mtg_engine import MtgEngine
 from solitaire_spy.spy_gui import ImageGridApp
@@ -10,7 +11,8 @@ class MTGSolitaire:
         print("*** init ***")
         self.engine = MtgEngine(self)
         self.library = deck
-        # random.shuffle(self.library)
+        self.lands_in_deck = sum(isinstance(c, MTGLand) for c in deck)
+        random.shuffle(self.library)
         self.hand = []
         self.engine.draw_cards(7)
         self.lands = []

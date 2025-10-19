@@ -60,8 +60,9 @@ class MtgEngine:
                 print(f"Drew {card}")
                 self.env.hand.append(card)
             except IndexError:
-                print(f"ERROR: lost by drawing from empty library")
-                raise
+                msg = "Lost by drawing from empty library"
+                print(msg)
+                raise GameLostException(msg)
 
     def system_pass(self):
         print("Passing")
@@ -173,3 +174,6 @@ class MtgEngine:
     def shuffle_library(self):
         random.shuffle(self.env.library)
         self.env.known_lands_bottom = 0
+
+class GameLostException(Exception):
+    pass
