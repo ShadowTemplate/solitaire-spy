@@ -22,15 +22,36 @@ class MTGSolitaire:
         self.counter_life = STARTING_LIFE
         self.opponent_counter_life = STARTING_LIFE
         self.played_land_this_turn = False
-        self.tk_root = tk_root
         self.known_lands_bottom = 0
-        self.gui_battlefield = ImageGridApp(self.tk_root, "Battlefield", self.battlefield, columns=10)
-        self.gui_lands = ImageGridApp(self.tk_root, "Lands", self.lands, columns=10)
-        self.gui_hand = ImageGridApp(self.tk_root, "Hand", self.hand, columns=10)
-        self.gui_graveyard = ImageGridApp(self.tk_root, "Graveyard", self.graveyard, columns=10)
-        self.gui_exile = ImageGridApp(self.tk_root, "Exile", self.exile, columns=10)
-        self.gui_mana_pool = ImageGridApp(self.tk_root, "Mana pool", self.mana_pool, columns=len(self.mana_pool))
         self.mana_strategy = MANA_STRATEGY_SCRBG
+
+        self.tk_root = tk_root
+        self.gui_battlefield = None
+        self.gui_lands = None
+        self.gui_hand = None
+        self.gui_graveyard = None
+        self.gui_exile = None
+        self.gui_mana_pool = None
+
+        if tk_root:
+            self.gui_battlefield = ImageGridApp(
+                self.tk_root, "Battlefield", self.battlefield, columns=10
+            )
+            self.gui_lands = ImageGridApp(
+                self.tk_root, "Lands", self.lands, columns=10
+            )
+            self.gui_hand = ImageGridApp(
+                self.tk_root, "Hand", self.hand, columns=10
+            )
+            self.gui_graveyard = ImageGridApp(
+                self.tk_root, "Graveyard", self.graveyard, columns=10
+            )
+            self.gui_exile = ImageGridApp(
+                self.tk_root, "Exile", self.exile, columns=10
+            )
+            self.gui_mana_pool = ImageGridApp(
+                self.tk_root, "Mana pool", self.mana_pool, columns=len(self.mana_pool)
+            )
         self.render()
 
     def step(self, card, action):
@@ -52,6 +73,9 @@ class MTGSolitaire:
         print(f"Graveyard: {len(self.graveyard)} {self.graveyard}")
         print(f"Exile: {len(self.exile)} {self.exile}")
         print(f"Mana pool: {[f'{i} {self.mana_pool[i]}' for i in MANA_TYPES]}")
+        if not self.tk_root:
+            return
+        # update GUI
         if not self.engine.passing:
             self.tk_root.title(
                 f"MTGO at home | "

@@ -27,7 +27,7 @@ def best_move(possible_actions):
 
 def solitaire(env: MTGSolitaire):
     while env.opponent_counter_life > 0:
-        time.sleep(1)
+        # time.sleep(1)
         print('---')
         possible_actions = env.engine.get_possible_actions()
         card, action = possible_actions[best_move(possible_actions)]
@@ -35,11 +35,7 @@ def solitaire(env: MTGSolitaire):
         env.render()
     print("You won!")
 
-
-def main():
-    root = tk.Tk()
-    root.title("MTGO at home - Turn 0")
-    seed_everything(SEED)
+def get_deck():
     deck = []
     deck.append(Forest())
     deck.append(SaruliCaretaker())
@@ -48,14 +44,11 @@ def main():
     deck.append(WindingWay())
     deck.append(BalustradeSpy())
     deck.append(MesmericFiend())
-
     deck.append(MesmericFiend())
     deck.append(TrollOfKhazadDum())
     deck.append(SaguWildling())
     deck.append(MesmericFiend())
-
     deck.append(MesmericFiend())
-
     deck.append(MesmericFiend())
     deck.append(Swamp())
     deck.append(Forest())
@@ -63,8 +56,21 @@ def main():
         deck.append(MesmericFiend())
     deck.append(DreadReturn())
     deck.append(LotlethGiant())
-    # deck.append(Forest())
-    # deck.append(HauntedMire())
+    return deck
+
+
+def main_no_gui():
+    seed_everything(SEED)
+    deck = get_deck()
+    env = MTGSolitaire(deck, None)
+    solitaire(env)
+
+
+def main_with_gui():
+    root = tk.Tk()
+    root.title("MTGO at home - Turn 0")
+    seed_everything(SEED)
+    deck = get_deck()
     env = MTGSolitaire(deck, root)
     thread = threading.Thread(target=solitaire, args=[env], daemon=True)
     thread.start()
@@ -73,4 +79,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    main_no_gui()
