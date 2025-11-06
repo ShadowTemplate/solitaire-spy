@@ -9,7 +9,7 @@ from solitaire_spy.spy_solitaire import MTGSolitaire
 
 from solitaire_spy.log import get_logger
 
-log = get_logger(__name__, stdout_level=logging.INFO)
+log = get_logger(__name__, stdout_level=logging.WARNING)
 
 
 class Solver:
@@ -60,6 +60,9 @@ class Solver:
             if early_abort and self.is_useless_game(env):
                 log.debug("Optimization: early aborting useless game")
                 continue
+
+            if len(env.steps_log) == 0:  # game just started
+                env.initial_hand = deepcopy(env.hand)
 
             # check if there are obvious actions and play them first (no need to copy)
             action = True

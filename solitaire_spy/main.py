@@ -10,6 +10,7 @@ from solitaire_spy.cards.lands import *
 from solitaire_spy.cards.spells import *
 from solitaire_spy.constants import SEED
 from solitaire_spy.solver.core import Solver
+from solitaire_spy.solver.simulator import Simulator
 from solitaire_spy.spy_solitaire import MTGSolitaire
 
 
@@ -73,6 +74,14 @@ def get_deck():
         4 * [WindingWay()]
 
 
+def main_with_simulator():
+    seed_everything(SEED)
+    deck = get_deck()
+    simulator = Simulator(deck, 3)
+    simulator.simulate()
+    simulator.print()
+
+
 def main_with_solver():
     seed_everything(SEED)
     deck = get_deck()
@@ -107,4 +116,4 @@ def main_with_gui():
 
 
 if __name__ == '__main__':
-    main_with_solver()
+    main_with_simulator()

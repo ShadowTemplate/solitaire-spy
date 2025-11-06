@@ -38,6 +38,7 @@ class MTGSolitaire:
         self.mana_strategy = MANA_STRATEGY_SCRBG
         self.steps_log = []
         self.kept_at = 7
+        self.initial_hand = []  # to be initialized when game actually starts
 
         self.tk_root = tk_root
         self.gui_battlefield = None
