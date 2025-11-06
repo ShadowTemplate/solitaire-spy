@@ -1,3 +1,4 @@
+import timeit
 import threading
 import os
 import random
@@ -76,8 +77,14 @@ def main_with_solver():
     seed_everything(SEED)
     deck = get_deck()
     env = MTGSolitaire(deck, None)
+    start_time = timeit.default_timer()
     env = Solver(env).solve()
-    print(env.steps_log)
+    if env:
+        print(env.steps_log)
+    else:
+        print("No solution found")
+    elapsed = timeit.default_timer() - start_time
+    print(f"Computation time: {elapsed:.2f} sec")
 
 
 def main_no_gui():

@@ -1,3 +1,4 @@
+import random
 from collections import defaultdict
 from copy import deepcopy
 import logging
@@ -14,7 +15,9 @@ log = get_logger(stdout_level=logging.INFO)
 class Solver:
     def __init__(self, env: MTGSolitaire):
         self.env_queues = defaultdict(list)  # one queue for each turn counter
-        self.env_queues[0] = [env]  # initial env goes to turn 0
+        # We are going to create a list of queues.
+        # Each i-th queue will contain all the games to be explored currently at turn i.
+        self.env_queues[0] = [env]  # initial env and mulligans go to turn 0
         self.heuristics = [
             play_unique_action,
             play_only_a_land,
@@ -38,10 +41,10 @@ class Solver:
                 return card, action
         return None, None
 
-    def solve(self):
-        # TODO: keep or mull
-        while True:  # a winning game will eventually be found
-            log.info(f"In queue: {sum(len(values) for q, values in self.env_queues.items())}")
+    def solve(self, greedily=True, early_abort=True):
+        self.keep_and_mull()
+        while sum(len(values) for _, values in self.env_queues.items()) > 0:
+            log.info(f"In queue: {sum(len(values) for _, values in self.env_queues.items())}")
             # let's start from universes with low counter_turn
             for i in range(len(self.env_queues)):
                 if len(self.env_queues[i]) > 0:
@@ -49,10 +52,19 @@ class Solver:
                     break
             log.info(f"Playing turn {env.counter_turn}")
 
+            if early_abort and self.is_useless_game(env):
+                log.debug("Optimization: early aborting useless game")
+                continue
+
             # check if there are obvious actions and play them first (no need to copy)
             action = True
             game_loss = False
             while action:
+                if early_abort and self.is_useless_game(env):
+                    log.debug("Optimization: early aborting useless game")
+                    game_loss = True
+                    break
+
                 possible_actions = env.engine.get_possible_actions()
                 card, action = self._get_obvious_action(env, possible_actions)
                 if action is not None:
@@ -63,8 +75,9 @@ class Solver:
                         if env.opponent_counter_life <= 0:
                             log.info(
                                 f"You won at turn {env.counter_turn} "
-                                f"(lands in deck: {any(isinstance(c, MTGLand) for c in env.library)}, "
-                                f"cards in library: {len(env.library)})!"
+                                f"(lands in deck: {sum(isinstance(c, MTGLand) for c in env.library)}, "
+                                f"cards in library: {len(env.library)}, "
+                                f"keep at {env.kept_at})!"
                             )
                             return env
                         # uncomment block below to enqueue env after each obvious action
@@ -78,7 +91,8 @@ class Solver:
                 continue  # pick the next env
 
             possible_actions = env.engine.get_possible_actions()  # refresh after obvious ones
-            possible_actions = self.greedify_action(env, possible_actions)
+            if greedily:
+                possible_actions = self.greedify_action(env, possible_actions)
             if len(possible_actions) == 2:
                 log.debug("Explore for optimizations...")
 
@@ -88,7 +102,8 @@ class Solver:
                 # after deepcopy, objects get new ids: need to re-get_possible_actions
                 # (and we know there are no obvious ones)
                 new_possible_actions = new_env.engine.get_possible_actions()
-                new_possible_actions = self.greedify_action(new_env, new_possible_actions)
+                if greedily:
+                    new_possible_actions = self.greedify_action(new_env, new_possible_actions)
                 card, action = new_possible_actions[i]
                 try:
                     log.debug(
@@ -97,17 +112,24 @@ class Solver:
                     new_env.step(card, action)
                     if new_env.opponent_counter_life <= 0:
                         log.info(
-                            f"You won at turn {env.counter_turn} "
-                            f"(lands in deck: {any(isinstance(c, MTGLand) for c in env.library)}, "
-                            f"cards in library: {len(env.library)})!"
+                            f"You won at turn {new_env.counter_turn} "
+                            f"(lands in deck: {sum(isinstance(c, MTGLand) for c in new_env.library)}, "
+                            f"cards in library: {len(new_env.library)}, "
+                            f"keep at {new_env.kept_at})!"
                         )
                         return new_env
-                    if new_env.functional_hash not in self.explored_hashes:
+                    new_env_hash = new_env.functional_hash
+                    if new_env_hash not in self.explored_hashes:
                         self.env_queues[new_env.counter_turn].append(new_env)
+                        self.explored_hashes.add(new_env_hash)
                     else:
-                        log.debug("Great: computation saved!")
+                        log.debug(f"Optimization (hash): branch already explored")
                 except GameLostException:
                     continue  # pick the next action
+        return None
+
+    def is_useless_game(self, env):
+        return env.counter_turn >= 2 and len(env.lands) == 0
 
     def greedify_action(self, env, possible_actions):
         # If you can play a Forest and also cycle for another Forest (not Mire!),
@@ -160,3 +182,47 @@ class Solver:
             possible_actions = [ca for ca in possible_actions if ca[1] != "system_pass"]
 
         return possible_actions
+
+    def keep_and_mull(self):
+        # the initial env is already enqueued and represents the keep at 7
+        for i in range(6, 2, -1):  # let's *also* mull to 6, 5, 4, and 3
+            self.mull_to(i)
+
+    def mull_to(self, new_hand_size):
+        log.debug(f"Mull to: {new_hand_size}")
+        env = deepcopy(self.env_queues[0][0])  # clone the initial env
+        env.kept_at = new_hand_size
+        while len(env.hand) > 0:  # shuffle back initial hand
+            env.engine.put_from_hand_to_library(env.hand[0])
+        log.info("Shuffling library...")
+        random.shuffle(env.library)
+
+        env.engine.draw_cards(7)
+        cards_to_put_on_the_bottom = 7-new_hand_size
+        has_dead_card = True
+        while cards_to_put_on_the_bottom > 0 and has_dead_card:
+            dead_card = env.engine.get_dead_card_in_hand()
+            if dead_card:
+                env.engine.put_from_hand_to_library(dead_card)
+                cards_to_put_on_the_bottom -= 1
+                if isinstance(dead_card, MTGLand):
+                    env.known_lands_bottom += 1
+            else:
+                has_dead_card = False
+        if cards_to_put_on_the_bottom == 0:
+            self.env_queues[0].append(env)
+            self.explored_hashes.add(env.functional_hash)
+            return
+        # create different envs, each one with a different card to mull
+        for nuple in itertools.combinations(range(len(env.hand)), cards_to_put_on_the_bottom):
+            new_env = deepcopy(env)
+            for i in reversed(nuple):
+                if isinstance(new_env.hand[i], MTGLand):
+                    new_env.known_lands_bottom += 1
+                new_env.engine.put_from_hand_to_library(new_env.hand[i])
+            new_env_hash = new_env.functional_hash
+            if new_env_hash not in self.explored_hashes:
+                self.env_queues[0].append(new_env)
+                self.explored_hashes.add(new_env_hash)
+            else:
+                log.debug(f"Optimization (hash): branch already explored")

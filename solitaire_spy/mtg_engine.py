@@ -85,12 +85,18 @@ class MtgEngine:
                 log.error(msg)
                 raise GameLostException(msg)
 
-    def get_worst_card_in_hand(self):
-        worst_cards = [LotlethGiant, DreadReturn, MesmericFiend, MaskedVandal]
-        for card in self.env.hand:
-            for worst in worst_cards:
-                if isinstance(card, worst):
+    def get_dead_card_in_hand(self):
+        dead_cards = [LotlethGiant, DreadReturn, MesmericFiend, MaskedVandal]
+        for dead in dead_cards:  # Lotleth Giant always the first pick
+            for card in self.env.hand:
+                if isinstance(card, dead):
                     return card
+        return None
+
+    def get_worst_card_in_hand(self):
+        dead_card = self.get_dead_card_in_hand()
+        if dead_card:
+            return dead_card
         try:
             return next(
                 c for c in self.env.hand

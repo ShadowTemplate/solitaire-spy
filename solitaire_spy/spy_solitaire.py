@@ -21,7 +21,7 @@ class MTGSolitaire:
             # uncomment to force certain hands
             # if any(isinstance(c, MTGLand) for c in self.library[:7]) and any(isinstance(c, BalustradeSpy) for c in self.library[:7]):
             # if any(isinstance(c, MTGLand) for c in self.library[:7]):
-            #     break
+            #     continue
             break
         self.hand = []
         self.engine.draw_cards(7)
@@ -37,6 +37,7 @@ class MTGSolitaire:
         self.known_lands_bottom = 0
         self.mana_strategy = MANA_STRATEGY_SCRBG
         self.steps_log = []
+        self.kept_at = 7
 
         self.tk_root = tk_root
         self.gui_battlefield = None
