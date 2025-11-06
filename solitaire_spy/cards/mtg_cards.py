@@ -1,6 +1,10 @@
+import logging
 from abc import ABC, abstractmethod
 
 from solitaire_spy.constants import MANA_TYPES
+from solitaire_spy.log import get_logger
+
+log = get_logger(stdout_level=logging.INFO)
 
 
 class MTGCard(ABC):
@@ -26,6 +30,10 @@ class MTGCard(ABC):
         return id(self)
 
     @property
+    def functional_hash(self):
+        return self.name + str(self.is_tapped) + str(self.has_summoning_sickness) + str(self.ability_once_per_turn_activated)
+
+    @property
     def mana_cost_map(self):
         mana_cost_map = {t: self.mana_cost.count(t) for t in MANA_TYPES}
         try:
@@ -41,7 +49,7 @@ class MTGLand(MTGCard):
 
     @abstractmethod
     def play(self, env):
-        print(f"Playing {self}")
+        log.info(f"Playing {self}")
         env.played_land_this_turn = True
         env.engine.play_land(self)
 
@@ -49,7 +57,7 @@ class MTGLand(MTGCard):
         return self in env.hand and not env.played_land_this_turn and not env.engine.passing
 
     def tap_for_mana(self, env):
-        print(f"Tapping for mana {self}")
+        log.info(f"Tapping for mana {self}")
         self.is_tapped = True
 
     def tap_for_mana_available(self, env):
@@ -57,12 +65,16 @@ class MTGLand(MTGCard):
 
 
 class MTGSpell(MTGCard):
+    def __init__(self, name, mana_cost, can_be_cast_for_black):
+        super().__init__(name, mana_cost)
+        self.can_be_cast_for_black = can_be_cast_for_black
+
     def actions(self, env):
         return ["cast"]
 
     @abstractmethod
     def cast(self, env):
-        print(f"Casting {self}")
+        log.info(f"Casting {self}")
         env.engine.pay_mana(self.mana_cost_map)
 
     def cast_available(self, env):
@@ -82,8 +94,8 @@ class MTGSpell(MTGCard):
 
 
 class MTGCreatureSpell(MTGSpell):
-    def __init__(self, name, mana_cost, is_defender):
-        MTGCard.__init__(self, name, mana_cost)
+    def __init__(self, name, mana_cost, can_be_cast_for_black, is_defender):
+        MTGSpell.__init__(self, name, mana_cost, can_be_cast_for_black)
         self.is_defender = is_defender
 
     def cast(self, env):
@@ -96,5 +108,5 @@ class MTGCreatureSpell(MTGSpell):
 
     @abstractmethod
     def enters_the_battlefield(self, env):
-        print(f"Enters the battlefield {self}")
+        log.info(f"Enters the battlefield {self}")
         self.has_summoning_sickness = True

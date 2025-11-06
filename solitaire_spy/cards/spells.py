@@ -1,11 +1,16 @@
 import itertools
+import logging
 
-from solitaire_spy.cards.mtg_cards import MTGSpell, MTGCard, MTGLand, MTGCreatureSpell
+from solitaire_spy.cards.creatures import BalustradeSpy, LotlethGiant
+from solitaire_spy.cards.mtg_cards import MTGSpell, MTGLand, MTGCreatureSpell
+from solitaire_spy.log import get_logger
+
+log = get_logger(stdout_level=logging.INFO)
 
 
 class LandGrant(MTGSpell):
     def __init__(self):
-        MTGCard.__init__(self, "Land Grant", "1G")
+        MTGSpell.__init__(self, "Land Grant", "1G", False)
 
     def actions(self, env):
         return ["cast_for_forest", "cast_for_mire", "cast_for_forest_for_free", "cast_for_mire_for_free"]
@@ -30,7 +35,7 @@ class LandGrant(MTGSpell):
         return super().cast_available(env) and any(c.name == "Haunted Mire" for c in env.library) and not env.engine.passing
 
     def cast_for_forest_for_free(self, env):
-        print("Casting Land Grant for free")
+        log.info("Casting Land Grant for free")
         env.engine.search_library_for("Forest")
         env.engine.put_from_hand_to_graveyard(self)
 
@@ -38,7 +43,7 @@ class LandGrant(MTGSpell):
         return self in env.hand and not any(isinstance(c, MTGLand) for c in env.hand) and any(c.name == "Forest" for c in env.library) and not env.engine.passing
 
     def cast_for_mire_for_free(self, env):
-        print("Casting Land Grant for free")
+        log.info("Casting Land Grant for free")
         env.engine.search_library_for("Haunted Mire")
         env.engine.put_from_hand_to_graveyard(self)
 
@@ -48,18 +53,21 @@ class LandGrant(MTGSpell):
 
 class WindingWay(MTGSpell):
     def __init__(self):
-        MTGCard.__init__(self, "Winding Way", "1G")
+        MTGSpell.__init__(self, "Winding Way", "1G", False)
 
     def cast(self, env):
         super().cast(env)
-        print("Choose Creature")  # always choose Creature
+        log.debug("Choose Creature")  # always choose Creature
         for _ in range(4):
-            card = env.library.pop(0)
-            print(f"Revealed {card}")
-            if isinstance(card, MTGCreatureSpell):
-                env.hand.append(card)
-            else:
-                env.graveyard.append(card)
+            try:
+                card = env.library.pop(0)
+                log.info(f"Revealed {card}")
+                if isinstance(card, MTGCreatureSpell):
+                    env.hand.append(card)
+                else:
+                    env.graveyard.append(card)
+            except IndexError:
+                continue
         env.engine.put_from_hand_to_graveyard(self)
 
     def cast_available(self, env):
@@ -68,21 +76,24 @@ class WindingWay(MTGSpell):
 
 class LeadTheStampede(MTGSpell):
     def __init__(self):
-        MTGCard.__init__(self, "Lead the Stampede", "2G")
+        MTGSpell.__init__(self, "Lead the Stampede", "2G", False)
 
     def cast(self, env):
         super().cast(env)
         cards = []
         for _ in range(5):
-            card = env.library.pop(0)
-            print(f"Looking at {card}")
-            cards.append(card)
+            try:
+                card = env.library.pop(0)
+                log.info(f"Looking at {card}")
+                cards.append(card)
+            except IndexError:
+                continue
 
         on_the_bottom = []
         # never reveal Lotleth Giant
         for card in cards:
             if isinstance(card, MTGCreatureSpell) and not card.name == "Lotleth Giant":
-                print(f"Revealed {card}")
+                log.info(f"Revealed {card}")
                 env.hand.append(card)
             else:
                 on_the_bottom.append(card)
@@ -91,13 +102,13 @@ class LeadTheStampede(MTGSpell):
         # always put lands at the bottom, to enable an earlier Spy
         for card in on_the_bottom:
             if not isinstance(card, MTGLand):
-                print(f"Put bottom {card}")
+                log.info(f"Put bottom {card}")
                 env.library.append(card)
             else:
                 lands_on_the_bottom.append(card)
 
         for card in lands_on_the_bottom:
-            print(f"Put bottom {card} (we are pro!)")
+            log.info(f"Put bottom {card} (we are pro!)")
             env.library.append(card)
             env.known_lands_bottom += 1
 
@@ -109,7 +120,7 @@ class LeadTheStampede(MTGSpell):
 
 class DreadReturn(MTGSpell):
     def __init__(self):
-        MTGCard.__init__(self, "Dread Return", "2BB")
+        MTGSpell.__init__(self, "Dread Return", "2BB", True)
 
     def actions(self, env):
         # we need to compute dynamically which creatures Dread Return can reanimate
@@ -131,26 +142,30 @@ class DreadReturn(MTGSpell):
     def cast_with_target(self, env, i):
         super().cast(env)
         target = env.graveyard[int(i)]
-        print(f"Targeting {target}")
+        log.info(f"Targeting {target}")
         env.engine.put_from_graveyard_to_battlefield(target)
         env.engine.put_from_hand_to_graveyard(self)
 
     def cast_with_target_available(self, env, i):
-        # TODO: optimize - allow only for Spy/Giant
-        return super().cast_available(env) and isinstance(env.graveyard[int(i)], MTGCreatureSpell) and not env.engine.passing
+        # optional: enable only if Giant/Spy in graveyard
+        # optimization = False
+        optimization = any(isinstance(c, BalustradeSpy) for c in env.graveyard) and any(isinstance(c, LotlethGiant) for c in env.graveyard)
+        return super().cast_available(env) and isinstance(env.graveyard[int(i)], MTGCreatureSpell) and not env.engine.passing and optimization
 
     def flashback_with_target(self, env, itriple):
-        print(f"Flashing back {self}")
+        log.info(f"Flashing back {self}")
         i, triple = itriple.split(",")
         target = env.graveyard[int(i)]
         creatures_to_sac = [env.battlefield[int(i)] for i in triple.split("-")]
-        print(f"Targeting {target} saccing {creatures_to_sac}")
+        log.info(f"Targeting {target} saccing {creatures_to_sac}")
         env.engine.put_from_graveyard_to_exile(self)
         for creature_to_sac in creatures_to_sac:
             env.engine.sacrifice_creature(creature_to_sac)
         env.engine.put_from_graveyard_to_battlefield(target)
 
     def flashback_with_target_available(self, env, itriple):
-        # TODO: optimize - allow only for Spy/Giant
+        # optional: enable only if Giant/Spy in graveyard
+        # optimization = False
+        optimization = any(isinstance(c, BalustradeSpy) for c in env.graveyard) and any(isinstance(c, LotlethGiant) for c in env.graveyard)
         i, triple = itriple.split(",")
-        return self in env.graveyard and isinstance(env.graveyard[int(i)], MTGCreatureSpell) and not env.engine.passing
+        return self in env.graveyard and isinstance(env.graveyard[int(i)], MTGCreatureSpell) and not env.engine.passing and optimization

@@ -1,7 +1,13 @@
+import logging
 import random
 
-from solitaire_spy.cards.creatures import WallOfRoots
+from solitaire_spy.cards.creatures import *
+from solitaire_spy.cards.mtg_cards import MTGLand
+from solitaire_spy.cards.spells import *
 from solitaire_spy.constants import *
+from solitaire_spy.log import get_logger
+
+log = get_logger(stdout_level=logging.INFO)
 
 
 class MtgEngine:
@@ -23,6 +29,7 @@ class MtgEngine:
 
     def get_possible_actions(self):
         possible_actions = []
+        possible_actions_cache = set()
 
         for zone, zone_name in [
             (self.env.hand, "hand"),
@@ -33,19 +40,33 @@ class MtgEngine:
             for card in zone:
                 for action in card.actions(self.env):
                     if self.is_action_possible(card, action):
-                        print(f"Available action from {zone_name}: {card} -> {action}")
-                        possible_actions.append((card, action))
+                        # let's not add twice the same action... but redundant copies
+                        # of Tinder Wall and Wall of Roots need to be treated separately
+                        if (isinstance(card, TinderWall) or isinstance(card, WallOfRoots)) and "cast" not in action:
+                            log.debug(f"Available action from {zone_name}: {card} -> {action}")
+                            possible_actions.append((card, action))
+                        else:
+                            if f"{card}X{action}" in possible_actions_cache:
+                                continue  # skip duplicate action
+                            else:
+                                possible_actions_cache.add(f"{card}X{action}")
+                                log.debug(f"Available action from {zone_name}: {card} -> {action}")
+                                possible_actions.append((card, action))
 
-        if self.system_switch_mana_strategy_allowed:
-            print(f"Available system action: system_switch_mana_strategy")
+        different_mana_types_in_pool = sum(
+            1 for t in self.env.mana_pool
+            if self.env.mana_pool[t] > 1
+        ) > 1
+        if self.system_switch_mana_strategy_allowed and different_mana_types_in_pool:
+            log.debug(f"Available system action: system_switch_mana_strategy")
             possible_actions.append((None, "system_switch_mana_strategy"))
 
         # probably best to keep these as last
         if not self.passing:
-            print(f"Available system action: system_pass")
+            log.debug(f"Available system action: system_pass")
             possible_actions.append((None, "system_pass"))
         else:
-            print(f"Available system action: system_start_new_turn")
+            log.debug(f"Available system action: system_start_new_turn")
             possible_actions.append((None, "system_start_new_turn"))
         return possible_actions
 
@@ -57,20 +78,39 @@ class MtgEngine:
         for _ in range(num_cards):
             try:
                 card = self.env.library.pop(0)
-                print(f"Drew {card}")
+                log.info(f"Drew {card}")
                 self.env.hand.append(card)
             except IndexError:
                 msg = "Lost by drawing from empty library"
-                print(msg)
+                log.error(msg)
                 raise GameLostException(msg)
 
+    def get_worst_card_in_hand(self):
+        worst_cards = [LotlethGiant, DreadReturn, MesmericFiend, MaskedVandal]
+        for card in self.env.hand:
+            for worst in worst_cards:
+                if isinstance(card, worst):
+                    return card
+        try:
+            return next(
+                c for c in self.env.hand
+                if not isinstance(c, MTGLand) and
+                not isinstance(c, LandGrant) and
+                not isinstance(c, GenerousEnt) and
+                not isinstance(c, TrollOfKhazadDum) and
+                not isinstance(c, SaguWildling) and
+                not isinstance(c, WindingWay) and
+                not isinstance(c, LeadTheStampede)
+            )
+        except StopIteration:
+            return random.choice(self.env.hand)  # TODO: improve, if possible
+
     def system_pass(self):
-        print("Passing")
+        log.info("Passing")
         self.passing = True
         cards_to_discard = max(len(self.env.hand) - MTG_MAX_CARDS_IN_HAND, 0)
-        # TODO: discard to hand size
-        if cards_to_discard > 0:
-            raise ValueError("Discard to hand size not implemented yet")
+        for _ in range(cards_to_discard):
+            self.put_from_hand_to_graveyard(self.get_worst_card_in_hand())
 
         for mana in self.env.mana_pool:
             self.env.mana_pool[mana] = 0
@@ -96,7 +136,7 @@ class MtgEngine:
             self.env.mana_strategy = MANA_STRATEGY_SCRGB
         else:
             self.env.mana_strategy = MANA_STRATEGY_SCRBG
-        print(f"Switching mana strategy to {self.env.mana_strategy}")
+        log.info(f"Switching mana strategy to {self.env.mana_strategy}")
         # system_switch_mana_strategy will be re-enabled only after a mana-consuming
         # action (e.g. casting a spell or activating an ability)
         self.system_switch_mana_strategy_allowed = False

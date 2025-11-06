@@ -1,10 +1,14 @@
+import logging
 from solitaire_spy.cards.mtg_cards import MTGCreatureSpell, MTGLand
 from solitaire_spy.cards.lands import Forest
+from solitaire_spy.log import get_logger
+
+log = get_logger(stdout_level=logging.INFO)
 
 
 class TinderWall(MTGCreatureSpell):
     def __init__(self):
-        super().__init__("Tinder Wall", "G", True)
+        super().__init__("Tinder Wall", "G", False, True)
 
     def actions(self, env):
         # for the Spy solitaire we don't need to implement other abilities/properties
@@ -17,7 +21,7 @@ class TinderWall(MTGCreatureSpell):
         super().enters_the_battlefield(env)
 
     def sacrifice_for_mana_RR(self, env):
-        print(f"Sacrificing {self} for RR")
+        log.info(f"Sacrificing {self} for RR")
         env.engine.sacrifice_creature(self)
         env.engine.add_mana('R', 2)
 
@@ -27,7 +31,8 @@ class TinderWall(MTGCreatureSpell):
 
 class GenerousEnt(MTGCreatureSpell):
     def __init__(self):
-        super().__init__("Generous Ent", "5G", False)
+        # optimization: do not aim at casting Ent
+        super().__init__("Generous Ent", "5G", False, False)
 
     def actions(self, env):
         # for the Spy solitaire we don't need to implement other abilities/properties
@@ -36,11 +41,14 @@ class GenerousEnt(MTGCreatureSpell):
     def cast(self, env):
         super().cast(env)
 
+    def cast_available(self, env):
+        return False
+
     def enters_the_battlefield(self, env):
         super().enters_the_battlefield(env)
 
     def forestcycling_forest(self, env):
-        print(f"Forestcycling {self} for Forest")
+        log.info(f"Forestcycling {self} for Forest")
         env.engine.pay_mana({"W": 0, "U": 0, "B": 0, "R": 0, "G": 0, "C": 1})
         env.engine.discard_card(self)
         env.engine.search_library_for("Forest")
@@ -50,7 +58,7 @@ class GenerousEnt(MTGCreatureSpell):
         return self in env.hand and any(c.name == "Forest" for c in env.library) and sum(env.mana_pool.values()) > 0
 
     def forestcycling_mire(self, env):
-        print(f"Forestcycling {self} for Haunted Mire")
+        log.info(f"Forestcycling {self} for Haunted Mire")
         env.engine.pay_mana({"W": 0, "U": 0, "B": 0, "R": 0, "G": 0, "C": 1})
         env.engine.discard_card(self)
         env.engine.search_library_for("Haunted Mire")
@@ -62,7 +70,8 @@ class GenerousEnt(MTGCreatureSpell):
 
 class TrollOfKhazadDum(MTGCreatureSpell):
     def __init__(self):
-        super().__init__("Troll of Khazad-dum", "5B", False)
+        # optimization: do not aim at casting Troll
+        super().__init__("Troll of Khazad-dum", "5B", False, False)
 
     def actions(self, env):
         # for the Spy solitaire we don't need to implement other abilities/properties
@@ -71,11 +80,14 @@ class TrollOfKhazadDum(MTGCreatureSpell):
     def cast(self, env):
         super().cast(env)
 
+    def cast_available(self, env):
+        return False
+
     def enters_the_battlefield(self, env):
         super().enters_the_battlefield(env)
 
     def swampcycling_swamp(self, env):
-        print(f"Swampcycling {self} for Swamp")
+        log.info(f"Swampcycling {self} for Swamp")
         env.engine.pay_mana({"W": 0, "U": 0, "B": 0, "R": 0, "G": 0, "C": 1})
         env.engine.discard_card(self)
         env.engine.search_library_for("Swamp")
@@ -85,7 +97,7 @@ class TrollOfKhazadDum(MTGCreatureSpell):
         return self in env.hand and any(c.name == "Swamp" for c in env.library) and sum(env.mana_pool.values()) > 0
 
     def swampcycling_mire(self, env):
-        print(f"Swampcycling {self} for Haunted Mire")
+        log.info(f"Swampcycling {self} for Haunted Mire")
         env.engine.pay_mana({"W": 0, "U": 0, "B": 0, "R": 0, "G": 0, "C": 1})
         env.engine.discard_card(self)
         env.engine.search_library_for("Haunted Mire")
@@ -97,7 +109,8 @@ class TrollOfKhazadDum(MTGCreatureSpell):
 
 class SaguWildling(MTGCreatureSpell):
     def __init__(self):
-        super().__init__("Sagu Wildling", "4B", False)
+        # optimization: do not aim at casting Sagu
+        super().__init__("Sagu Wildling", "4B", False, False)
 
     def actions(self, env):
         # for the Spy solitaire we don't need to implement other abilities/properties
@@ -106,11 +119,14 @@ class SaguWildling(MTGCreatureSpell):
     def cast(self, env):
         super().cast(env)
 
+    def cast_available(self, env):
+        return False
+
     def enters_the_battlefield(self, env):
         super().enters_the_battlefield(env)
 
     def roost_seek_forest(self, env):
-        print(f"Casting Roost Seek {self} for Forest")
+        log.info(f"Casting Roost Seek {self} for Forest")
         env.engine.pay_mana({"W": 0, "U": 0, "B": 0, "R": 0, "G": 1, "C": 0})
         env.engine.put_from_hand_to_library(self)
         env.engine.search_library_for("Forest")
@@ -120,7 +136,7 @@ class SaguWildling(MTGCreatureSpell):
         return self in env.hand and any(c.name == "Forest" for c in env.library) and env.mana_pool["G"] > 0 and not env.engine.passing
 
     def roost_seek_swamp(self, env):
-        print(f"Casting Roost Seek {self} for Swamp")
+        log.info(f"Casting Roost Seek {self} for Swamp")
         env.engine.pay_mana({"W": 0, "U": 0, "B": 0, "R": 0, "G": 1, "C": 0})
         env.engine.put_from_hand_to_library(self)
         env.engine.search_library_for("Swamp")
@@ -132,7 +148,7 @@ class SaguWildling(MTGCreatureSpell):
 
 class OrnithopterOfParadise(MTGCreatureSpell):
     def __init__(self):
-        super().__init__("Ornithopter of Paradise", "2", False)
+        super().__init__("Ornithopter of Paradise", "2", False, False)
 
     def actions(self, env):
         # for the Spy solitaire we don't need to implement other abilities/properties
@@ -145,7 +161,7 @@ class OrnithopterOfParadise(MTGCreatureSpell):
         super().enters_the_battlefield(env)
 
     def tap_for_mana_G(self, env):
-        print(f"Tapping for mana {self}")
+        log.info(f"Tapping for mana {self}")
         env.engine.add_mana('G', 1)
         self.is_tapped = True
 
@@ -153,7 +169,7 @@ class OrnithopterOfParadise(MTGCreatureSpell):
         return self in env.battlefield and not self.has_summoning_sickness and not self.is_tapped
 
     def tap_for_mana_B(self, env):
-        print(f"Tapping for mana {self}")
+        log.info(f"Tapping for mana {self}")
         env.engine.add_mana('B', 1)
         self.is_tapped = True
 
@@ -163,7 +179,7 @@ class OrnithopterOfParadise(MTGCreatureSpell):
 
 class OvergrownBattlement(MTGCreatureSpell):
     def __init__(self):
-        super().__init__("Overgrown Battlement", "1G", True)
+        super().__init__("Overgrown Battlement", "1G", False, True)
 
     def actions(self, env):
         return super().actions(env) + ["tap_for_mana_G"]
@@ -175,7 +191,7 @@ class OvergrownBattlement(MTGCreatureSpell):
         super().enters_the_battlefield(env)
 
     def tap_for_mana_G(self, env):
-        print(f"Tapping for mana {self}")
+        log.info(f"Tapping for mana {self}")
         env.engine.add_mana('G', sum(c.is_defender for c in env.battlefield))
         self.is_tapped = True
 
@@ -185,7 +201,7 @@ class OvergrownBattlement(MTGCreatureSpell):
 
 class ElvesOfDeepShadow(MTGCreatureSpell):
     def __init__(self):
-        super().__init__("Elves of Deep Shadow", "G", False)
+        super().__init__("Elves of Deep Shadow", "G", False, False)
 
     def actions(self, env):
         return super().actions(env) + ["tap_for_mana_B"]
@@ -197,7 +213,7 @@ class ElvesOfDeepShadow(MTGCreatureSpell):
         super().enters_the_battlefield(env)
 
     def tap_for_mana_B(self, env):
-        print(f"Tapping for mana {self}")
+        log.info(f"Tapping for mana {self}")
         env.engine.add_mana('B', 1)
         env.counter_life -= 1
         self.is_tapped = True
@@ -208,7 +224,7 @@ class ElvesOfDeepShadow(MTGCreatureSpell):
 
 class MaskedVandal(MTGCreatureSpell):
     def __init__(self):
-        super().__init__("Masked Vandal", "1G", False)
+        super().__init__("Masked Vandal", "1G", False, False)
 
     # for the Spy solitaire we don't need to implement other abilities/properties
     def enters_the_battlefield(self, env):
@@ -217,7 +233,7 @@ class MaskedVandal(MTGCreatureSpell):
 
 class MesmericFiend(MTGCreatureSpell):
     def __init__(self):
-        super().__init__("Mesmeric Fiend", "1B", False)
+        super().__init__("Mesmeric Fiend", "1B", True, False)
 
     # for the Spy solitaire we don't need to implement other abilities/properties
     def enters_the_battlefield(self, env):
@@ -226,7 +242,7 @@ class MesmericFiend(MTGCreatureSpell):
 
 class SaruliCaretaker(MTGCreatureSpell):
     def __init__(self):
-        super().__init__("Saruli Caretaker", "G", True)
+        super().__init__("Saruli Caretaker", "G", False, True)
 
     def actions(self, env):
         actions = super().actions(env)
@@ -246,7 +262,7 @@ class SaruliCaretaker(MTGCreatureSpell):
 
     def tap_creature_for_mana_G(self, env, i):
         i = int(i)
-        print(f"Tapping {self} and {env.battlefield[i]} for mana G")
+        log.info(f"Tapping {self} and {env.battlefield[i]} for mana G")
         env.engine.add_mana('G', 1)
         env.battlefield[i].is_tapped = True
         self.is_tapped = True
@@ -256,18 +272,21 @@ class SaruliCaretaker(MTGCreatureSpell):
 
     def tap_creature_for_mana_B(self, env, i):
         i = int(i)
-        print(f"Tapping {self} and {env.battlefield[i]} for mana B")
+        log.info(f"Tapping {self} and {env.battlefield[i]} for mana B")
         env.engine.add_mana('B', 1)
         env.battlefield[i].is_tapped = True
         self.is_tapped = True
 
     def tap_creature_for_mana_B_available(self, env, i):
-        return self.tap_creature_for_mana_G_available(env, i)
+        # optimization: never tap for B if no B creature card in hand
+        # optimization = False
+        optimization = any(s for s in env.hand if hasattr(s, "can_be_cast_for_black") and s.can_be_cast_for_black)
+        return self.tap_creature_for_mana_G_available(env, i) and optimization
 
 
 class QuirionRanger(MTGCreatureSpell):
     def __init__(self):
-        super().__init__("Quirion Ranger", "G", False)
+        super().__init__("Quirion Ranger", "G", False, False)
 
     def actions(self, env):
         actions = super().actions(env)
@@ -288,7 +307,7 @@ class QuirionRanger(MTGCreatureSpell):
     def untap_creature_bouncing_land(self, env, ij):
         i, j = ij.split(",")
         i, j = int(i), int(j)
-        print(f"Untapping {env.battlefield[i]} and bouncing {env.lands[j]}")
+        log.info(f"Untapping {env.battlefield[i]} and bouncing {env.lands[j]}")
         env.battlefield[i].is_tapped = False
         env.engine.bounce_land_to_hand(env.lands[j])
         self.ability_once_per_turn_activated = True
@@ -300,7 +319,7 @@ class QuirionRanger(MTGCreatureSpell):
 
 class LotlethGiant(MTGCreatureSpell):
     def __init__(self):
-        super().__init__("Lotleth Giant", "6B", False)
+        super().__init__("Lotleth Giant", "6B", True, False)
 
     def actions(self, env):
         return super().actions(env)
@@ -312,10 +331,26 @@ class LotlethGiant(MTGCreatureSpell):
 
 class BalustradeSpy(MTGCreatureSpell):
     def __init__(self):
-        super().__init__("Balustrade Spy", "3B", False)
+        super().__init__("Balustrade Spy", "3B", True, False)
 
     def actions(self, env):
         return super().actions(env)
+
+    def cast_available(self, env):
+        # first check if there's mana to cast it
+        if not super().cast_available(env):
+            return False
+        # if so, also checks if Spy can be cast reliably:
+        # lands_in_deck_at_start <=
+        #   lands_in_play + lands_in_hand + lands_in_graveyard + known_lands_bottom +
+        #   (spy_in_hand - 1)  (each additional Spy can take out a land later)
+        lands_in_play = len(env.lands)
+        lands_in_hand = sum(isinstance(c, MTGLand) for c in env.hand)
+        lands_in_graveyard = sum(isinstance(c, MTGLand) for c in env.graveyard)
+        spy_in_hand = sum(isinstance(c, BalustradeSpy) for c in env.hand)
+        return (env.lands_in_deck <=
+                lands_in_play + lands_in_hand + lands_in_graveyard +
+                env.known_lands_bottom + spy_in_hand - 1)
 
     def enters_the_battlefield(self, env):
         super().enters_the_battlefield(env)
@@ -324,7 +359,7 @@ class BalustradeSpy(MTGCreatureSpell):
             if len(env.library) == 0:
                 break
             card = env.library.pop(0)
-            print(f"Revealed {card}")
+            log.info(f"Revealed {card}")
             env.graveyard.append(card)
             if isinstance(card, MTGLand):
                 break
@@ -332,7 +367,7 @@ class BalustradeSpy(MTGCreatureSpell):
 
 class WallOfRoots(MTGCreatureSpell):
     def __init__(self):
-        super().__init__("Wall of Roots", "1G", True)
+        super().__init__("Wall of Roots", "1G", False, True)
         self.minus_counters = 0
 
     def actions(self, env):
@@ -342,15 +377,19 @@ class WallOfRoots(MTGCreatureSpell):
         super().enters_the_battlefield(env)
 
     def put_counter_for_mana_G(self, env):
-        print(f"Putting a -0/-1 counter on {self} to add G")
+        log.info(f"Putting a -0/-1 counter on {self} to add G")
         self.ability_once_per_turn_activated = True
         env.engine.add_mana('G', 1)
 
         self.minus_counters += 1
         if self.minus_counters == 5:
-            print(f"Wall of Roots has 0 toughness and dies")
+            log.info(f"Wall of Roots has 0 toughness and dies")
             self.minus_counters = 0
             env.engine.sacrifice_creature(self)
 
     def put_counter_for_mana_G_available(self, env):
         return self in env.battlefield and not self.ability_once_per_turn_activated and self.minus_counters < 5
+
+    @property
+    def functional_hash(self):
+        return super().functional_hash + str(self.minus_counters)

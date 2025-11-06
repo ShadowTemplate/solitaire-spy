@@ -1,18 +1,28 @@
+import logging
 import random
 
 from solitaire_spy.cards.mtg_cards import MTGLand
 from solitaire_spy.constants import *
+from solitaire_spy.log import get_logger
 from solitaire_spy.mtg_engine import MtgEngine
 from solitaire_spy.spy_gui import ImageGridApp
+
+log = get_logger(stdout_level=logging.INFO)
 
 
 class MTGSolitaire:
     def __init__(self, deck, tk_root):
-        print("*** init ***")
+        log.debug("*** init ***")
         self.engine = MtgEngine(self)
         self.library = deck
         self.lands_in_deck = sum(isinstance(c, MTGLand) for c in deck)
-        random.shuffle(self.library)
+        while True:
+            random.shuffle(self.library)
+            # uncomment to force certain hands
+            # if any(isinstance(c, MTGLand) for c in self.library[:7]) and any(isinstance(c, BalustradeSpy) for c in self.library[:7]):
+            # if any(isinstance(c, MTGLand) for c in self.library[:7]):
+            #     break
+            break
         self.hand = []
         self.engine.draw_cards(7)
         self.lands = []
@@ -26,6 +36,7 @@ class MTGSolitaire:
         self.played_land_this_turn = False
         self.known_lands_bottom = 0
         self.mana_strategy = MANA_STRATEGY_SCRBG
+        self.steps_log = []
 
         self.tk_root = tk_root
         self.gui_battlefield = None
@@ -57,7 +68,8 @@ class MTGSolitaire:
         self.render()
 
     def step(self, card, action):
-        print("*** step ***")
+        log.debug("*** step ***")
+        self.steps_log.append((card, action))
         if action.startswith("system_"):
             getattr(self.engine, action)()
         elif "@" in action:  # action needs an indexed target
@@ -67,14 +79,14 @@ class MTGSolitaire:
             getattr(card, action)(self)
 
     def render(self):
-        print("*** render ***")
-        print(f"Turn: {self.counter_turn}, Library: {len(self.library)}, Life: {self.counter_life}")
-        print(f"Hand: {len(self.hand)} {self.hand}")
-        print(f"Battlefield: {len(self.battlefield)} {self.battlefield}")
-        print(f"Lands: {len(self.lands)} {self.lands}")
-        print(f"Graveyard: {len(self.graveyard)} {self.graveyard}")
-        print(f"Exile: {len(self.exile)} {self.exile}")
-        print(f"Mana pool: {[f'{i} {self.mana_pool[i]}' for i in MANA_TYPES]}")
+        log.debug("*** render ***")
+        log.info(f"Turn: {self.counter_turn}, Library: {len(self.library)}, Life: {self.counter_life}")
+        log.info(f"Hand: {len(self.hand)} {self.hand}")
+        log.info(f"Battlefield: {len(self.battlefield)} {self.battlefield}")
+        log.info(f"Lands: {len(self.lands)} {self.lands}")
+        log.info(f"Graveyard: {len(self.graveyard)} {self.graveyard}")
+        log.info(f"Exile: {len(self.exile)} {self.exile}")
+        log.info(f"Mana pool: {[f'{i} {self.mana_pool[i]}' for i in MANA_TYPES]}")
         if not self.tk_root:
             return
         # update GUI
@@ -96,3 +108,46 @@ class MTGSolitaire:
         self.gui_graveyard.load_images(self)
         self.gui_exile.load_images(self)
         self.gui_mana_pool.load_images(self)
+
+    @property
+    def functional_hash(self):
+        # same number of cards left in library
+        h = "D|"
+        h += str(len(self.library))
+        # same lands in library
+        h += "|LL|"
+        h += ",".join(sorted(c.name for c in self.library if isinstance(c, MTGLand)))
+        # same cards in hand
+        h += "|H|"
+        h += ",".join(sorted(c.name for c in self.hand))
+        # same lands in play and same tapped status
+        h += "|LP|"
+        h += ",".join(sorted(c.functional_hash for c in self.lands))
+        # same battlefield
+        h += "|B|"
+        h += ",".join(sorted(c.functional_hash for c in self.battlefield))
+        # same graveyard
+        h += "|G|"
+        h += ",".join(sorted(c.name for c in self.graveyard))
+        # same exile
+        h += "|E|"
+        h += ",".join(sorted(c.name for c in self.exile))
+        # same mana pool
+        h += "|M|"
+        h += str(self.mana_pool)
+        # same counter turn
+        h += "|T|"
+        h += str(self.counter_turn)
+        # same opponent life
+        h += "|OL|"
+        h += str(self.opponent_counter_life)
+        # same played land this turn
+        h += "|PL|"
+        h += str(self.played_land_this_turn)
+        # same known lands on the bottom
+        h += "|KL|"
+        h += str(self.known_lands_bottom)
+        # same mana strategy
+        h += "|MS|"
+        h += self.mana_strategy
+        return h

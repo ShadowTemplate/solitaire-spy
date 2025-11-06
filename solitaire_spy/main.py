@@ -8,7 +8,7 @@ from solitaire_spy.cards.creatures import *
 from solitaire_spy.cards.lands import *
 from solitaire_spy.cards.spells import *
 from solitaire_spy.constants import SEED
-from solitaire_spy.solver import Solver
+from solitaire_spy.solver.core import Solver
 from solitaire_spy.spy_solitaire import MTGSolitaire
 
 
@@ -70,14 +70,14 @@ def get_deck():
         1 * [TrollOfKhazadDum()] + \
         4 * [WallOfRoots()] + \
         4 * [WindingWay()]
-        # 1 * [HauntedMire()]
 
 
 def main_with_solver():
     seed_everything(SEED)
     deck = get_deck()
     env = MTGSolitaire(deck, None)
-    Solver(env).solve()
+    env = Solver(env).solve()
+    print(env.steps_log)
 
 
 def main_no_gui():
