@@ -9,7 +9,7 @@ from solitaire_spy.spy_solitaire import MTGSolitaire
 
 from solitaire_spy.log import get_logger
 
-log = get_logger(stdout_level=logging.INFO)
+log = get_logger(__name__, stdout_level=logging.INFO)
 
 
 class Solver:
@@ -33,6 +33,7 @@ class Solver:
         ]
         self.explored_hashes = set()
         self.explored_hashes.add(env.functional_hash)
+        self.turns_explored = 0
 
     def _get_obvious_action(self, env, possible_actions):
         for heuristic in self.heuristics:
@@ -44,13 +45,17 @@ class Solver:
     def solve(self, greedily=True, early_abort=True):
         self.keep_and_mull()
         while sum(len(values) for _, values in self.env_queues.items()) > 0:
-            log.info(f"In queue: {sum(len(values) for _, values in self.env_queues.items())}")
+            queue_size = sum(len(values) for _, values in self.env_queues.items())
+            if queue_size % 100 == 0:
+                log.info(f"In queue: {queue_size}")
             # let's start from universes with low counter_turn
             for i in range(len(self.env_queues)):
                 if len(self.env_queues[i]) > 0:
                     env = self.env_queues[i].pop(0)
                     break
-            log.info(f"Playing turn {env.counter_turn}")
+            if env.counter_turn > self.turns_explored:
+                log.info(f"Playing turn {env.counter_turn}")
+                self.turns_explored = env.counter_turn
 
             if early_abort and self.is_useless_game(env):
                 log.debug("Optimization: early aborting useless game")
@@ -194,7 +199,7 @@ class Solver:
         env.kept_at = new_hand_size
         while len(env.hand) > 0:  # shuffle back initial hand
             env.engine.put_from_hand_to_library(env.hand[0])
-        log.info("Shuffling library...")
+        log.debug("Shuffling library...")
         random.shuffle(env.library)
 
         env.engine.draw_cards(7)

@@ -21,8 +21,9 @@ def get_logger(
 ):
     Path(file_name).parent.mkdir(exist_ok=True)
     Path(file_name).touch(exist_ok=True)
-    logging.basicConfig(level=stdout_level, format=log_format)
+    logging.basicConfig(format=log_format)
     logger = logging.getLogger(name)
+    logger.setLevel(stdout_level)
     file_handler = logging.FileHandler(file_name)
     file_handler.setLevel(file_level)
     file_handler.setFormatter(logging.Formatter(log_format))

@@ -7,7 +7,7 @@ from solitaire_spy.log import get_logger
 from solitaire_spy.mtg_engine import MtgEngine
 from solitaire_spy.spy_gui import ImageGridApp
 
-log = get_logger(stdout_level=logging.INFO)
+log = get_logger(__name__, stdout_level=logging.INFO)
 
 
 class MTGSolitaire:

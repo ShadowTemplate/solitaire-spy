@@ -7,7 +7,7 @@ from solitaire_spy.cards.spells import *
 from solitaire_spy.constants import *
 from solitaire_spy.log import get_logger
 
-log = get_logger(stdout_level=logging.INFO)
+log = get_logger(__name__, stdout_level=logging.WARNING)
 
 
 class MtgEngine:
