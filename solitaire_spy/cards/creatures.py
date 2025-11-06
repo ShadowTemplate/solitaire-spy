@@ -192,7 +192,7 @@ class OvergrownBattlement(MTGCreatureSpell):
 
     def tap_for_mana_G(self, env):
         log.info(f"Tapping for mana {self}")
-        env.engine.add_mana('G', sum(c.is_defender for c in env.battlefield))
+        env.engine.add_mana('G', sum(c.is_defender for c in env.battlefield if isinstance(c, MTGCreatureSpell)))
         self.is_tapped = True
 
     def tap_for_mana_G_available(self, env):
@@ -249,6 +249,8 @@ class SaruliCaretaker(MTGCreatureSpell):
         # we need to compute dynamically which creatures Saruli can tap to make mana
         # and for each of them give the option to produce B or G
         for i, creature in enumerate(env.battlefield):
+            if not isinstance(creature, MTGCreatureSpell):
+                continue
             if creature != self and not creature.is_tapped:
                 actions.append(f"tap_creature_for_mana_G@{i}")
                 actions.append(f"tap_creature_for_mana_B@{i}")
@@ -268,7 +270,8 @@ class SaruliCaretaker(MTGCreatureSpell):
         self.is_tapped = True
 
     def tap_creature_for_mana_G_available(self, env, i):
-        return self in env.battlefield and not self.has_summoning_sickness and not self.is_tapped and not env.battlefield[int(i)].is_tapped
+        creature_to_tap = env.battlefield[int(i)]
+        return self in env.battlefield and not self.has_summoning_sickness and not self.is_tapped and isinstance(creature_to_tap, MTGCreatureSpell) and not creature_to_tap.is_tapped
 
     def tap_creature_for_mana_B(self, env, i):
         i = int(i)
@@ -293,6 +296,8 @@ class QuirionRanger(MTGCreatureSpell):
         # we need to compute dynamically which creatures Quirion can untap
         # and for each of them give the option to bounce a land
         for i, creature in enumerate(env.battlefield):
+            if not isinstance(creature, MTGCreatureSpell):
+                continue
             for j, land in enumerate(env.lands):
                 if isinstance(land, Forest):
                     actions.append(f"untap_creature_bouncing_land@{i},{j}")
@@ -314,7 +319,9 @@ class QuirionRanger(MTGCreatureSpell):
 
     def untap_creature_bouncing_land_available(self, env, ij):
         i, j = ij.split(",")
-        return self in env.battlefield and isinstance(env.lands[int(j)], Forest) and not self.ability_once_per_turn_activated
+        creature_to_untap = env.battlefield[int(i)]
+        land_to_bounce = env.lands[int(j)]
+        return self in env.battlefield and isinstance(creature_to_untap, MTGCreatureSpell) and isinstance(land_to_bounce, Forest) and not self.ability_once_per_turn_activated
 
 
 class LotlethGiant(MTGCreatureSpell):

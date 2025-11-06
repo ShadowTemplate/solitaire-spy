@@ -133,6 +133,9 @@ class DreadReturn(MTGSpell):
         # and which creatures have to be sacrificed while cast with flashback
         for i, creature in enumerate(env.graveyard):
             for triple in itertools.combinations(range(len(env.battlefield)), 3):
+                all_creatures = all(isinstance(env.battlefield[c], MTGCreatureSpell) for c in triple)
+                if not all_creatures:
+                    continue
                 actions.append(f"flashback_with_target@{i},{'-'.join(str(c) for c in triple)}")
         return actions
 
@@ -168,4 +171,38 @@ class DreadReturn(MTGSpell):
         # optimization = False
         optimization = any(isinstance(c, BalustradeSpy) for c in env.graveyard) and any(isinstance(c, LotlethGiant) for c in env.graveyard)
         i, triple = itriple.split(",")
-        return self in env.graveyard and isinstance(env.graveyard[int(i)], MTGCreatureSpell) and not env.engine.passing and optimization
+        creatures_to_sac = [env.battlefield[int(i)] for i in triple.split("-")]
+        all_creatures_to_sac = all(isinstance(c, MTGCreatureSpell) for c in creatures_to_sac)
+        return self in env.graveyard and isinstance(env.graveyard[int(i)], MTGCreatureSpell) and all_creatures_to_sac and not env.engine.passing and optimization
+
+
+class LotusPetal(MTGSpell):
+    def __init__(self):
+        MTGSpell.__init__(self, "Lotus Petal", "0", False)
+
+    def actions(self, env):
+        return super().actions(env) + ["sacrifice_for_mana_G", "sacrifice_for_mana_B"]
+
+    def cast(self, env):
+        super().cast(env)
+        env.engine.put_from_hand_to_battlefield(self)
+
+    def cast_available(self, env):
+        return super().cast_available(env) and not env.engine.passing
+
+    def sacrifice_for_mana_G(self, env):
+        log.info(f"Sacrificing {self} for G")
+        env.engine.add_mana('G', 1)
+        env.engine.sacrifice_permanent(self)
+
+    def sacrifice_for_mana_G_available(self, env):
+        # optimization: disable sac at instant speed in oppo's turn
+        return self in env.battlefield and not env.engine.passing
+
+    def sacrifice_for_mana_B(self, env):
+        log.info(f"Sacrificing {self} for B")
+        env.engine.add_mana('B', 1)
+        env.engine.sacrifice_permanent(self)
+
+    def sacrifice_for_mana_B_available(self, env):
+        return self in env.battlefield

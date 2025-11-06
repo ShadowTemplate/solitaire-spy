@@ -41,6 +41,16 @@ def cast_land_grant_for_free(env, possible_actions):
         return free_land_grant_card, free_land_grant_action
     return None, None
 
+def cast_lotus_petal(env, possible_actions):
+    # if Lotus Petal in hand can be cast, do it
+    lotus_petal_card, lotus_petal_action = None, None
+    for card, action in possible_actions:
+        if isinstance(card, LotusPetal) and "cast" in action:
+            lotus_petal_card, lotus_petal_action = card, action
+    if lotus_petal_action:
+        return lotus_petal_card, lotus_petal_action
+    return None, None
+
 def mill_deck_with_spy(env, possible_actions):
     # if Spy in hand can be cast to 100% mill the deck and win, do it
     can_cast_spy = False
@@ -56,8 +66,8 @@ def mill_deck_with_spy(env, possible_actions):
                        env.known_lands_bottom == env.lands_in_deck)
     dread_return_in_deck = any(isinstance(c, DreadReturn) for c in env.library)
     giant_in_deck = any(isinstance(c, LotlethGiant) for c in env.library)
-    if can_cast_spy and len(
-            env.battlefield) >= 2 and all_lands_ready and dread_return_in_deck and giant_in_deck:
+    creatures_on_the_battlefield = sum(isinstance(c, MTGCreatureSpell) for c in env.battlefield)
+    if can_cast_spy and creatures_on_the_battlefield >= 2 and all_lands_ready and dread_return_in_deck and giant_in_deck:
         return spy_card, spy_action
     return None, None
 

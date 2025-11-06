@@ -20,6 +20,7 @@ class Solver:
             play_only_a_land,
             tap_basic_land_for_mana,
             cast_land_grant_for_free,
+            cast_lotus_petal,
             no_useless_mana_switch_strategy,
             cast_saruli_before_tapping_battlement,
             cast_spell_if_only_option,
@@ -141,13 +142,14 @@ class Solver:
         # Exceptions:
         # - Wall of Roots (when we might want to save some mana for later)
         # - Tinder Wall (when we might want to save some mana for later)
+        # - Lotus Petal (when we might want to save some mana for later)
         # - Balustrade Spy (can cause us to lose)
         can_pass = False
         too_greedy_actions = 0
         for card, action in possible_actions:
             if action == "system_pass":
                 can_pass = True
-            if action == "sacrifice_for_mana_RR" or action == "put_counter_for_mana_G":
+            if action == "sacrifice_for_mana_RR" or action == "put_counter_for_mana_G" or action == "sacrifice_for_mana_G" or action == "sacrifice_for_mana_B":
                 too_greedy_actions += 1
             if isinstance(card, BalustradeSpy) and action == "cast":
                 too_greedy_actions += 1

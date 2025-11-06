@@ -100,7 +100,8 @@ class MtgEngine:
                 not isinstance(c, TrollOfKhazadDum) and
                 not isinstance(c, SaguWildling) and
                 not isinstance(c, WindingWay) and
-                not isinstance(c, LeadTheStampede)
+                not isinstance(c, LeadTheStampede) and
+                not isinstance(c, LotusPetal)
             )
         except StopIteration:
             return random.choice(self.env.hand)  # TODO: improve, if possible
@@ -122,6 +123,8 @@ class MtgEngine:
         self.env.counter_turn += 1
         for land in self.env.lands:
             land.is_tapped = False
+        for mana in self.env.mana_pool:
+            self.env.mana_pool[mana] = 0
         for permanent in self.env.battlefield:
             permanent.has_summoning_sickness = False
             permanent.is_tapped = False
@@ -148,8 +151,8 @@ class MtgEngine:
         land.is_tapped = False
         self.change_card_zone(land, self.env.lands, self.env.hand)
 
-    def put_from_hand_to_battlefield(self, creature):
-        self.change_card_zone(creature, self.env.hand, self.env.battlefield)
+    def put_from_hand_to_battlefield(self, permanent):
+        self.change_card_zone(permanent, self.env.hand, self.env.battlefield)
 
     def put_from_hand_to_graveyard(self, spell):
         self.change_card_zone(spell, self.env.hand, self.env.graveyard)
@@ -170,7 +173,10 @@ class MtgEngine:
         creature.ability_once_per_turn_activated = False
         if isinstance(creature, WallOfRoots):
             creature.minus_counters = 0
-        self.change_card_zone(creature, self.env.battlefield, self.env.graveyard)
+        self.sacrifice_permanent(creature)
+
+    def sacrifice_permanent(self, permanent):
+        self.change_card_zone(permanent, self.env.battlefield, self.env.graveyard)
 
     def put_from_graveyard_to_exile(self, card):
         self.change_card_zone(card, self.env.graveyard, self.env.exile)
