@@ -82,7 +82,7 @@ class MtgEngine:
                 self.env.hand.append(card)
             except IndexError:
                 msg = "Lost by drawing from empty library"
-                log.error(msg)
+                log.info(msg)
                 raise GameLostException(msg)
 
     def get_dead_card_in_hand(self):

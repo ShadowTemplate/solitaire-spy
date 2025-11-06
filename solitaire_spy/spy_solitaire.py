@@ -7,7 +7,7 @@ from solitaire_spy.log import get_logger
 from solitaire_spy.mtg_engine import MtgEngine
 from solitaire_spy.spy_gui import ImageGridApp
 
-log = get_logger(__name__, stdout_level=logging.INFO)
+log = get_logger(__name__, stdout_level=logging.WARNING)
 
 
 class MTGSolitaire:
@@ -18,10 +18,6 @@ class MTGSolitaire:
         self.lands_in_deck = sum(isinstance(c, MTGLand) for c in deck)
         while True:
             random.shuffle(self.library)
-            # uncomment to force certain hands
-            # if any(isinstance(c, MTGLand) for c in self.library[:7]) and any(isinstance(c, BalustradeSpy) for c in self.library[:7]):
-            # if any(isinstance(c, MTGLand) for c in self.library[:7]):
-            #     continue
             break
         self.hand = []
         self.engine.draw_cards(7)

@@ -1,7 +1,9 @@
 import logging
 import timeit
+import multiprocessing
 from collections import defaultdict
 from copy import deepcopy
+from concurrent.futures import ProcessPoolExecutor, as_completed
 
 from solitaire_spy.cards.creatures import TrollOfKhazadDum, GenerousEnt, SaguWildling
 from solitaire_spy.cards.mtg_cards import MTGLand
@@ -10,7 +12,7 @@ from solitaire_spy.log import get_logger
 from solitaire_spy.solver.core import Solver
 from solitaire_spy.spy_solitaire import MTGSolitaire
 
-log = get_logger(__name__, stdout_level=logging.INFO)
+log = get_logger(__name__, stdout_level=logging.DEBUG)
 
 class SimulationSummary:
     def __init__(self, env, solving_time):
@@ -31,6 +33,31 @@ class SimulationSummary:
                 f"Steps log: {self.steps_log}")
 
 
+class ParallelSolver:
+    def __init__(self, deck):
+        self.deck = deepcopy(deck)
+
+    def run(self, i):
+        log.debug(f"Running simulation #{i+1}")
+        solver_start_time = timeit.default_timer()
+        winning_env = Solver(MTGSolitaire(self.deck, None)).solve()
+        solving_time = timeit.default_timer() - solver_start_time
+        if winning_env:
+            summary = SimulationSummary(winning_env, solving_time)
+            log.info(summary)
+            return summary
+        else:
+            log.warning("Weird. It looks like this deck can lose, after all...")
+            return None
+
+
+def run_instance_method(args):
+    # helper function for pickling: unwraps the instance + method call
+    instance, method_name, arg = args
+    method = getattr(instance, method_name)
+    return method(arg)
+
+
 class Simulator:
     def __init__(self, deck, num_sim):
         self.deck = deck
@@ -39,17 +66,19 @@ class Simulator:
 
     def simulate(self):
         simulation_start_time = timeit.default_timer()
-        for i in range(self.num_sim):  # TODO: in parallel
-            solver_start_time = timeit.default_timer()
-            log.info(f"Simulating match #{i + 1}")
-            winning_env = Solver(MTGSolitaire(deepcopy(self.deck), None)).solve()
-            solving_time = timeit.default_timer() - solver_start_time
-            if winning_env:
-                summary = SimulationSummary(winning_env, solving_time)
-                log.info(summary)
+        solver = ParallelSolver(self.deck)
+        task_args = [(solver, "run", i) for i in range(self.num_sim)]
+        completed_tasks = 0
+        with ProcessPoolExecutor(max_workers=multiprocessing.cpu_count()) as executor:
+            futures = {
+                executor.submit(run_instance_method, arg): arg
+                for arg in task_args
+            }
+            for future in as_completed(futures):
+                summary = future.result()
+                completed_tasks += 1
+                log.info(f"Simulations completed: {completed_tasks}")
                 self.summaries.append(summary)
-            else:
-                log.warning("Weird. It looks like this deck can lose, after all...")
         elapsed = timeit.default_timer() - simulation_start_time
         log.info(f"Overall simulation time: {elapsed:.2f} s")
 
@@ -103,7 +132,7 @@ class Simulator:
         for i in range(sum(isinstance(c, MTGLand) for c in self.deck) + 1):
             lands_left = sum(1 for s in self.summaries if s.lands_in_deck == i)
             print(
-                f"Lands left in deck {i}: "
+                f"Lands left in library {i}: "
                 f"{lands_left} "
                 f"({lands_left / len(self.summaries) * 100:.2f}%)"
             )

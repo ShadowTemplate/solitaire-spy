@@ -77,8 +77,9 @@ def get_deck():
 def main_with_simulator():
     seed_everything(SEED)
     deck = get_deck()
-    simulator = Simulator(deck, 3)
+    simulator = Simulator(deck, 30)
     simulator.simulate()
+    time.sleep(1)  # flush out stdout
     simulator.print()
 
 
