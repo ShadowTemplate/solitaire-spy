@@ -4,6 +4,7 @@ import os
 import random
 import time
 import tkinter as tk
+from copy import deepcopy
 
 from solitaire_spy.cards.creatures import *
 from solitaire_spy.cards.lands import *
@@ -80,7 +81,53 @@ def main_with_simulator():
     simulator = Simulator(deck, 30)
     simulator.simulate()
     time.sleep(1)  # flush out stdout
-    simulator.print()
+    simulator.log_stats()
+
+def deck_generator():
+    decks = []
+    base_deck = 4 * [BalustradeSpy()] + \
+        2 * [DreadReturn()] + \
+        4 * [ElvesOfDeepShadow()] + \
+        3 * [Forest()] + \
+        4 * [GenerousEnt()] + \
+        4 * [LandGrant()] + \
+        4 * [LeadTheStampede()] + \
+        2 * [LotlethGiant()] + \
+        3 * [MaskedVandal()] + \
+        2 * [MesmericFiend()] + \
+        4 * [OvergrownBattlement()] + \
+        4 * [SaguWildling()] + \
+        4 * [SaruliCaretaker()] + \
+        1 * [Swamp()] + \
+        4 * [WallOfRoots()] + \
+        4 * [WindingWay()]
+
+    for petal_number in range(0, 1):
+        for troll_number in range(1, 2):
+            for quirion_number in range(2, 3):
+                for tinder_wall_number in range(4, 5):
+                    for bird_number in range(0, 1):
+                        if petal_number + troll_number + quirion_number + tinder_wall_number + bird_number <= 60 - len(base_deck):
+                            new_deck = deepcopy(base_deck)
+                            new_deck += petal_number * [LotusPetal()]
+                            new_deck += troll_number * [TrollOfKhazadDum()]
+                            new_deck += quirion_number * [QuirionRanger()]
+                            new_deck += tinder_wall_number * [TinderWall()]
+                            new_deck += bird_number * [OrnithopterOfParadise()]
+                            while len(new_deck) < 60:
+                                new_deck.append(MesmericFiend())
+                            decks.append(new_deck)
+    return decks
+
+
+def multi_deck_simulator():
+    seed_everything(SEED)
+    all_decks = deck_generator()
+    print(f"Testing {len(all_decks)} decks...")
+    for i, deck in enumerate(all_decks):
+        simulator = Simulator(deck, 10)
+        simulator.simulate()
+        simulator.log_stats()
 
 
 def main_with_solver():
@@ -117,4 +164,4 @@ def main_with_gui():
 
 
 if __name__ == '__main__':
-    main_with_simulator()
+    multi_deck_simulator()

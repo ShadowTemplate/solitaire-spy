@@ -5,14 +5,14 @@ from collections import defaultdict
 from copy import deepcopy
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
-from solitaire_spy.cards.creatures import TrollOfKhazadDum, GenerousEnt, SaguWildling
+from solitaire_spy.cards.creatures import *
 from solitaire_spy.cards.mtg_cards import MTGLand
 from solitaire_spy.cards.spells import LotusPetal, LandGrant
 from solitaire_spy.log import get_logger
 from solitaire_spy.solver.core import Solver
 from solitaire_spy.spy_solitaire import MTGSolitaire
 
-log = get_logger(__name__, stdout_level=logging.DEBUG)
+log = get_logger(__name__, log_format="%(message)s", stdout_level=logging.INFO)
 
 class SimulationSummary:
     def __init__(self, env, solving_time):
@@ -40,11 +40,11 @@ class ParallelSolver:
     def run(self, i):
         log.debug(f"Running simulation #{i+1}")
         solver_start_time = timeit.default_timer()
-        winning_env = Solver(MTGSolitaire(self.deck, None)).solve()
+        winning_env = Solver(MTGSolitaire(self.deck, None)).solve(solver_start_time)
         solving_time = timeit.default_timer() - solver_start_time
         if winning_env:
             summary = SimulationSummary(winning_env, solving_time)
-            log.info(summary)
+            log.debug(summary)
             return summary
         else:
             log.warning("Weird. It looks like this deck can lose, after all...")
@@ -65,6 +65,17 @@ class Simulator:
         self.summaries = []
 
     def simulate(self):
+        log.info(50 * "-")
+        # TODO: proper deck print
+        log.info(f"Deck: "
+                 f"{sum(isinstance(c, MTGLand) for c in self.deck)} lands, "
+                 f"{sum(isinstance(c, LotusPetal) for c in self.deck)} Lotus Petal, "
+                 f"{sum(isinstance(c, TrollOfKhazadDum) for c in self.deck)} Troll of Khazad-Dum, "
+                 f"{sum(isinstance(c, QuirionRanger) for c in self.deck)} Quirion Ranger, "
+                 f"{sum(isinstance(c, OrnithopterOfParadise) for c in self.deck)} Ornithopter of Paradise, "
+                 f"{sum(isinstance(c, TinderWall) for c in self.deck)} Tinder Wall, "
+                 f"0 Gatecreeper Vine, "
+                 f"{sum(isinstance(c, MesmericFiend) for c in self.deck)} Mesmeric Fiend")
         simulation_start_time = timeit.default_timer()
         solver = ParallelSolver(self.deck)
         task_args = [(solver, "run", i) for i in range(self.num_sim)]
@@ -77,31 +88,52 @@ class Simulator:
             for future in as_completed(futures):
                 summary = future.result()
                 completed_tasks += 1
-                log.info(f"Simulations completed: {completed_tasks}")
-                self.summaries.append(summary)
+                if completed_tasks % 10 == 0:
+                    log.info(f"Simulations completed: {completed_tasks}")
+                if summary:
+                    self.summaries.append(summary)
         elapsed = timeit.default_timer() - simulation_start_time
         log.info(f"Overall simulation time: {elapsed:.2f} s")
 
-    def print(self):
+    def log_stats(self):
+        games_won_by_tun = {}
         max_turn = max(s.counter_turn for s in self.summaries)
         for i in range(2, max_turn + 1):
             games_won_by_i = len([s for s in self.summaries if s.counter_turn == i])
-            print(
+            log.info(
                 f"Games won by turn {i}: "
                 f"{games_won_by_i} "
                 f"({games_won_by_i / len(self.summaries) * 100:.2f}%)"
             )
+            games_won_by_tun[i] = games_won_by_i
+        for i in range(2, max_turn + 1):
+            cumulative = sum(games_won_by_tun[j] for j in range(2, i + 1))
+            log.info(
+                f"Games won by turn <= {i}: "
+                f"{cumulative} "
+                f"({cumulative / len(self.summaries) * 100:.2f}%)"
+            )
 
-        print()
+        log.info("")
+        hands_kept_by = {}
         for i in range(3, 8):
             hands_kept_at_i = len([s for s in self.summaries if s.kept_at == i])
-            print(
+            log.info(
                 f"Hands kept at {i}: "
                 f"{hands_kept_at_i} "
                 f"({hands_kept_at_i / len(self.summaries) * 100:.2f}%)"
             )
+            hands_kept_by[i] = hands_kept_at_i
+        print(hands_kept_by)
+        for i in range(3, 8):
+            cumulative = sum(hands_kept_by[j] for j in range(i, 8))
+            log.info(
+                f"Hands kept at {i}+: "
+                f"{cumulative} "
+                f"({cumulative / len(self.summaries) * 100:.2f}%)"
+            )
 
-        print()
+        log.info("")
         mana_t1 = defaultdict(int)  # mana_amount : occurrences
         mana_cards = [MTGLand, LotusPetal, TrollOfKhazadDum, GenerousEnt, LandGrant, SaguWildling]
         for summary in self.summaries:
@@ -110,33 +142,51 @@ class Simulator:
                 if any(isinstance(c, i) for i in mana_cards)
             )
             mana_t1[initial_mana] += 1
+        mana_t1_by = {}
         for i in range(0, 8):
-            print(
+            log.info(
                 f"T1 (pseudo-)mana {i}: "
                 f"{mana_t1[i]} "
                 f"({mana_t1[i] / len(self.summaries) * 100:.2f}%)"
             )
-        print()
+            mana_t1_by[i] = mana_t1[i]
+        for i in range(0, 8):
+            cumulative = sum(mana_t1_by[j] for j in range(i, 8))
+            log.info(
+                f"T1 (pseudo-)mana {i}+: "
+                f"{cumulative} "
+                f"({cumulative / len(self.summaries) * 100:.2f}%)"
+            )
 
+        log.info("")
         zero_cards_left = sum(1 for s in self.summaries if s.cards_in_library == 0)
-        print(
+        log.info(
             f"0 cards left in library: {zero_cards_left} "
             f"({zero_cards_left / len(self.summaries) * 100:.2f}%)"
         )
-        print(
+        log.info(
             f"1+ cards left in library: {len(self.summaries) - zero_cards_left} "
             f"({(len(self.summaries) - zero_cards_left) / len(self.summaries) * 100:.2f}%)"
         )
-        print()
+        log.info("")
 
+        lands_1_plus = 0
         for i in range(sum(isinstance(c, MTGLand) for c in self.deck) + 1):
             lands_left = sum(1 for s in self.summaries if s.lands_in_deck == i)
-            print(
+            log.info(
                 f"Lands left in library {i}: "
                 f"{lands_left} "
                 f"({lands_left / len(self.summaries) * 100:.2f}%)"
             )
-        print()
+            if i > 0:
+                lands_1_plus += lands_left
 
-        print(f"Average solving time: "
+        log.info(
+            f"Lands left in library 1+: "
+            f"{lands_1_plus} "
+            f"({lands_1_plus / len(self.summaries) * 100:.2f}%)"
+        )
+
+        log.info("")
+        log.info(f"Average solving time: "
               f"{sum(s.solving_time for s in self.summaries) / len(self.summaries):.2f} s")

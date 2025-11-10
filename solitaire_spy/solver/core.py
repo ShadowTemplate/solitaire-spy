@@ -1,8 +1,10 @@
 import random
+import timeit
 from collections import defaultdict
 from copy import deepcopy
 import logging
 
+from solitaire_spy.constants import MAX_SOLVER_RUNTIME
 from solitaire_spy.mtg_engine import GameLostException
 from solitaire_spy.solver.heuristics import *
 from solitaire_spy.spy_solitaire import MTGSolitaire
@@ -42,9 +44,16 @@ class Solver:
                 return card, action
         return None, None
 
-    def solve(self, greedily=True, early_abort=True):
+    def solve(self, greedily=True, early_abort=True, start_time=None):
         self.keep_and_mull()
         while sum(len(values) for _, values in self.env_queues.items()) > 0:
+            if start_time and timeit.default_timer() - start_time > MAX_SOLVER_RUNTIME:
+                log.info(
+                    f"Reached maximum computation time for solving "
+                    f"({MAX_SOLVER_RUNTIME:.2f} s). Aborting..."
+                )
+                return None  # TODO: return something that shows the current high turn
+
             queue_size = sum(len(values) for _, values in self.env_queues.items())
             if queue_size % 100 == 0:
                 log.info(f"In queue: {queue_size}")
