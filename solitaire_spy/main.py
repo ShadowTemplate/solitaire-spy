@@ -41,8 +41,8 @@ def main_with_simulator():
     seed_everything(SEED)
     deck = load_deck()
     simulator = Simulator(deck, 30)
-    simulator.simulate()
-    simulator.log_stats()
+    if simulator.simulate():
+        simulator.log_stats()
 
 
 def multi_deck_simulator():
@@ -51,8 +51,8 @@ def multi_deck_simulator():
     print(f"Testing {len(all_decks)} decks...")
     for i, deck in enumerate(all_decks):
         simulator = Simulator(deck, 100)
-        simulator.simulate()
-        simulator.log_stats()
+        if simulator.simulate():
+            simulator.log_stats()
 
 
 def main_with_solver():

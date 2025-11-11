@@ -1,4 +1,5 @@
 import difflib
+import hashlib
 import importlib
 import inspect
 import logging
@@ -48,22 +49,29 @@ def load_deck(deck_file=STOCK_DECK_PATH):
 
 
 def get_deck_diff(deck, base_deck=BASE_DECK_PATH):
-    deck_counter = dict(Counter(c.name for c in deck))
-    deck_text = "\n".join(sorted(f"{k}: {v}" for k, v in deck_counter.items()))
     if not isinstance(base_deck, list):
         base_deck = load_deck(base_deck)
+
+    deck_counter = dict(Counter(c.name for c in deck))
+    deck_text = "\n".join(sorted(f"{k}: {v}" for k, v in deck_counter.items()))
     base_deck_counter = dict(Counter(c.name for c in base_deck))
     base_deck_text = "\n".join(sorted(f"{k}: {v}" for k, v in base_deck_counter.items()))
     diff = difflib.unified_diff(
-        deck_text.splitlines(),
         base_deck_text.splitlines(),
+        deck_text.splitlines(),
         n=0,
         lineterm=''
     )
     return '\n'.join(l for l in diff if not l.startswith(('---', '+++', '@@')))
 
 
+def get_deck_hash(deck):
+    s = ",".join(sorted(c.name for c in deck))
+    return hashlib.sha1(s.encode()).hexdigest()
+
+
 def deck_generator():
+    # TODO:
     decks = []
     base_deck = load_deck()
 
