@@ -206,3 +206,65 @@ class LotusPetal(MTGSpell):
 
     def sacrifice_for_mana_B_available(self, env):
         return self in env.battlefield
+
+
+class ElvenFarsight(MTGSpell):
+    def __init__(self):
+        MTGSpell.__init__(self, "Elven Farsight", "G", False)
+
+    def actions(self, env):
+        actions = []
+        # In theory, Elven Farsight can lead to 24 different combinations.
+        # In practice, we'll put cards on the bottom in a pseudo-random order.
+        # This will reduce the possible combinations to 16.
+        for cards_on_top in range(0, 4):  # you can keep on top 0, 1, 2, or 3 cards
+            for order_on_top in itertools.permutations("012", cards_on_top):
+                actions.append("cast_scry_top@" + ','.join(order_on_top))
+        return actions
+
+    def cast(self, env):
+        raise ValueError("Elven Farsight: cast - Not implemented")
+
+    def cast_scry_top(self, env, nuple):
+        super().cast(env)
+        cards_on_top = [int(i) for i in nuple.split(",") if i != '']
+        log.info(f"Keeping on top: {cards_on_top}")
+        cards = []
+        for _ in range(3):
+            try:
+                card = env.library.pop(0)
+                log.info(f"Looking at {card}")
+                cards.append(card)
+            except IndexError:
+                continue
+
+        # put back cards on top, in the action order
+        for i in reversed(cards_on_top):
+            log.info(f"Putting on top {cards[i]}")
+            env.library.insert(0, cards[i])
+
+        # The other cards can be put on the bottom in random order.
+        # Let's optimize for the case where we have a land and Dread Return:
+        # in this scenario we want the land as the last card of the deck.
+        cards_on_the_bottom = [i for i in range(3) if i not in cards_on_top]
+        log.info(f"Putting on the bottom: {cards_on_the_bottom}")
+        # first put non-lands on the bottom
+        for card in [cards[i] for i in cards_on_the_bottom if not isinstance(cards[i], MTGLand)]:
+            log.info(f"Putting on the bottom {card}")
+            env.library.append(card)
+        # then put non-lands on the bottom
+        for card in [cards[i] for i in cards_on_the_bottom if isinstance(cards[i], MTGLand)]:
+            log.info(f"Putting on the bottom {card}")
+            env.library.append(card)
+            env.known_lands_bottom += 1
+
+        # reveal top: if creature, draw
+        if isinstance(env.library[0], MTGCreatureSpell):
+            log.info(f"Revealing {env.library[0]} on top and drawing it")
+            env.engine.draw_cards(1)
+
+        env.engine.put_from_hand_to_graveyard(self)
+
+    def cast_scry_top_available(self, env, nuple):
+        cards_on_top = [int(i) for i in nuple.split(",") if i != '']
+        return super().cast_available(env) and len(env.library) >= len(cards_on_top) and not env.engine.passing

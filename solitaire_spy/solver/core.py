@@ -71,6 +71,7 @@ class Solver:
                 continue
 
             if len(env.steps_log) == 0:  # game just started
+                # keep a backup of initial hand for final stats
                 env.initial_hand = deepcopy(env.hand)
 
             # check if there are obvious actions and play them first (no need to copy)
