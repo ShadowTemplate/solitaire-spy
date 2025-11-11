@@ -77,7 +77,7 @@ class Simulator:
         if load_existing and os.path.exists(self.pkl_file):
             log.info(f"Loading past simulations: {self.pkl_file}")
             self.load()
-            log.info(f"Loaded {self.summaries} past simulations")
+            log.info(f"Loaded {len(self.summaries)} past simulations")
         log.info(50 * "-")
         log.info(get_deck_diff(self.deck))
         simulation_start_time = timeit.default_timer()
