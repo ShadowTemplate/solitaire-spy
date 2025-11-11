@@ -85,7 +85,6 @@ class Simulator:
         simulation_start_time = timeit.default_timer()
         solver = ParallelSolver(self.deck)
         task_args = [(solver, "run", i) for i in range(self.num_sim - len(self.summaries))]
-        completed_tasks = 0
         with ProcessPoolExecutor(max_workers=multiprocessing.cpu_count()) as executor:
             futures = {
                 executor.submit(run_instance_method, arg): arg
@@ -93,11 +92,10 @@ class Simulator:
             }
             for future in as_completed(futures):
                 summary = future.result()
-                completed_tasks += 1
                 if summary:
                     self.summaries.append(summary)
-                if completed_tasks % CHECKPOINT_SIMULATIONS_EVERY_N == 0:
-                    log.info(f"Simulations completed: {completed_tasks}")
+                if len(self.summaries) % CHECKPOINT_SIMULATIONS_EVERY_N == 0:
+                    log.info(f"Simulations completed: {len(self.summaries)}")
                     self.save()
         elapsed = timeit.default_timer() - simulation_start_time
         log.info(f"Overall simulation time: {elapsed:.2f} s")
