@@ -40,7 +40,7 @@ def solitaire(env: MTGSolitaire):
 def main_with_simulator():
     seed_everything(SEED)
     deck = load_deck()
-    simulator = Simulator(deck, 1000)
+    simulator = Simulator(deck, 500)
     if simulator.simulate():
         simulator.log_stats()
 
@@ -49,7 +49,7 @@ def multi_deck_simulator():
     seed_everything(SEED)
     all_decks = deck_generator()
     for i, deck in enumerate(all_decks):
-        simulator = Simulator(deck, 1000)
+        simulator = Simulator(deck, 500)
         if simulator.simulate():
             simulator.log_stats()
 
@@ -88,5 +88,4 @@ def main_with_gui():
 
 
 if __name__ == '__main__':
-    main_with_simulator()
-    # multi_deck_simulator()
+    multi_deck_simulator()

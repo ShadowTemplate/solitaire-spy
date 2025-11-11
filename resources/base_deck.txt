@@ -9,7 +9,7 @@
 4 Lead The Stampede
 4 Winding Way
 4 Overgrown Battlement
-2 Saruli Caretaker
+4 Saruli Caretaker
 2 Tinder Wall
 4 Wall Of Roots
 3 Masked Vandal

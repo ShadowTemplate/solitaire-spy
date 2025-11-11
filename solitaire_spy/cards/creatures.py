@@ -1,6 +1,6 @@
 import logging
 from solitaire_spy.cards.mtg_cards import MTGCreatureSpell, MTGLand
-from solitaire_spy.cards.lands import Forest
+from solitaire_spy.cards.lands import Forest, Swamp
 from solitaire_spy.log import get_logger
 
 log = get_logger(__name__, stdout_level=logging.WARNING)
@@ -403,3 +403,32 @@ class WallOfRoots(MTGCreatureSpell):
     @property
     def functional_hash(self):
         return super().functional_hash + str(self.minus_counters)
+
+
+class GatecreeperVine(MTGCreatureSpell):
+    def __init__(self):
+        super().__init__("Gatecreeper Vine", "1G", False, True)
+
+    def actions(self, env):
+        # keep the possibility to cast it also if there are no more lands in the deck
+        return super().actions(env) + ["cast_for_Forest", "cast_for_Swamp"]
+
+    def enters_the_battlefield(self, env):
+        # for simplicity, the choice of the basic land is made at cast time
+        super().enters_the_battlefield(env)
+
+    def cast_for_Forest(self, env):
+        super().cast(env)
+        env.engine.search_library_for("Forest")
+        env.engine.shuffle_library()
+
+    def cast_for_Forest_available(self, env):
+        return super().cast_available(env) and any(isinstance(c, Forest) for c in env.library)
+
+    def cast_for_Swamp(self, env):
+        super().cast(env)
+        env.engine.search_library_for("Swamp")
+        env.engine.shuffle_library()
+
+    def cast_for_Swamp_available(self, env):
+        return super().cast_available(env) and any(isinstance(c, Swamp) for c in env.library)
