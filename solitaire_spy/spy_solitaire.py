@@ -35,6 +35,7 @@ class MTGSolitaire:
         self.steps_log = []
         self.kept_at = 7
         self.initial_hand = []  # to be initialized when game actually starts
+        self.interaction_count = 0
 
         self.tk_root = tk_root
         self.gui_battlefield = None

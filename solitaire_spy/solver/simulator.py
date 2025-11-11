@@ -8,6 +8,7 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 from solitaire_spy.cards.creatures import *
 from solitaire_spy.cards.mtg_cards import MTGLand
 from solitaire_spy.cards.spells import LotusPetal, LandGrant
+from solitaire_spy.constants import MAX_INTERACTION_CARDS_IN_DECK
 from solitaire_spy.log import get_logger
 from solitaire_spy.solver.core import Solver
 from solitaire_spy.spy_solitaire import MTGSolitaire
@@ -21,6 +22,7 @@ class SimulationSummary:
         self.counter_turn = env.counter_turn
         self.cards_in_library = len(env.library)
         self.lands_in_deck = sum(isinstance(c, MTGLand) for c in env.library)
+        self.interaction_count = env.interaction_count
         self.steps_log = env.steps_log
         self.solving_time = solving_time
 
@@ -30,6 +32,7 @@ class SimulationSummary:
                 f"Win at turn: {self.counter_turn}\n"
                 f"Cards in library: {self.cards_in_library}\n"
                 f"Lands in deck: {self.lands_in_deck}\n"
+                f"Interaction count: {self.interaction_count}\n"
                 f"Steps log: {self.steps_log}")
 
 
@@ -96,7 +99,7 @@ class Simulator:
         log.info(f"Overall simulation time: {elapsed:.2f} s")
 
     def log_stats(self):
-        games_won_by_tun = {}
+        games_won_by_turn = {}
         max_turn = max(s.counter_turn for s in self.summaries)
         for i in range(2, max_turn + 1):
             games_won_by_i = len([s for s in self.summaries if s.counter_turn == i])
@@ -105,9 +108,22 @@ class Simulator:
                 f"{games_won_by_i} "
                 f"({games_won_by_i / len(self.summaries) * 100:.2f}%)"
             )
-            games_won_by_tun[i] = games_won_by_i
+            with_interaction_lines = []
+            for j in range(0, MAX_INTERACTION_CARDS_IN_DECK):
+                with_j_interaction = len(
+                    [s for s in self.summaries
+                     if s.counter_turn == i and s.interaction_count == j]
+                )
+                if with_j_interaction > 0:
+                    with_interaction_lines.append(
+                        f"x={j}: {with_j_interaction} "
+                        f"({with_j_interaction / len(self.summaries) * 100:.2f}%)"
+                    )
+            if len(with_interaction_lines) > 0:
+                log.info(" L with x interactions: " + ",".join(with_interaction_lines))
+            games_won_by_turn[i] = games_won_by_i
         for i in range(2, max_turn + 1):
-            cumulative = sum(games_won_by_tun[j] for j in range(2, i + 1))
+            cumulative = sum(games_won_by_turn[j] for j in range(2, i + 1))
             log.info(
                 f"Games won by turn <= {i}: "
                 f"{cumulative} "
@@ -124,7 +140,6 @@ class Simulator:
                 f"({hands_kept_at_i / len(self.summaries) * 100:.2f}%)"
             )
             hands_kept_by[i] = hands_kept_at_i
-        print(hands_kept_by)
         for i in range(3, 8):
             cumulative = sum(hands_kept_by[j] for j in range(i, 8))
             log.info(

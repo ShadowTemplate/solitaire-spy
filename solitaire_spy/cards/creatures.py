@@ -229,6 +229,8 @@ class MaskedVandal(MTGCreatureSpell):
     # for the Spy solitaire we don't need to implement other abilities/properties
     def enters_the_battlefield(self, env):
         super().enters_the_battlefield(env)
+        if any(isinstance(c, MTGCreatureSpell) for c in env.graveyard):
+            env.interaction_count += 1
 
 
 class MesmericFiend(MTGCreatureSpell):
@@ -238,6 +240,7 @@ class MesmericFiend(MTGCreatureSpell):
     # for the Spy solitaire we don't need to implement other abilities/properties
     def enters_the_battlefield(self, env):
         super().enters_the_battlefield(env)
+        env.interaction_count += 1
 
 
 class SaruliCaretaker(MTGCreatureSpell):
