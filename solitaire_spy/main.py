@@ -4,12 +4,9 @@ import os
 import random
 import time
 import tkinter as tk
-from copy import deepcopy
 
-from solitaire_spy.cards.creatures import *
-from solitaire_spy.cards.lands import *
-from solitaire_spy.cards.spells import *
 from solitaire_spy.constants import SEED
+from solitaire_spy.deck import load_deck, deck_generator
 from solitaire_spy.solver.core import Solver
 from solitaire_spy.solver.simulator import Simulator
 from solitaire_spy.spy_solitaire import MTGSolitaire
@@ -20,104 +17,32 @@ def seed_everything(seed):
     random.seed(seed)
 
 
-def best_move(possible_actions):
-    for i, pair in enumerate(possible_actions):
-        card, action = pair
-        if card and card.name == "Balustrade Spy":
-            return i
-        if card and card.name == "Dread Return":
-            return 51
-    return 0
-
-
 def solitaire(env: MTGSolitaire):
+    def next_move(actions):
+        for i, pair in enumerate(actions):
+            c, _ = pair
+            if c and c.name == "Balustrade Spy":
+                return i
+            if c and c.name == "Dread Return":
+                return i
+        return 0
+
     while env.opponent_counter_life > 0:
         # time.sleep(1)
         print('---')
         possible_actions = env.engine.get_possible_actions()
-        card, action = possible_actions[best_move(possible_actions)]
+        card, action = possible_actions[next_move(possible_actions)]
         env.step(card, action)
         env.render()
     print("You won!")
 
 
-def get_t3_deck():
-    deck = [Forest(), SaruliCaretaker(), Forest(), WallOfRoots(), WindingWay(),
-            BalustradeSpy(), MesmericFiend(), MesmericFiend(), TrollOfKhazadDum(),
-            SaguWildling(), MesmericFiend(), MesmericFiend(), MesmericFiend(), Swamp(),
-            Forest()]
-    for _ in range(50):
-        deck.append(MesmericFiend())
-    deck.append(DreadReturn())
-    deck.append(LotlethGiant())
-    return deck
-
-
-def get_deck():
-    return 4 * [BalustradeSpy()] + \
-        2 * [DreadReturn()] + \
-        4 * [ElvesOfDeepShadow()] + \
-        3 * [Forest()] + \
-        4 * [GenerousEnt()] + \
-        4 * [LandGrant()] + \
-        4 * [LeadTheStampede()] + \
-        2 * [LotlethGiant()] + \
-        3 * [MaskedVandal()] + \
-        2 * [MesmericFiend()] + \
-        2 * [OrnithopterOfParadise()] + \
-        4 * [OvergrownBattlement()] + \
-        4 * [SaguWildling()] + \
-        4 * [SaruliCaretaker()] + \
-        1 * [Swamp()] + \
-        4 * [TinderWall()] + \
-        1 * [TrollOfKhazadDum()] + \
-        4 * [WallOfRoots()] + \
-        4 * [WindingWay()]
-
-
 def main_with_simulator():
     seed_everything(SEED)
-    deck = get_deck()
+    deck = load_deck()
     simulator = Simulator(deck, 30)
     simulator.simulate()
-    time.sleep(1)  # flush out stdout
     simulator.log_stats()
-
-def deck_generator():
-    decks = []
-    base_deck = 4 * [BalustradeSpy()] + \
-        2 * [DreadReturn()] + \
-        4 * [ElvesOfDeepShadow()] + \
-        3 * [Forest()] + \
-        4 * [GenerousEnt()] + \
-        4 * [LandGrant()] + \
-        4 * [LeadTheStampede()] + \
-        2 * [LotlethGiant()] + \
-        3 * [MaskedVandal()] + \
-        2 * [MesmericFiend()] + \
-        4 * [OvergrownBattlement()] + \
-        4 * [SaguWildling()] + \
-        4 * [SaruliCaretaker()] + \
-        1 * [Swamp()] + \
-        4 * [WallOfRoots()] + \
-        4 * [WindingWay()]
-
-    for petal_number in range(0, 1):
-        for troll_number in range(1, 2):
-            for quirion_number in range(2, 3):
-                for tinder_wall_number in range(4, 5):
-                    for bird_number in range(0, 1):
-                        if petal_number + troll_number + quirion_number + tinder_wall_number + bird_number <= 60 - len(base_deck):
-                            new_deck = deepcopy(base_deck)
-                            new_deck += petal_number * [LotusPetal()]
-                            new_deck += troll_number * [TrollOfKhazadDum()]
-                            new_deck += quirion_number * [QuirionRanger()]
-                            new_deck += tinder_wall_number * [TinderWall()]
-                            new_deck += bird_number * [OrnithopterOfParadise()]
-                            while len(new_deck) < 60:
-                                new_deck.append(MesmericFiend())
-                            decks.append(new_deck)
-    return decks
 
 
 def multi_deck_simulator():
@@ -125,14 +50,14 @@ def multi_deck_simulator():
     all_decks = deck_generator()
     print(f"Testing {len(all_decks)} decks...")
     for i, deck in enumerate(all_decks):
-        simulator = Simulator(deck, 10)
+        simulator = Simulator(deck, 100)
         simulator.simulate()
         simulator.log_stats()
 
 
 def main_with_solver():
     seed_everything(SEED)
-    deck = get_deck()
+    deck = load_deck()
     env = MTGSolitaire(deck, None)
     start_time = timeit.default_timer()
     env = Solver(env).solve()
@@ -146,7 +71,7 @@ def main_with_solver():
 
 def main_no_gui():
     seed_everything(SEED)
-    deck = get_t3_deck()
+    deck = load_deck()
     env = MTGSolitaire(deck, None)
     solitaire(env)
 
@@ -155,7 +80,7 @@ def main_with_gui():
     root = tk.Tk()
     root.title("MTGO at home - Turn 0")
     seed_everything(SEED)
-    deck = get_t3_deck()
+    deck = load_deck()
     env = MTGSolitaire(deck, root)
     thread = threading.Thread(target=solitaire, args=[env], daemon=True)
     thread.start()
@@ -164,4 +89,5 @@ def main_with_gui():
 
 
 if __name__ == '__main__':
-    multi_deck_simulator()
+    main_with_simulator()
+    # multi_deck_simulator()

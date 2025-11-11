@@ -9,6 +9,7 @@ from solitaire_spy.cards.creatures import *
 from solitaire_spy.cards.mtg_cards import MTGLand
 from solitaire_spy.cards.spells import LotusPetal, LandGrant
 from solitaire_spy.constants import MAX_INTERACTION_CARDS_IN_DECK
+from solitaire_spy.deck import get_deck_diff
 from solitaire_spy.log import get_logger
 from solitaire_spy.solver.core import Solver
 from solitaire_spy.spy_solitaire import MTGSolitaire
@@ -69,16 +70,7 @@ class Simulator:
 
     def simulate(self):
         log.info(50 * "-")
-        # TODO: proper deck print
-        log.info(f"Deck: "
-                 f"{sum(isinstance(c, MTGLand) for c in self.deck)} lands, "
-                 f"{sum(isinstance(c, LotusPetal) for c in self.deck)} Lotus Petal, "
-                 f"{sum(isinstance(c, TrollOfKhazadDum) for c in self.deck)} Troll of Khazad-Dum, "
-                 f"{sum(isinstance(c, QuirionRanger) for c in self.deck)} Quirion Ranger, "
-                 f"{sum(isinstance(c, OrnithopterOfParadise) for c in self.deck)} Ornithopter of Paradise, "
-                 f"{sum(isinstance(c, TinderWall) for c in self.deck)} Tinder Wall, "
-                 f"0 Gatecreeper Vine, "
-                 f"{sum(isinstance(c, MesmericFiend) for c in self.deck)} Mesmeric Fiend")
+        log.info(get_deck_diff(self.deck))
         simulation_start_time = timeit.default_timer()
         solver = ParallelSolver(self.deck)
         task_args = [(solver, "run", i) for i in range(self.num_sim)]
