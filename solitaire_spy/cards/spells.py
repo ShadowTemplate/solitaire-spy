@@ -246,7 +246,7 @@ class ElvenFarsight(MTGSpell):
         # The other cards can be put on the bottom in random order.
         # Let's optimize for the case where we have a land and Dread Return:
         # in this scenario we want the land as the last card of the deck.
-        cards_on_the_bottom = [i for i in range(3) if i not in cards_on_top]
+        cards_on_the_bottom = [i for i in range(len(cards)) if i not in cards_on_top]
         log.info(f"Putting on the bottom: {cards_on_the_bottom}")
         # first put non-lands on the bottom
         for card in [cards[i] for i in cards_on_the_bottom if not isinstance(cards[i], MTGLand)]:
