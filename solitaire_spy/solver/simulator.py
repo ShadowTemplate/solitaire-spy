@@ -1,5 +1,6 @@
 import logging
 import os
+import pickle
 import timeit
 import multiprocessing
 from collections import defaultdict
@@ -9,7 +10,7 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 from solitaire_spy.cards.creatures import *
 from solitaire_spy.cards.mtg_cards import MTGLand
 from solitaire_spy.cards.spells import LotusPetal, LandGrant
-from solitaire_spy.constants import MAX_INTERACTION_CARDS_IN_DECK, RESULTS_PATH
+from solitaire_spy.constants import *
 from solitaire_spy.deck import get_deck_diff, get_deck_hash
 from solitaire_spy.log import get_logger
 from solitaire_spy.solver.core import Solver
@@ -68,17 +69,20 @@ class Simulator:
         self.deck = deck
         self.num_sim = num_sim
         self.summaries = []
-        self.result_file = f"{RESULTS_PATH}{get_deck_hash(self.deck)}.txt"
+        self.simulation_name = get_deck_hash(self.deck)
+        self.result_file = f"{RESULTS_PATH}{self.simulation_name}.txt"
+        self.pkl_file = f"{RESULTS_PATH}{self.simulation_name}.pkl"
 
-    def simulate(self, skip_if_done=True):
-        if skip_if_done and os.path.exists(self.result_file):
-            log.info(f"Skipping already simulated deck: {self.result_file}")
-            return False
+    def simulate(self, load_existing=True):
+        if load_existing and os.path.exists(self.pkl_file):
+            log.info(f"Loading past simulations: {self.pkl_file}")
+            self.load()
+            log.info(f"Loaded {self.summaries} past simulations")
         log.info(50 * "-")
         log.info(get_deck_diff(self.deck))
         simulation_start_time = timeit.default_timer()
         solver = ParallelSolver(self.deck)
-        task_args = [(solver, "run", i) for i in range(self.num_sim)]
+        task_args = [(solver, "run", i) for i in range(self.num_sim - len(self.summaries))]
         completed_tasks = 0
         with ProcessPoolExecutor(max_workers=multiprocessing.cpu_count()) as executor:
             futures = {
@@ -88,13 +92,14 @@ class Simulator:
             for future in as_completed(futures):
                 summary = future.result()
                 completed_tasks += 1
-                if completed_tasks % 10 == 0:
-                    log.info(f"Simulations completed: {completed_tasks}")
                 if summary:
                     self.summaries.append(summary)
+                if completed_tasks % CHECKPOINT_SIMULATIONS_EVERY_N == 0:
+                    log.info(f"Simulations completed: {completed_tasks}")
+                    self.save()
         elapsed = timeit.default_timer() - simulation_start_time
         log.info(f"Overall simulation time: {elapsed:.2f} s")
-        return True
+        self.save()
 
     def log_stats(self):
         result_lines = [get_deck_diff(self.deck), ""]
@@ -243,3 +248,14 @@ class Simulator:
             for line in result_lines:
                 f.write(line)
                 f.write("\n")
+
+    def save(self):
+        log.debug(f"Saving simulator results to {self.pkl_file}")
+        with open(self.pkl_file, "wb") as f:
+            pickle.dump(self, f)
+
+    def load(self):
+        log.debug(f"Loading simulator results from {self.pkl_file}")
+        with open(self.pkl_file, "rb") as f:
+            for s in pickle.load(f).summaries:
+                self.summaries.append(s)

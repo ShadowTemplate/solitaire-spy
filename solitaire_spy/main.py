@@ -12,7 +12,7 @@ from solitaire_spy.solver.simulator import Simulator
 from solitaire_spy.spy_solitaire import MTGSolitaire
 
 
-def seed_everything(seed):
+def seed_everything(seed=SEED):
     os.environ['PYTHONHASHSEED'] = str(seed)
     random.seed(seed)
 
@@ -38,24 +38,21 @@ def solitaire(env: MTGSolitaire):
 
 
 def main_with_simulator():
-    seed_everything(SEED)
     deck = load_deck()
     simulator = Simulator(deck, 500)
-    if simulator.simulate():
-        simulator.log_stats()
+    simulator.simulate()
+    simulator.log_stats()
 
 
 def multi_deck_simulator():
-    seed_everything(SEED)
     all_decks = deck_generator()
     for i, deck in enumerate(all_decks):
         simulator = Simulator(deck, 500)
-        if simulator.simulate():
-            simulator.log_stats()
+        simulator.simulate()
+        simulator.log_stats()
 
 
 def main_with_solver():
-    seed_everything(SEED)
     deck = load_deck()
     env = MTGSolitaire(deck, None)
     start_time = timeit.default_timer()
@@ -69,7 +66,6 @@ def main_with_solver():
 
 
 def main_no_gui():
-    seed_everything(SEED)
     deck = load_deck()
     env = MTGSolitaire(deck, None)
     solitaire(env)
@@ -78,7 +74,6 @@ def main_no_gui():
 def main_with_gui():
     root = tk.Tk()
     root.title("MTGO at home - Turn 0")
-    seed_everything(SEED)
     deck = load_deck()
     env = MTGSolitaire(deck, root)
     thread = threading.Thread(target=solitaire, args=[env], daemon=True)
