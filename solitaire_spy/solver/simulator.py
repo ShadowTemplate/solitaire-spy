@@ -3,7 +3,7 @@ import os
 import pickle
 import timeit
 import multiprocessing
-from collections import defaultdict
+from collections import defaultdict, Counter
 from copy import deepcopy
 from concurrent.futures import ProcessPoolExecutor, as_completed
 
@@ -71,7 +71,9 @@ class Simulator:
         self.summaries = []
         self.simulation_name = get_deck_hash(self.deck)
         self.result_file = f"{RESULTS_PATH}{self.simulation_name}.txt"
+        self.deck_file = f"{RESULTS_PATH}{self.simulation_name}_deck.txt"
         self.pkl_file = f"{RESULTS_PATH}{self.simulation_name}.pkl"
+        os.makedirs(f"{RESULTS_PATH}", exist_ok=True)
 
     def simulate(self, load_existing=True):
         if load_existing and os.path.exists(self.pkl_file):
@@ -102,6 +104,12 @@ class Simulator:
         self.save()
 
     def log_stats(self):
+        if not os.path.exists(self.deck_file):
+            deck_counter = dict(Counter(c.name for c in self.deck))
+            with open(self.deck_file, "w") as f:
+                for k in sorted(deck_counter.keys()):
+                    f.write(f"{deck_counter[k]} {k}\n")
+
         result_lines = [get_deck_diff(self.deck), ""]
         games_won_by_turn = {}
         max_turn = max(s.counter_turn for s in self.summaries)
