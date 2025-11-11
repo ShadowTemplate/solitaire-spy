@@ -73,7 +73,6 @@ def get_deck_hash(deck):
 def deck_generator():
     decks = []
     base_deck = load_deck(BASE_DECK_PATH)
-
     for forest_number in range(0, 2):
         for petal_number in range(0, 3):
             for troll_number in range(0, 2):
@@ -82,20 +81,28 @@ def deck_generator():
                         for gatecreeper_number in range(0, 3):
                             for tinder_wall_number in range(0, 3):
                                 for farsight_number in range(0, 5):
-                                    if (forest_number + petal_number + troll_number +
-                                            ornithopter_number + quirion_number +
-                                            gatecreeper_number + tinder_wall_number +
-                                            farsight_number <= 60 - len(base_deck)):
-                                        new_deck = deepcopy(base_deck)
-                                        new_deck += forest_number * [Forest()]
-                                        new_deck += petal_number * [LotusPetal()]
-                                        new_deck += troll_number * [TrollOfKhazadDum()]
-                                        new_deck += ornithopter_number * [OrnithopterOfParadise()]
-                                        new_deck += quirion_number * [QuirionRanger()]
-                                        new_deck += gatecreeper_number * [GatecreeperVine()]
-                                        new_deck += tinder_wall_number * [TinderWall()]
-                                        new_deck += farsight_number * [ElvenFarsight()]
-                                        while len(new_deck) < 60:
-                                            new_deck.append(MesmericFiend())
-                                        decks.append(new_deck)
+                                    total_number = (
+                                        forest_number + petal_number + troll_number +
+                                        ornithopter_number + quirion_number +
+                                        gatecreeper_number + tinder_wall_number +
+                                        farsight_number
+                                    )
+                                    flex_slots = 60 - len(base_deck)
+                                    if flex_slots - total_number > 4:
+                                        # we can only MesmericFiend-fill up to 4 slots
+                                        continue
+                                    if total_number > flex_slots:
+                                        continue
+                                    new_deck = deepcopy(base_deck)
+                                    new_deck += forest_number * [Forest()]
+                                    new_deck += petal_number * [LotusPetal()]
+                                    new_deck += troll_number * [TrollOfKhazadDum()]
+                                    new_deck += ornithopter_number * [OrnithopterOfParadise()]
+                                    new_deck += quirion_number * [QuirionRanger()]
+                                    new_deck += gatecreeper_number * [GatecreeperVine()]
+                                    new_deck += tinder_wall_number * [TinderWall()]
+                                    new_deck += farsight_number * [ElvenFarsight()]
+                                    while len(new_deck) < 60:
+                                        new_deck.append(MesmericFiend())
+                                    decks.append(new_deck)
     return decks
