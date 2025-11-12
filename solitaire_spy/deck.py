@@ -73,25 +73,26 @@ def get_deck_hash(deck):
 def deck_generator():
     decks = []
     base_deck = load_deck(BASE_DECK_PATH)
+    # sort for loops wisely: outer gets less priority
     for forest_number in range(0, 2):
         for ornithopter_number in range(0, 3):
-            for quirion_number in range(0, 3):
-                for farsight_number in range(0, 3):
-                    for gatecreeper_number in range(0, 4):
+            for farsight_number in range(0, 3):
+                for gatecreeper_number in range(0, 3):
+                    for quirion_number in range(0, 3):
                         for troll_number in range(0, 2):
-                            for petal_number in range(0, 5):
-                                for tinder_wall_number in range(0, 3):
+                            for tinder_wall_number in range(0, 3):
+                                for petal_number in range(0, 5):
                                     total_number = (
-                                        forest_number + petal_number + troll_number +
-                                        ornithopter_number + quirion_number +
-                                        gatecreeper_number + tinder_wall_number +
-                                        farsight_number
-                                    )
+                                            forest_number + petal_number + troll_number +
+                                            ornithopter_number + quirion_number +
+                                            gatecreeper_number + tinder_wall_number +
+                                            farsight_number
+                                        )
                                     flex_slots = 60 - len(base_deck)
-                                    if flex_slots - total_number > 4:
+                                    if flex_slots - total_number > 4:  # too few cards
                                         # we can only MesmericFiend-fill up to 4 slots
                                         continue
-                                    if total_number > flex_slots:
+                                    if total_number > flex_slots:  # too many cards
                                         continue
                                     new_deck = deepcopy(base_deck)
                                     new_deck += forest_number * [Forest()]
@@ -105,4 +106,5 @@ def deck_generator():
                                     while len(new_deck) < 60:
                                         new_deck.append(MesmericFiend())
                                     decks.append(new_deck)
+    log.info(f"Generated {len(decks)} decks")
     return decks
