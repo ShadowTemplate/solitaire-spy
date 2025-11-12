@@ -39,14 +39,14 @@ def solitaire(env: MTGSolitaire):
 
 def main_with_simulator():
     deck = load_deck()
-    simulator = Simulator(deck, 100)
+    simulator = Simulator(deck, 500)
     simulator.simulate()
     simulator.log_stats()
 
 
 def multi_deck_simulator():
     for deck in deck_generator():
-        simulator = Simulator(deck, 100)
+        simulator = Simulator(deck, 500)
         simulator.simulate()
         simulator.log_stats()
 
