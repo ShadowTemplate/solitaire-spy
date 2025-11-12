@@ -89,8 +89,8 @@ def deck_generator():
                                             farsight_number
                                         )
                                     flex_slots = 60 - len(base_deck)
-                                    if flex_slots - total_number > 4:  # too few cards
-                                        # we can only MesmericFiend-fill up to 4 slots
+                                    if flex_slots - total_number > 2:  # too few cards
+                                        # we want to MesmericFiend-fill up to 2 slots
                                         continue
                                     if total_number > flex_slots:  # too many cards
                                         continue
