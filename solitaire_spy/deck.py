@@ -73,14 +73,14 @@ def get_deck_hash(deck):
 def deck_generator():
     decks = []
     base_deck = load_deck(BASE_DECK_PATH)
-    for forest_number in range(0, 2):
-        for ornithopter_number in range(0, 3):
-            for quirion_number in range(0, 3):
-                for farsight_number in range(0, 5):
-                    for gatecreeper_number in range(0, 3):
-                        for troll_number in range(0, 2):
-                            for petal_number in range(0, 3):
-                                for tinder_wall_number in range(0, 3):
+    for forest_number in range(0, 1):
+        for ornithopter_number in range(0, 1):
+            for quirion_number in range(0, 1):
+                for farsight_number in range(0, 1):
+                    for gatecreeper_number in range(0, 1):
+                        for troll_number in range(1, 2):
+                            for petal_number in range(2, 5):
+                                for tinder_wall_number in range(2, 3):
                                     total_number = (
                                         forest_number + petal_number + troll_number +
                                         ornithopter_number + quirion_number +
