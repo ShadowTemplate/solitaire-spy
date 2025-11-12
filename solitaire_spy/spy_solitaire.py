@@ -36,6 +36,7 @@ class MTGSolitaire:
         self.kept_at = 7
         self.initial_hand = []  # to be initialized when game actually starts
         self.interaction_count = 0
+        self.unknown_lands_in_deck_on_combo = self.lands_in_deck
 
         self.tk_root = tk_root
         self.gui_battlefield = None

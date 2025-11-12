@@ -16,7 +16,8 @@ class MtgEngine:
         self.env: MTGSolitaire = env
         self.system_switch_mana_strategy_allowed = True
         self.passing = False  # if True, only instant speed interaction can be used
-        # self.passing can be ~interpreted as "it's the opponent's turn"
+        # self.passing can be ~interpreted as "it's the opponent's turn" and shall be
+        # used to (dis)allow instant-speed interaction for cards
 
     def is_action_possible(self, card, action):
         if "@" in action:  # action needs an indexed target

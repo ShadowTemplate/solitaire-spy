@@ -364,6 +364,9 @@ class BalustradeSpy(MTGCreatureSpell):
 
     def enters_the_battlefield(self, env):
         super().enters_the_battlefield(env)
+        env.unknown_lands_in_deck_on_combo = sum(
+            isinstance(c, MTGLand) for c in env.library
+        ) - env.known_lands_bottom
         # always choose myself
         while True:
             if len(env.library) == 0:
