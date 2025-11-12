@@ -26,6 +26,7 @@ class SimulationSummary:
         self.cards_in_library = len(env.library)
         self.lands_in_deck = sum(isinstance(c, MTGLand) for c in env.library)
         self.unknown_lands_in_deck_on_combo = env.unknown_lands_in_deck_on_combo  # added later
+        self.mulled_bottom = env.mulled_bottom  # added later
         self.interaction_count = env.interaction_count
         self.steps_log = env.steps_log
         self.solving_time = solving_time
@@ -113,7 +114,8 @@ class Simulator:
         result_lines = [get_deck_diff(self.deck), ""]
         games_won_by_turn = {}
         max_turn = max(s.counter_turn for s in self.summaries)
-        for i in range(2, max_turn + 1):
+        interested_in_turn_up_to = min(max_turn, 7)  # set 'max_turn + 1' if you want to see all turns
+        for i in range(MIN_TURN_WIN_POSSIBLE, interested_in_turn_up_to):
             games_won_by_i = len([s for s in self.summaries if s.counter_turn == i])
             line = (
                 f"Games won by turn {i}: "
@@ -138,8 +140,8 @@ class Simulator:
                 log.info(line)
                 result_lines.append(line)
             games_won_by_turn[i] = games_won_by_i
-        for i in range(2, 7):  # set 'max_turn + 1' if you want to see all turns
-            cumulative = sum(games_won_by_turn[j] for j in range(2, i + 1))
+        for i in range(MIN_TURN_WIN_POSSIBLE, interested_in_turn_up_to):
+            cumulative = sum(games_won_by_turn[j] for j in range(MIN_TURN_WIN_POSSIBLE, i + 1))
             line = (
                 f"Games won by turn <= {i}: "
                 f"{cumulative} "
@@ -228,19 +230,32 @@ class Simulator:
             )
             unknown_lands_in_deck_on_combo_0 = len(self.summaries) - unknown_lands_in_deck_on_combo_1_plus
             line = (
-                f"Lands left in library 0: "
+                f"Scientific wins: "
                 f"{unknown_lands_in_deck_on_combo_0} "
                 f"({unknown_lands_in_deck_on_combo_0 / len(self.summaries) * 100:.2f}%)"
             )
             log.info(line)
             result_lines.append(line)
             line = (
-                f"Lands left in library 1+ (lucky win): "
+                f"Lucky wins (1+ land in deck): "
                 f"{unknown_lands_in_deck_on_combo_1_plus} "
                 f"({unknown_lands_in_deck_on_combo_1_plus / len(self.summaries) * 100:.2f}%)"
             )
             log.info(line)
             result_lines.append(line)
+            for i in range(MIN_TURN_WIN_POSSIBLE, interested_in_turn_up_to):
+                lucky_wins_on_turn_i = sum(
+                    1 for s in self.summaries
+                    if s.unknown_lands_in_deck_on_combo > 0 and s.counter_turn == i
+                )
+                if lucky_wins_on_turn_i > 0:
+                    line = (
+                        f" L on turn {i}: "
+                        f"{lucky_wins_on_turn_i} "
+                        f"({lucky_wins_on_turn_i / len(self.summaries) * 100:.2f}%)"
+                    )
+                    log.info(line)
+                    result_lines.append(line)
         except AttributeError:
             # 'unknown_lands_in_deck_on_combo' was added later and may not be present
             pass

@@ -216,11 +216,12 @@ class Solver:
         random.shuffle(env.library)
 
         env.engine.draw_cards(7)
-        cards_to_put_on_the_bottom = 7-new_hand_size
+        cards_to_put_on_the_bottom = 7 - new_hand_size
         has_dead_card = True
         while cards_to_put_on_the_bottom > 0 and has_dead_card:
             dead_card = env.engine.get_dead_card_in_hand()
             if dead_card:
+                env.mulled_bottom.append(dead_card)
                 env.engine.put_from_hand_to_library(dead_card)
                 cards_to_put_on_the_bottom -= 1
                 if isinstance(dead_card, MTGLand):
@@ -237,6 +238,7 @@ class Solver:
             for i in reversed(nuple):
                 if isinstance(new_env.hand[i], MTGLand):
                     new_env.known_lands_bottom += 1
+                new_env.mulled_bottom.append(new_env.hand[i])
                 new_env.engine.put_from_hand_to_library(new_env.hand[i])
             new_env_hash = new_env.functional_hash
             if new_env_hash not in self.explored_hashes:
