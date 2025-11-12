@@ -132,7 +132,7 @@ class Simulator:
                         f"({with_j_interaction / len(self.summaries) * 100:.2f}%)"
                     )
             if len(with_interaction_lines) > 0:
-                line = " L with x interactions: " + ",".join(with_interaction_lines)
+                line = " L with x interactions: " + ", ".join(with_interaction_lines)
                 log.info(line)
                 result_lines.append(line)
             games_won_by_turn[i] = games_won_by_i

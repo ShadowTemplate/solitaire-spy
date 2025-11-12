@@ -45,8 +45,7 @@ def main_with_simulator():
 
 
 def multi_deck_simulator():
-    all_decks = deck_generator()
-    for i, deck in enumerate(all_decks):
+    for deck in deck_generator():
         simulator = Simulator(deck, 100)
         simulator.simulate()
         simulator.log_stats()
