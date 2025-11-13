@@ -44,12 +44,12 @@ class ParallelSolver:
     def __init__(self, deck):
         self.deck = deepcopy(deck)
 
-    def run(self, i):
+    def run(self, i, with_lucky_wins):
         log.debug(f"Running simulation #{i+1}")
         solver_start_time = timeit.default_timer()
         winning_env = Solver(MTGSolitaire(self.deck, None)).solve(
             start_time=solver_start_time,
-            # with_lucky_wins=False,  # uncomment to disable lucky wins
+            with_lucky_wins=with_lucky_wins,
         )
         solving_time = timeit.default_timer() - solver_start_time
         if winning_env:
@@ -65,18 +65,23 @@ def run_instance_method(args):
     # helper function for pickling: unwraps the instance + method call
     instance, method_name, arg = args
     method = getattr(instance, method_name)
-    return method(arg)
+    return method(*arg)
 
 
 class Simulator:
-    def __init__(self, deck, num_sim):
+    def __init__(self, deck, num_sim, with_lucky_wins=True):
         self.deck = deck
         self.num_sim = num_sim
         self.summaries = []
         self.simulation_name = get_deck_hash(self.deck)
-        self.result_file = f"{RESULTS_PATH}{self.simulation_name}.txt"
+        self.with_lucky_wins = with_lucky_wins
         self.deck_file = f"{RESULTS_PATH}{self.simulation_name}_deck.txt"
-        self.pkl_file = f"{RESULTS_PATH}{self.simulation_name}.pkl"
+        if with_lucky_wins:
+            self.result_file = f"{RESULTS_PATH}{self.simulation_name}.txt"
+            self.pkl_file = f"{RESULTS_PATH}{self.simulation_name}.pkl"
+        else:
+            self.result_file = f"{RESULTS_PATH}{self.simulation_name}_no_lw.txt"
+            self.pkl_file = f"{RESULTS_PATH}{self.simulation_name}_no_lw.pkl"
         os.makedirs(f"{RESULTS_PATH}", exist_ok=True)
 
     def simulate(self, load_existing=True):
@@ -88,7 +93,10 @@ class Simulator:
         log.info(get_deck_diff(self.deck))
         simulation_start_time = timeit.default_timer()
         solver = ParallelSolver(self.deck)
-        task_args = [(solver, "run", i) for i in range(self.num_sim - len(self.summaries))]
+        task_args = [
+            (solver, "run", (i, self.with_lucky_wins))
+            for i in range(self.num_sim - len(self.summaries))
+        ]
         with ProcessPoolExecutor(max_workers=multiprocessing.cpu_count()) as executor:
             futures = {
                 executor.submit(run_instance_method, arg): arg
@@ -115,7 +123,7 @@ class Simulator:
         result_lines = [get_deck_diff(self.deck), ""]
         games_won_by_turn = {}
         max_turn = max(s.counter_turn for s in self.summaries)
-        interested_in_turn_up_to = min(max_turn, 7)  # set 'max_turn + 1' if you want to see all turns
+        interested_in_turn_up_to = min(max_turn, 7)  # set 'max_turn + 1' to see all turns
         for i in range(MIN_TURN_WIN_POSSIBLE, interested_in_turn_up_to):
             games_won_by_i = len([s for s in self.summaries if s.counter_turn == i])
             line = (
