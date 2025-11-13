@@ -1,0 +1,56 @@
++Lotus Petal: 4
+-Tinder Wall: 2
++Tinder Wall: 4
++Troll of Khazad-dum: 1
+
+Games won by turn 3: 188 (37.75%)
+ L with x interactions: x=0: 185 (37.15%), x=1: 3 (0.60%)
+Games won by turn 4: 207 (41.57%)
+ L with x interactions: x=0: 180 (36.14%), x=1: 26 (5.22%), x=2: 1 (0.20%)
+Games won by turn 5: 70 (14.06%)
+ L with x interactions: x=0: 42 (8.43%), x=1: 24 (4.82%), x=2: 4 (0.80%)
+Games won by turn 6: 15 (3.01%)
+ L with x interactions: x=0: 2 (0.40%), x=1: 8 (1.61%), x=2: 5 (1.00%)
+Games won by turn <= 3: 188 (37.75%)
+Games won by turn <= 4: 395 (79.32%)
+Games won by turn <= 5: 465 (93.37%)
+Games won by turn <= 6: 480 (96.39%)
+
+Hands kept at 3: 26 (5.22%)
+Hands kept at 4: 91 (18.27%)
+Hands kept at 5: 119 (23.90%)
+Hands kept at 6: 136 (27.31%)
+Hands kept at 7: 126 (25.30%)
+Hands kept at 3+: 498 (100.00%)
+Hands kept at 4+: 472 (94.78%)
+Hands kept at 5+: 381 (76.51%)
+Hands kept at 6+: 262 (52.61%)
+Hands kept at 7+: 126 (25.30%)
+
+T1 (pseudo-)mana 0: 0 (0.00%)
+T1 (pseudo-)mana 1: 19 (3.82%)
+T1 (pseudo-)mana 2: 153 (30.72%)
+T1 (pseudo-)mana 3: 223 (44.78%)
+T1 (pseudo-)mana 4: 88 (17.67%)
+T1 (pseudo-)mana 5: 13 (2.61%)
+T1 (pseudo-)mana 6: 2 (0.40%)
+T1 (pseudo-)mana 7: 0 (0.00%)
+T1 (pseudo-)mana 0+: 498 (100.00%)
+T1 (pseudo-)mana 1+: 498 (100.00%)
+T1 (pseudo-)mana 2+: 479 (96.18%)
+T1 (pseudo-)mana 3+: 326 (65.46%)
+T1 (pseudo-)mana 4+: 103 (20.68%)
+T1 (pseudo-)mana 5+: 15 (3.01%)
+T1 (pseudo-)mana 6+: 2 (0.40%)
+T1 (pseudo-)mana 7+: 0 (0.00%)
+
+0 cards left in library: 465 (93.37%)
+1+ cards left in library: 33 (6.63%)
+
+Scientific wins: 461 (92.57%)
+Lucky wins (1+ land in deck): 37 (7.43%)
+ L on turn 3: 27 (5.42%)
+ L on turn 4: 8 (1.61%)
+ L on turn 5: 1 (0.20%)
+
+Average solving time: 35.46 s
