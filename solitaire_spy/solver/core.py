@@ -44,7 +44,7 @@ class Solver:
                 return card, action
         return None, None
 
-    def solve(self, greedily=True, early_abort=True, start_time=None):
+    def solve(self, greedily=True, early_abort=True, start_time=None, with_lucky_wins=True):
         self.keep_and_mull()
         while sum(len(values) for _, values in self.env_queues.items()) > 0:
             if start_time and timeit.default_timer() - start_time > MAX_SOLVER_RUNTIME:
@@ -52,7 +52,7 @@ class Solver:
                     f"Reached maximum computation time for solving "
                     f"({MAX_SOLVER_RUNTIME:.2f} s). Aborting..."
                 )
-                return None  # TODO: return something that shows the current high turn
+                return None
 
             queue_size = sum(len(values) for _, values in self.env_queues.items())
             if queue_size % 100 == 0:
@@ -91,17 +91,18 @@ class Solver:
                         env.step(card, action)
                         # env.render()
                         if env.opponent_counter_life <= 0:
-                            log.info(
-                                f"You won at turn {env.counter_turn} "
-                                f"(lands in deck: {sum(isinstance(c, MTGLand) for c in env.library)}, "
-                                f"cards in library: {len(env.library)}, "
-                                f"keep at {env.kept_at})!"
-                            )
-                            return env
-                        # uncomment block below to enqueue env after each obvious action
-                        # this probably doesn't make much sense and only slows down
-                        # self.env_queue.append(env)
-                        # continue
+                            if not with_lucky_wins and env.unknown_lands_in_deck_on_combo > 0:
+                                log.debug("Ignoring lucky win...")
+                                game_loss = True
+                                continue
+                            else:
+                                log.info(
+                                    f"You won at turn {env.counter_turn} "
+                                    f"(lands in deck: {sum(isinstance(c, MTGLand) for c in env.library)}, "
+                                    f"cards in library: {len(env.library)}, "
+                                    f"keep at {env.kept_at})!"
+                                )
+                                return env
                     except GameLostException:
                         game_loss = True
                         break
@@ -111,8 +112,6 @@ class Solver:
             possible_actions = env.engine.get_possible_actions()  # refresh after obvious ones
             if greedily:
                 possible_actions = self.greedify_action(env, possible_actions)
-            if len(possible_actions) == 2:
-                log.debug("Explore for optimizations...")
 
             # no obvious action: BFS-search
             for i in range(len(possible_actions)):
@@ -129,13 +128,16 @@ class Solver:
                     )
                     new_env.step(card, action)
                     if new_env.opponent_counter_life <= 0:
-                        log.info(
-                            f"You won at turn {new_env.counter_turn} "
-                            f"(lands in deck: {sum(isinstance(c, MTGLand) for c in new_env.library)}, "
-                            f"cards in library: {len(new_env.library)}, "
-                            f"keep at {new_env.kept_at})!"
-                        )
-                        return new_env
+                        if not with_lucky_wins and env.unknown_lands_in_deck_on_combo > 0:
+                            log.debug("Ignoring lucky win...")
+                        else:
+                            log.info(
+                                f"You won at turn {new_env.counter_turn} "
+                                f"(lands in deck: {sum(isinstance(c, MTGLand) for c in new_env.library)}, "
+                                f"cards in library: {len(new_env.library)}, "
+                                f"keep at {new_env.kept_at})!"
+                            )
+                            return new_env
                     new_env_hash = new_env.functional_hash
                     if new_env_hash not in self.explored_hashes:
                         self.env_queues[new_env.counter_turn].append(new_env)

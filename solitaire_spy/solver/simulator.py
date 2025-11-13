@@ -47,7 +47,10 @@ class ParallelSolver:
     def run(self, i):
         log.debug(f"Running simulation #{i+1}")
         solver_start_time = timeit.default_timer()
-        winning_env = Solver(MTGSolitaire(self.deck, None)).solve(start_time=solver_start_time)
+        winning_env = Solver(MTGSolitaire(self.deck, None)).solve(
+            start_time=solver_start_time,
+            # with_lucky_wins=False,  # uncomment to disable lucky wins
+        )
         solving_time = timeit.default_timer() - solver_start_time
         if winning_env:
             summary = SimulationSummary(winning_env, solving_time)
