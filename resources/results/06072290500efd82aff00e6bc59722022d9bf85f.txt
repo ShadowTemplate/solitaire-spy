@@ -1,0 +1,57 @@
++Mesmeric Fiend: 2
++Quirion Ranger: 2
+-Tinder Wall: 2
++Tinder Wall: 4
++Troll of Khazad-dum: 1
+
+Games won by turn 3: 134 (27.40%)
+ L with x interactions: x=0: 130 (26.58%), x=1: 4 (0.82%)
+Games won by turn 4: 267 (54.60%)
+ L with x interactions: x=0: 213 (43.56%), x=1: 52 (10.63%), x=2: 2 (0.41%)
+Games won by turn 5: 73 (14.93%)
+ L with x interactions: x=0: 37 (7.57%), x=1: 31 (6.34%), x=2: 5 (1.02%)
+Games won by turn 6: 8 (1.64%)
+ L with x interactions: x=0: 3 (0.61%), x=1: 4 (0.82%), x=2: 1 (0.20%)
+Games won by turn <= 3: 134 (27.40%)
+Games won by turn <= 4: 401 (82.00%)
+Games won by turn <= 5: 474 (96.93%)
+Games won by turn <= 6: 482 (98.57%)
+
+Hands kept at 3: 51 (10.43%)
+Hands kept at 4: 78 (15.95%)
+Hands kept at 5: 123 (25.15%)
+Hands kept at 6: 124 (25.36%)
+Hands kept at 7: 113 (23.11%)
+Hands kept at 3+: 489 (100.00%)
+Hands kept at 4+: 438 (89.57%)
+Hands kept at 5+: 360 (73.62%)
+Hands kept at 6+: 237 (48.47%)
+Hands kept at 7+: 113 (23.11%)
+
+T1 (pseudo-)mana 0: 0 (0.00%)
+T1 (pseudo-)mana 1: 42 (8.59%)
+T1 (pseudo-)mana 2: 204 (41.72%)
+T1 (pseudo-)mana 3: 179 (36.61%)
+T1 (pseudo-)mana 4: 54 (11.04%)
+T1 (pseudo-)mana 5: 10 (2.04%)
+T1 (pseudo-)mana 6: 0 (0.00%)
+T1 (pseudo-)mana 7: 0 (0.00%)
+T1 (pseudo-)mana 0+: 489 (100.00%)
+T1 (pseudo-)mana 1+: 489 (100.00%)
+T1 (pseudo-)mana 2+: 447 (91.41%)
+T1 (pseudo-)mana 3+: 243 (49.69%)
+T1 (pseudo-)mana 4+: 64 (13.09%)
+T1 (pseudo-)mana 5+: 10 (2.04%)
+T1 (pseudo-)mana 6+: 0 (0.00%)
+T1 (pseudo-)mana 7+: 0 (0.00%)
+
+0 cards left in library: 445 (91.00%)
+1+ cards left in library: 44 (9.00%)
+
+Scientific wins: 445 (91.00%)
+Lucky wins (1+ land in deck): 44 (9.00%)
+ L on turn 3: 29 (5.93%)
+ L on turn 4: 12 (2.45%)
+ L on turn 5: 3 (0.61%)
+
+Average solving time: 50.14 s

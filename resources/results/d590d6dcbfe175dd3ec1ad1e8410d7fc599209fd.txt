@@ -1,0 +1,55 @@
++Lotus Petal: 3
++Quirion Ranger: 2
+-Tinder Wall: 2
++Tinder Wall: 4
+
+Games won by turn 3: 158 (31.73%)
+ L with x interactions: x=0: 154 (30.92%), x=1: 4 (0.80%)
+Games won by turn 4: 281 (56.43%)
+ L with x interactions: x=0: 254 (51.00%), x=1: 26 (5.22%), x=2: 1 (0.20%)
+Games won by turn 5: 41 (8.23%)
+ L with x interactions: x=0: 25 (5.02%), x=1: 15 (3.01%), x=2: 1 (0.20%)
+Games won by turn 6: 12 (2.41%)
+ L with x interactions: x=0: 3 (0.60%), x=1: 7 (1.41%), x=2: 2 (0.40%)
+Games won by turn <= 3: 158 (31.73%)
+Games won by turn <= 4: 439 (88.15%)
+Games won by turn <= 5: 480 (96.39%)
+Games won by turn <= 6: 492 (98.80%)
+
+Hands kept at 3: 28 (5.62%)
+Hands kept at 4: 92 (18.47%)
+Hands kept at 5: 125 (25.10%)
+Hands kept at 6: 128 (25.70%)
+Hands kept at 7: 125 (25.10%)
+Hands kept at 3+: 498 (100.00%)
+Hands kept at 4+: 470 (94.38%)
+Hands kept at 5+: 378 (75.90%)
+Hands kept at 6+: 253 (50.80%)
+Hands kept at 7+: 125 (25.10%)
+
+T1 (pseudo-)mana 0: 0 (0.00%)
+T1 (pseudo-)mana 1: 31 (6.22%)
+T1 (pseudo-)mana 2: 184 (36.95%)
+T1 (pseudo-)mana 3: 198 (39.76%)
+T1 (pseudo-)mana 4: 66 (13.25%)
+T1 (pseudo-)mana 5: 19 (3.82%)
+T1 (pseudo-)mana 6: 0 (0.00%)
+T1 (pseudo-)mana 7: 0 (0.00%)
+T1 (pseudo-)mana 0+: 498 (100.00%)
+T1 (pseudo-)mana 1+: 498 (100.00%)
+T1 (pseudo-)mana 2+: 467 (93.78%)
+T1 (pseudo-)mana 3+: 283 (56.83%)
+T1 (pseudo-)mana 4+: 85 (17.07%)
+T1 (pseudo-)mana 5+: 19 (3.82%)
+T1 (pseudo-)mana 6+: 0 (0.00%)
+T1 (pseudo-)mana 7+: 0 (0.00%)
+
+0 cards left in library: 444 (89.16%)
+1+ cards left in library: 54 (10.84%)
+
+Scientific wins: 447 (89.76%)
+Lucky wins (1+ land in deck): 51 (10.24%)
+ L on turn 3: 32 (6.43%)
+ L on turn 4: 18 (3.61%)
+
+Average solving time: 65.76 s
