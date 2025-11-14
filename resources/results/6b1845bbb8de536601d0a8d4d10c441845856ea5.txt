@@ -1,0 +1,56 @@
++Gatecreeper Vine: 1
++Lotus Petal: 4
+-Tinder Wall: 2
++Tinder Wall: 4
+
+Games won by turn 3: 168 (33.80%)
+ L with x interactions: x=0: 167 (33.60%), x=1: 1 (0.20%)
+Games won by turn 4: 210 (42.25%)
+ L with x interactions: x=0: 193 (38.83%), x=1: 16 (3.22%), x=2: 1 (0.20%)
+Games won by turn 5: 71 (14.29%)
+ L with x interactions: x=0: 54 (10.87%), x=1: 14 (2.82%), x=2: 3 (0.60%)
+Games won by turn 6: 22 (4.43%)
+ L with x interactions: x=0: 9 (1.81%), x=1: 7 (1.41%), x=2: 6 (1.21%)
+Games won by turn <= 3: 168 (33.80%)
+Games won by turn <= 4: 378 (76.06%)
+Games won by turn <= 5: 449 (90.34%)
+Games won by turn <= 6: 471 (94.77%)
+
+Hands kept at 3: 48 (9.66%)
+Hands kept at 4: 97 (19.52%)
+Hands kept at 5: 110 (22.13%)
+Hands kept at 6: 123 (24.75%)
+Hands kept at 7: 119 (23.94%)
+Hands kept at 3+: 497 (100.00%)
+Hands kept at 4+: 449 (90.34%)
+Hands kept at 5+: 352 (70.82%)
+Hands kept at 6+: 242 (48.69%)
+Hands kept at 7+: 119 (23.94%)
+
+T1 (pseudo-)mana 0: 0 (0.00%)
+T1 (pseudo-)mana 1: 30 (6.04%)
+T1 (pseudo-)mana 2: 199 (40.04%)
+T1 (pseudo-)mana 3: 181 (36.42%)
+T1 (pseudo-)mana 4: 76 (15.29%)
+T1 (pseudo-)mana 5: 10 (2.01%)
+T1 (pseudo-)mana 6: 1 (0.20%)
+T1 (pseudo-)mana 7: 0 (0.00%)
+T1 (pseudo-)mana 0+: 497 (100.00%)
+T1 (pseudo-)mana 1+: 497 (100.00%)
+T1 (pseudo-)mana 2+: 467 (93.96%)
+T1 (pseudo-)mana 3+: 268 (53.92%)
+T1 (pseudo-)mana 4+: 87 (17.51%)
+T1 (pseudo-)mana 5+: 11 (2.21%)
+T1 (pseudo-)mana 6+: 1 (0.20%)
+T1 (pseudo-)mana 7+: 0 (0.00%)
+
+0 cards left in library: 448 (90.14%)
+1+ cards left in library: 49 (9.86%)
+
+Scientific wins: 451 (90.74%)
+Lucky wins (1+ land in deck): 46 (9.26%)
+ L on turn 3: 29 (5.84%)
+ L on turn 4: 14 (2.82%)
+ L on turn 5: 2 (0.40%)
+
+Average solving time: 49.50 s
