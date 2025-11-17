@@ -80,17 +80,19 @@ class MTGSpell(MTGCard):
     def cast_available(self, env):
         if self not in env.hand:
             return False
+        return self.mana_available(env, self.mana_cost_map)
 
+    def mana_available(self, env, mana_cost_map):
         all_mana_available = sum(env.mana_pool.values())
 
         # check if enough color-specific mana is available
         for specific_mana in MANA_TYPES[:-1]:
-            if env.mana_pool[specific_mana] < self.mana_cost_map[specific_mana]:
+            if env.mana_pool[specific_mana] < mana_cost_map[specific_mana]:
                 return False
-            all_mana_available -= self.mana_cost_map[specific_mana]
+            all_mana_available -= mana_cost_map[specific_mana]
 
         # check if enough generic mana is available
-        return all_mana_available >= self.mana_cost_map['C']
+        return all_mana_available >= mana_cost_map['C']
 
 
 class MTGCreatureSpell(MTGSpell):

@@ -435,3 +435,26 @@ class GatecreeperVine(MTGCreatureSpell):
 
     def cast_for_Swamp_available(self, env):
         return super().cast_available(env) and any(isinstance(c, Swamp) for c in env.library)
+
+
+class DimirHouseGuard(MTGCreatureSpell):
+    def __init__(self):
+        super().__init__("Dimir House Guard", "3B", True, False)
+        self.transmute_cost_map = {"W": 0, "U": 0, "B": 2, "R": 0, "G": 0, "C": 1}
+
+    def actions(self, env):
+        # keep the possibility to cast it also if there are no more lands in the deck
+        return super().actions(env) + ["transmute_for_Spy"]
+
+    def enters_the_battlefield(self, env):
+        super().enters_the_battlefield(env)
+
+    def transmute_for_Spy(self, env):
+        log.info(f"Transmuting {self} for Balustrade Spy")
+        env.engine.pay_mana(self.transmute_cost_map)
+        env.engine.discard_card(self)
+        env.engine.search_library_for("Balustrade Spy")
+        env.engine.shuffle_library()
+
+    def transmute_for_Spy_available(self, env):
+        return self in env.hand and super().mana_available(env, self.transmute_cost_map) and any(isinstance(c, BalustradeSpy) for c in env.library) and not env.engine.passing

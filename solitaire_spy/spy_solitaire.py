@@ -18,6 +18,9 @@ class MTGSolitaire:
         self.lands_in_deck = sum(isinstance(c, MTGLand) for c in deck)
         while True:
             random.shuffle(self.library)
+            # uncomment below to force certain starting hands
+            # if any(c for c in self.library[0:7] if c.name == "Dimir House Guard") and any(c for c in self.library[0:7] if c.name == "Swamp"):
+            #    break
             break
         self.hand = []
         self.engine.draw_cards(7)
