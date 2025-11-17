@@ -46,7 +46,7 @@ def main_with_simulator():
 
 def multi_deck_simulator():
     for deck in deck_generator():
-        simulator = Simulator(deck, 500)
+        simulator = Simulator(deck, 500, with_lucky_wins=False)
         simulator.simulate()
         simulator.log_stats()
 
