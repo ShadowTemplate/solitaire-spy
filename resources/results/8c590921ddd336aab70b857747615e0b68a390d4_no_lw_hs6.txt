@@ -1,0 +1,54 @@
+-Lead the Stampede: 4
++Malevolent Rumble: 4
++Mesmeric Fiend: 4
+-Tinder Wall: 2
++Tinder Wall: 4
++Troll of Khazad-dum: 1
+
+Games won at turn 3: 106 (7.15%)
+ L with x interactions: x=0: 106 (7.15%)
+Games won at turn 4: 260 (17.54%)
+ L with x interactions: x=0: 216 (14.57%), x=1: 44 (2.97%)
+Games won at turn 5: 108 (7.29%)
+ L with x interactions: x=0: 52 (3.51%), x=1: 52 (3.51%), x=2: 4 (0.27%)
+Games won at turn 6: 38 (2.56%)
+ L with x interactions: x=0: 26 (1.75%), x=1: 10 (0.67%), x=3: 2 (0.13%)
+Games won by turn <= 3: 106 (7.15%)
+Games won by turn <= 4: 366 (24.70%)
+Games won by turn <= 5: 474 (31.98%)
+Games won by turn <= 6: 512 (34.55%)
+
+Hands kept at 3: 0 (0.00%)
+Hands kept at 4: 0 (0.00%)
+Hands kept at 5: 0 (0.00%)
+Hands kept at 6: 726 (48.99%)
+Hands kept at 7: 0 (0.00%)
+Hands kept at 3+: 726 (48.99%)
+Hands kept at 4+: 726 (48.99%)
+Hands kept at 5+: 726 (48.99%)
+Hands kept at 6+: 726 (48.99%)
+Hands kept at 7+: 0 (0.00%)
+
+T1 (pseudo-)mana 1: 148 (9.99%)
+T1 (pseudo-)mana 2: 298 (20.11%)
+T1 (pseudo-)mana 3: 162 (10.93%)
+T1 (pseudo-)mana 4: 56 (3.78%)
+T1 (pseudo-)mana 5: 6 (0.40%)
+T1 (pseudo-)mana 6: 0 (0.00%)
+T1 (pseudo-)mana 7: 0 (0.00%)
+T1 (pseudo-)mana 1+: 670 (45.21%)
+T1 (pseudo-)mana 2+: 522 (35.22%)
+T1 (pseudo-)mana 3+: 224 (15.11%)
+T1 (pseudo-)mana 4+: 62 (4.18%)
+T1 (pseudo-)mana 5+: 6 (0.40%)
+T1 (pseudo-)mana 6+: 0 (0.00%)
+T1 (pseudo-)mana 7+: 0 (0.00%)
+
+0 cards left in library: 726 (48.99%)
+1+ cards left in library: 756 (51.01%)
+
+Scientific wins: 726 (48.99%)
+Lucky wins (1+ land in deck): 0 (0.00%)
+Mulligan: 756 (51.01%)
+
+Average solving time: 57.42 s

@@ -112,6 +112,7 @@ class Simulator:
         os.makedirs(f"{RESULTS_PATH}", exist_ok=True)
 
     def simulate(self, load_existing=True):
+        log.info(f"Simulations with initial hand size: {self.initial_hand_size}")
         if load_existing and os.path.exists(self.pkl_file):
             log.info(f"Loading past simulations: {self.pkl_file}")
             self.summaries += self.load(self.pkl_file)
@@ -139,6 +140,9 @@ class Simulator:
         elapsed = timeit.default_timer() - simulation_start_time
         log.info(f"Overall simulation time: {elapsed:.2f} s")
         self.save()
+        if len(self.summaries) < self.num_sim:
+            log.info("Some simulations are missing: restarting...")
+            self.simulate()
 
     def _save_deck_if_needed(self):
         if not os.path.exists(self.deck_file):
