@@ -13,7 +13,7 @@ BASE_DECK_PATH = "../resources/base_deck.txt"
 
 MANA_STRATEGY_SCRBG = "CRBG"  # Specific, Colorless, Red, Black, Green
 MANA_STRATEGY_SCRGB = "CRGB"  # Specific, Colorless, Red, Green, Black
-MAX_SOLVER_RUNTIME = 15 * 60  # 15 minutes
+MAX_SOLVER_RUNTIME = 10 * 60  # 15 minutes
 MAX_INTERACTION_CARDS_IN_DECK = 8  # e.g. 4 Masked Vandal and 4 Mesmeric Fiend
 
 SOLITAIRE_SPY_CARDS_MODULE = "solitaire_spy.cards"
