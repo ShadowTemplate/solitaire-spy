@@ -4,7 +4,7 @@ from collections import defaultdict
 from copy import deepcopy
 import logging
 
-from solitaire_spy.constants import MAX_SOLVER_RUNTIME
+from solitaire_spy.constants import *
 from solitaire_spy.mtg_engine import GameLostException
 from solitaire_spy.solver.heuristics import *
 from solitaire_spy.spy_solitaire import MTGSolitaire
@@ -44,15 +44,18 @@ class Solver:
                 return card, action
         return None, None
 
-    def solve(self, greedily=True, early_abort=True, start_time=None, with_lucky_wins=True):
-        self.keep_and_mull()
+    def solve(self, greedily=True, early_abort=True, start_time=None, with_lucky_wins=True, initial_hand_size=None):
+        if not initial_hand_size:
+            self.keep_and_mull()
+        else:
+            self.start_with(initial_hand_size)
         while sum(len(values) for _, values in self.env_queues.items()) > 0:
             if start_time and timeit.default_timer() - start_time > MAX_SOLVER_RUNTIME:
                 log.info(
                     f"Reached maximum computation time for solving "
                     f"({MAX_SOLVER_RUNTIME:.2f} s). Aborting..."
                 )
-                return None
+                return EXECUTION_TIMEOUT, None
 
             queue_size = sum(len(values) for _, values in self.env_queues.items())
             if queue_size % 100 == 0:
@@ -102,7 +105,7 @@ class Solver:
                                     f"cards in library: {len(env.library)}, "
                                     f"keep at {env.kept_at})!"
                                 )
-                                return env
+                                return EXECUTION_SUCCEEDED, env
                     except GameLostException:
                         game_loss = True
                         break
@@ -137,7 +140,7 @@ class Solver:
                                 f"cards in library: {len(new_env.library)}, "
                                 f"keep at {new_env.kept_at})!"
                             )
-                            return new_env
+                            return EXECUTION_SUCCEEDED, new_env
                     new_env_hash = new_env.functional_hash
                     if new_env_hash not in self.explored_hashes:
                         self.env_queues[new_env.counter_turn].append(new_env)
@@ -146,7 +149,7 @@ class Solver:
                         log.debug(f"Optimization (hash): branch already explored")
                 except GameLostException:
                     continue  # pick the next action
-        return None
+        return EXECUTION_FAILED, None
 
     def is_useless_game(self, env):
         return env.counter_turn >= 2 and len(env.lands) == 0
@@ -208,6 +211,16 @@ class Solver:
         for i in range(6, 2, -1):  # let's *also* mull to 6, 5, 4, and 3
             self.mull_to(i)
 
+    def start_with(self, hand_size):
+        # here the initial env is already enqueued and represents the keep at 7
+        if self.is_keep(hand_size):
+            if hand_size != 7:
+                self.mull_to(hand_size)
+                self.env_queues[0].pop(0)  # remove initial env: simulation won't start
+            # else: nothing do (env with 7-card hand is already enqueued)
+        else:
+            self.env_queues[0].pop(0)  # remove initial env: simulation won't start
+
     def mull_to(self, new_hand_size):
         log.debug(f"Mull to: {new_hand_size}")
         env = deepcopy(self.env_queues[0][0])  # clone the initial env
@@ -237,7 +250,7 @@ class Solver:
         # create different envs, each one with a different card to mull
         for nuple in itertools.combinations(range(len(env.hand)), cards_to_put_on_the_bottom):
             new_env = deepcopy(env)
-            for i in reversed(nuple):
+            for i in reversed(nuple):  # from right to left, to not mess up with indices
                 if isinstance(new_env.hand[i], MTGLand):
                     new_env.known_lands_bottom += 1
                 new_env.mulled_bottom.append(new_env.hand[i])
@@ -248,3 +261,45 @@ class Solver:
                 self.explored_hashes.add(new_env_hash)
             else:
                 log.debug(f"Optimization (hash): branch already explored")
+
+    def is_keep(self, hand_size):
+        if hand_size == 3:
+            return True
+
+        hand = self.env_queues[0][0].hand
+        library = self.env_queues[0][0].library
+
+        lands_num = sum(1 for c in hand if isinstance(c, MTGLand) or isinstance(c, LandGrant))
+        free_mana_num = sum(1 for c in hand if isinstance(c, LotusPetal))
+        mv1_tutor_num = sum(1 for c in hand if isinstance(c, SaguWildling) or isinstance(c, GenerousEnt) or isinstance(c, TrollOfKhazadDum))
+        mv1_dork_num = sum(1 for c in hand if isinstance(c, ElvesOfDeepShadow))
+        mv2_tutor_num = sum(1 for c in hand if isinstance(c, GatecreeperVine))
+        mv2_draw = sum(1 for c in hand if isinstance(c, WindingWay) or isinstance(c, MalevolentRumble))
+        dread_return_left = sum(1 for c in library if isinstance(c, DreadReturn))
+        giant_left = sum(1 for c in library if isinstance(c, LotlethGiant))
+
+        if dread_return_left == 0 or giant_left == 0:
+            return False
+
+        if lands_num >= 2:
+            return True
+        if lands_num == 1 and mv1_tutor_num >= 1:
+            # we need to exclude the case Swamp + Sagu
+            if mv1_tutor_num == 1 and any(c for c in hand if isinstance(c, Swamp)) and any(c for c in hand if isinstance(c, SaguWildling)):
+                pass  # not a keep
+            else:
+                return True
+        if lands_num == 1 and free_mana_num >= 1 and mv2_tutor_num >= 1:
+            return True
+        if lands_num == 1 and mv1_dork_num >= 1 and mv2_tutor_num >= 1:
+            return True
+        if lands_num == 1 and mv1_dork_num >= 1 and mv2_draw >= 1:
+            return True
+        if lands_num == 0 and free_mana_num >= 1 and mv1_tutor_num >= 2:
+            return True
+        if lands_num == 0 and free_mana_num >= 1 and mv1_dork_num >= 1 and mv1_tutor_num >= 1 and mv2_tutor_num >= 1:
+            return True
+        if lands_num == 0 and free_mana_num >= 2 and mv1_tutor_num >= 1 and mv2_tutor_num >= 1:
+            return True
+
+        return False

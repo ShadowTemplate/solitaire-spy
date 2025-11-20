@@ -1,3 +1,5 @@
+import multiprocessing
+
 SEED = 42
 DECK_SIZE = 60
 MTG_MAX_CARDS_IN_HAND = DECK_SIZE  # TODO: change to 7
@@ -17,3 +19,8 @@ MAX_INTERACTION_CARDS_IN_DECK = 8  # e.g. 4 Masked Vandal and 4 Mesmeric Fiend
 SOLITAIRE_SPY_CARDS_MODULE = "solitaire_spy.cards"
 CHECKPOINT_SIMULATIONS_EVERY_N = 10
 MIN_TURN_WIN_POSSIBLE = 3
+EXECUTORS_NUM = multiprocessing.cpu_count()
+
+EXECUTION_SUCCEEDED = 0
+EXECUTION_FAILED = -1
+EXECUTION_TIMEOUT = -2

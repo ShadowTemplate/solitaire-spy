@@ -184,6 +184,8 @@ class MtgEngine:
 
     def sacrifice_permanent(self, permanent):
         self.change_card_zone(permanent, self.env.battlefield, self.env.graveyard)
+        if isinstance(permanent, EldraziSpawn):
+            self.put_from_graveyard_to_exile(permanent)
 
     def put_from_graveyard_to_exile(self, card):
         self.change_card_zone(card, self.env.graveyard, self.env.exile)

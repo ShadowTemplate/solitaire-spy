@@ -39,23 +39,34 @@ def solitaire(env: MTGSolitaire):
 
 def main_with_simulator():
     deck = load_deck()
-    simulator = Simulator(deck, 500)
+    simulator = Simulator(
+        deck,
+        500,
+        with_lucky_wins=False,
+        initial_hand_size=7,
+    )
     simulator.simulate()
     simulator.log_stats()
 
 
 def multi_deck_simulator():
     for deck in deck_generator():
-        simulator = Simulator(deck, 500, with_lucky_wins=False)
-        simulator.simulate()
-        simulator.log_stats()
+        for i in range(7, 2, -1):
+            simulator = Simulator(
+                deck,
+                800,
+                with_lucky_wins=False,
+                initial_hand_size=i,
+            )
+            simulator.simulate()
+            simulator.log_stats()
 
 
 def main_with_solver():
     deck = load_deck()
     env = MTGSolitaire(deck, None)
     start_time = timeit.default_timer()
-    env = Solver(env).solve()
+    _, env = Solver(env).solve()
     if env:
         print(env.steps_log)
     else:

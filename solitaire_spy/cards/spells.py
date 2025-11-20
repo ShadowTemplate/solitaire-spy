@@ -1,8 +1,8 @@
 import itertools
 import logging
 
-from solitaire_spy.cards.creatures import BalustradeSpy, LotlethGiant
-from solitaire_spy.cards.mtg_cards import MTGSpell, MTGLand, MTGCreatureSpell
+from solitaire_spy.cards.creatures import BalustradeSpy, LotlethGiant, EldraziSpawn
+from solitaire_spy.cards.mtg_cards import *
 from solitaire_spy.log import get_logger
 
 log = get_logger(__name__, stdout_level=logging.WARNING)
@@ -176,7 +176,7 @@ class DreadReturn(MTGSpell):
         return self in env.graveyard and isinstance(env.graveyard[int(i)], MTGCreatureSpell) and all_creatures_to_sac and not env.engine.passing and optimization
 
 
-class LotusPetal(MTGSpell):
+class LotusPetal(MTGArtifactSpell):
     def __init__(self):
         MTGSpell.__init__(self, "Lotus Petal", "0", False)
 
@@ -188,7 +188,7 @@ class LotusPetal(MTGSpell):
         env.engine.put_from_hand_to_battlefield(self)
 
     def cast_available(self, env):
-        return super().cast_available(env) and not env.engine.passing
+        return super().cast_available(env)
 
     def sacrifice_for_mana_G(self, env):
         log.info(f"Sacrificing {self} for G")
@@ -268,3 +268,60 @@ class ElvenFarsight(MTGSpell):
     def cast_scry_top_available(self, env, nuple):
         optimization = len(env.library) >= 3
         return super().cast_available(env) and not env.engine.passing and optimization
+
+
+class MalevolentRumble(MTGSpell):
+    def __init__(self):
+        MTGSpell.__init__(self, "Malevolent Rumble", "1G", False)
+
+    def actions(self, env):
+        actions = ["rumble_pick_nothing"]
+        for i in range(0, 4):
+            if len(env.library) >= i + 1 and (
+                isinstance(env.library[i], MTGLand) or
+                isinstance(env.library[i], MTGCreatureSpell) or
+                isinstance(env.library[i], MTGArtifactSpell)
+            ):
+                actions.append(f"rumble_pick@{i}")
+        return actions
+
+    def cast(self, env):
+        raise ValueError("Malevolent Rumble: cast - Not implemented")
+
+    def rumble_pick_nothing(self, env):
+        super().cast(env)
+        for _ in range(4):
+            try:
+                card = env.library.pop(0)
+                log.info(f"Revealed {card}")
+                env.graveyard.append(card)
+            except IndexError:
+                continue
+        env.engine.put_from_hand_to_graveyard(self)
+        self._create_eldrazi_spawn(env)
+
+    def rumble_pick_nothing_available(self, env):
+        return super().cast_available(env) and not env.engine.passing
+
+    def rumble_pick(self, env, choice):
+        super().cast(env)
+        for i in range(4):
+            try:
+                card = env.library.pop(0)
+                log.info(f"Revealed {card}")
+                if i == int(choice):
+                    log.info(f"Putting {card} in hand")
+                    env.hand.append(card)
+                else:
+                    env.graveyard.append(card)
+            except IndexError:
+                continue
+        env.engine.put_from_hand_to_graveyard(self)
+        self._create_eldrazi_spawn(env)
+
+    def rumble_pick_available(self, env, i):
+        return self.rumble_pick_nothing_available(env)
+
+    def _create_eldrazi_spawn(self, env):
+        log.debug("Creating Eldrazi Spawn creature token 0/1")
+        env.battlefield.append(EldraziSpawn())

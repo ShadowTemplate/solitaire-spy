@@ -95,6 +95,17 @@ class MTGSpell(MTGCard):
         return all_mana_available >= mana_cost_map['C']
 
 
+class MTGArtifactSpell(MTGSpell):
+    def __init__(self, name, mana_cost, can_be_cast_for_black):
+        super().__init__(name, mana_cost, can_be_cast_for_black)
+
+    def cast(self, env):
+        super().cast(env)
+
+    def cast_available(self, env):
+        return super().cast_available(env) and not env.engine.passing
+
+
 class MTGCreatureSpell(MTGSpell):
     def __init__(self, name, mana_cost, can_be_cast_for_black, is_defender):
         MTGSpell.__init__(self, name, mana_cost, can_be_cast_for_black)

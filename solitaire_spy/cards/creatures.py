@@ -458,3 +458,23 @@ class DimirHouseGuard(MTGCreatureSpell):
 
     def transmute_for_Spy_available(self, env):
         return self in env.hand and super().mana_available(env, self.transmute_cost_map) and any(isinstance(c, BalustradeSpy) for c in env.library) and not env.engine.passing
+
+
+class EldraziSpawn(MTGCreatureSpell):
+    def __init__(self):
+        super().__init__("Eldrazi Spawn", "0", False, False)
+
+    def actions(self, env):
+        # keep the possibility to cast it also if there are no more lands in the deck
+        return ["sacrifice_for_mana_C"]
+
+    def enters_the_battlefield(self, env):
+        super().enters_the_battlefield(env)
+
+    def sacrifice_for_mana_C(self, env):
+        log.info(f"Sacrificing {self} for C")
+        env.engine.sacrifice_creature(self)
+        env.engine.add_mana('C', 1)
+
+    def sacrifice_for_mana_C_available(self, env):
+        return self in env.battlefield

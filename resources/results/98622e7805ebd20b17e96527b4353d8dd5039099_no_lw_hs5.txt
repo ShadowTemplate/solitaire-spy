@@ -1,0 +1,52 @@
++Gatecreeper Vine: 1
++Mesmeric Fiend: 4
+-Tinder Wall: 2
++Tinder Wall: 4
+
+Games won at turn 3: 9 (1.12%)
+ L with x interactions: x=0: 9 (1.12%)
+Games won at turn 4: 160 (20.00%)
+ L with x interactions: x=0: 138 (17.25%), x=1: 22 (2.75%)
+Games won at turn 5: 98 (12.25%)
+ L with x interactions: x=0: 60 (7.50%), x=1: 36 (4.50%), x=2: 2 (0.25%)
+Games won at turn 6: 44 (5.50%)
+ L with x interactions: x=0: 30 (3.75%), x=1: 12 (1.50%), x=2: 2 (0.25%)
+Games won by turn <= 3: 9 (1.12%)
+Games won by turn <= 4: 169 (21.12%)
+Games won by turn <= 5: 267 (33.38%)
+Games won by turn <= 6: 311 (38.88%)
+
+Hands kept at 3: 0 (0.00%)
+Hands kept at 4: 0 (0.00%)
+Hands kept at 5: 407 (50.88%)
+Hands kept at 6: 0 (0.00%)
+Hands kept at 7: 0 (0.00%)
+Hands kept at 3+: 407 (50.88%)
+Hands kept at 4+: 407 (50.88%)
+Hands kept at 5+: 407 (50.88%)
+Hands kept at 6+: 0 (0.00%)
+Hands kept at 7+: 0 (0.00%)
+
+T1 (pseudo-)mana 1: 142 (17.75%)
+T1 (pseudo-)mana 2: 139 (17.38%)
+T1 (pseudo-)mana 3: 83 (10.38%)
+T1 (pseudo-)mana 4: 17 (2.12%)
+T1 (pseudo-)mana 5: 1 (0.12%)
+T1 (pseudo-)mana 6: 0 (0.00%)
+T1 (pseudo-)mana 7: 0 (0.00%)
+T1 (pseudo-)mana 1+: 382 (47.75%)
+T1 (pseudo-)mana 2+: 240 (30.00%)
+T1 (pseudo-)mana 3+: 101 (12.62%)
+T1 (pseudo-)mana 4+: 18 (2.25%)
+T1 (pseudo-)mana 5+: 1 (0.12%)
+T1 (pseudo-)mana 6+: 0 (0.00%)
+T1 (pseudo-)mana 7+: 0 (0.00%)
+
+0 cards left in library: 407 (50.88%)
+1+ cards left in library: 393 (49.12%)
+
+Scientific wins: 407 (50.88%)
+Lucky wins (1+ land in deck): 0 (0.00%)
+Mulligan: 393 (49.12%)
+
+Average solving time: 36.05 s
