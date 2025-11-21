@@ -51,3 +51,10 @@ Lucky wins (1+ land in deck): 0 (0.00%)
 Mulligan: 0 (0.00%)
 
 Average solving time: 49.26 s
+
+Stats over all initial hand size:
+P(win_at_turn_3) = 16.94%
+P(win_at_turn_4) = 41.12%
+P(win_at_turn_5) = 19.37%
+P(win_at_turn_6) = 6.01%
+P(win_at_turn_7+) = 16.57%

@@ -115,7 +115,7 @@ class Simulator:
         log.info(f"Simulations with initial hand size: {self.initial_hand_size}")
         if load_existing and os.path.exists(self.pkl_file):
             log.info(f"Loading past simulations: {self.pkl_file}")
-            self.summaries += self.load(self.pkl_file)
+            self.summaries = self.load(self.pkl_file)
             log.info(f"Loaded {len(self.summaries)} past simulations")
         log.info(50 * "-")
         log.info(get_deck_diff(self.deck))
