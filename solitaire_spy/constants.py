@@ -9,7 +9,7 @@ MAX_TURN = 8
 RESULTS_PATH = "../resources/results/"
 CARD_IMAGES_PATH = "../resources/images"
 STOCK_DECK_PATH = "../resources/stock_main_no_initiative.txt"
-BASE_DECK_PATH = "../resources/base_deck.txt"
+BASE_DECK_PATH = "../resources/base_deck_rumble.txt"
 
 MANA_STRATEGY_SCRBG = "CRBG"  # Specific, Colorless, Red, Black, Green
 MANA_STRATEGY_SCRGB = "CRGB"  # Specific, Colorless, Red, Green, Black

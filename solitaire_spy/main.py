@@ -38,7 +38,7 @@ def solitaire(env: MTGSolitaire):
 
 
 def main_with_simulator():
-    deck = load_deck("../resources/main_rumble.txt")
+    deck = load_deck()
     for i in range(7, 2, -1):
         simulator = Simulator(
             deck,
@@ -94,4 +94,4 @@ def main_with_gui():
 
 
 if __name__ == '__main__':
-    main_with_simulator()
+    multi_deck_simulator()

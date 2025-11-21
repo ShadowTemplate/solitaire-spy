@@ -74,15 +74,15 @@ def deck_generator():
     decks = []
     base_deck = load_deck(BASE_DECK_PATH)
     # sort for loops wisely: outer gets less priority
-    for forest_number in range(0, 2):
-        for ornithopter_number in range(0, 3):
-            for farsight_number in range(0, 3):
-                for gatecreeper_number in range(0, 3):
-                    for quirion_number in range(0, 3):
-                        for troll_number in range(0, 2):
-                            for tinder_wall_number in range(0, 3):
-                                for petal_number in range(0, 5):
-                                    for guard_number in range(0, 2):
+    for forest_number in range(0, 1):
+        for ornithopter_number in range(0, 1):
+            for farsight_number in range(0, 1):
+                for petal_number in range(0, 3):
+                    for quirion_number in range(0, 1):
+                        for troll_number in range(1, 2):
+                            for tinder_wall_number in range(2, 3):
+                                for gatecreeper_number in range(2, 3):
+                                    for guard_number in range(0, 1):
                                         total_number = (
                                                 forest_number + ornithopter_number +
                                                 farsight_number + gatecreeper_number +
