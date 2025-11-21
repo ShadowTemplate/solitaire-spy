@@ -42,7 +42,7 @@ def main_with_simulator():
     for i in range(7, 2, -1):
         simulator = Simulator(
             deck,
-            800,
+            1596,
             with_lucky_wins=False,
             initial_hand_size=i,
         )

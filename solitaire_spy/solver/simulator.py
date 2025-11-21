@@ -137,6 +137,7 @@ class Simulator:
                 if len(self.summaries) % CHECKPOINT_SIMULATIONS_EVERY_N == 0:
                     log.info(f"Simulations completed: {len(self.summaries)}")
                     self.save()
+        log.info(f"Simulations completed: {len(self.summaries)}")
         elapsed = timeit.default_timer() - simulation_start_time
         log.info(f"Overall simulation time: {elapsed:.2f} s")
         self.save()
