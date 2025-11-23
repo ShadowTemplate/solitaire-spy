@@ -1,0 +1,48 @@
++Malevolent Rumble: 2
++Mesmeric Fiend: 2
+-Tinder Wall: 2
++Tinder Wall: 4
++Troll of Khazad-dum: 1
+
+Games won at turn 3: 18 (3.60%)
+ L with x interactions: x=0: 18 (3.60%)
+Games won at turn 4: 111 (22.20%)
+ L with x interactions: x=0: 96 (19.20%), x=1: 15 (3.00%)
+Games won at turn 5: 42 (8.40%)
+ L with x interactions: x=0: 26 (5.20%), x=1: 13 (2.60%), x=2: 3 (0.60%)
+Games won at turn 6: 28 (5.60%)
+ L with x interactions: x=0: 21 (4.20%), x=1: 4 (0.80%), x=2: 3 (0.60%)
+Games won by turn <= 3: 18 (3.60%)
+Games won by turn <= 4: 129 (25.80%)
+Games won by turn <= 5: 171 (34.20%)
+Games won by turn <= 6: 199 (39.80%)
+
+Hands kept at 3: 0 (0.00%)
+Hands kept at 4: 0 (0.00%)
+Hands kept at 5: 280 (56.00%)
+Hands kept at 6: 0 (0.00%)
+Hands kept at 7: 0 (0.00%)
+
+T1 (pseudo-)mana 1: 77 (15.40%)
+T1 (pseudo-)mana 2: 102 (20.40%)
+T1 (pseudo-)mana 3: 57 (11.40%)
+T1 (pseudo-)mana 4: 13 (2.60%)
+T1 (pseudo-)mana 5: 1 (0.20%)
+T1 (pseudo-)mana 6: 0 (0.00%)
+T1 (pseudo-)mana 7: 0 (0.00%)
+T1 (pseudo-)mana 1+: 250 (50.00%)
+T1 (pseudo-)mana 2+: 173 (34.60%)
+T1 (pseudo-)mana 3+: 71 (14.20%)
+T1 (pseudo-)mana 4+: 14 (2.80%)
+T1 (pseudo-)mana 5+: 1 (0.20%)
+T1 (pseudo-)mana 6+: 0 (0.00%)
+T1 (pseudo-)mana 7+: 0 (0.00%)
+
+0 cards left in library: 200 (40.00%)
+1+ cards left in library: 1 (0.20%)
+
+Scientific wins: 201 (40.20%)
+Lucky wins (1+ land in deck): 0 (0.00%)
+Mulligan: 220 (44.00%)
+
+Average solving time: 58.31 s

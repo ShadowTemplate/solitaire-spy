@@ -53,8 +53,8 @@ Mulligan: 0 (0.00%)
 Average solving time: 45.18 s
 
 Stats over all initial hand size:
-P(win_at_turn_3) = 18.92%
-P(win_at_turn_4) = 44.43%
-P(win_at_turn_5) = 16.27%
-P(win_at_turn_6) = 6.25%
-P(win_at_turn_7+) = 14.12%
+P(win_at_turn_3) = 0.46%
+P(win_at_turn_4) = 23.98%
+P(win_at_turn_5) = 65.94%
+P(win_at_turn_6) = 31.36%
+P(win_at_turn_7+) = -21.73%

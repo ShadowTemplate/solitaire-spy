@@ -1,5 +1,3 @@
--Lead the Stampede: 4
-+Malevolent Rumble: 4
 +Mesmeric Fiend: 4
 -Tinder Wall: 2
 +Tinder Wall: 4
@@ -23,11 +21,6 @@ Hands kept at 4: 828 (51.88%)
 Hands kept at 5: 0 (0.00%)
 Hands kept at 6: 0 (0.00%)
 Hands kept at 7: 0 (0.00%)
-Hands kept at 3+: 828 (51.88%)
-Hands kept at 4+: 828 (51.88%)
-Hands kept at 5+: 0 (0.00%)
-Hands kept at 6+: 0 (0.00%)
-Hands kept at 7+: 0 (0.00%)
 
 T1 (pseudo-)mana 1: 233 (14.60%)
 T1 (pseudo-)mana 2: 370 (23.18%)
@@ -45,10 +38,10 @@ T1 (pseudo-)mana 6+: 0 (0.00%)
 T1 (pseudo-)mana 7+: 0 (0.00%)
 
 0 cards left in library: 824 (51.63%)
-1+ cards left in library: 772 (48.37%)
+1+ cards left in library: 4 (0.25%)
 
 Scientific wins: 828 (51.88%)
 Lucky wins (1+ land in deck): 0 (0.00%)
 Mulligan: 768 (48.12%)
 
-Average solving time: 33.41 s
+Average solving time: 64.39 s
