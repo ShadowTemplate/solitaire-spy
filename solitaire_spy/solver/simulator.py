@@ -31,6 +31,7 @@ class SimulationSummary:
             self.mulled_bottom = env.mulled_bottom
             self.interaction_count = env.interaction_count
             self.steps_log = env.steps_log
+            self.opponent_counter_life = env.opponent_counter_life
         else:
             self.initial_hand = []
             self.kept_at = -1
@@ -40,6 +41,7 @@ class SimulationSummary:
             self.mulled_bottom = []
             self.interaction_count = -1
             self.steps_log = []
+            self.opponent_counter_life = 999
         self.solving_time = solving_time
 
     def __str__(self):
@@ -59,28 +61,23 @@ class ParallelSolver:
     def run(self, i, with_lucky_wins, initial_hand_size):
         log.debug(f"Running simulation #{i+1}")
         solver_start_time = timeit.default_timer()
-        result, winning_env = Solver(MTGSolitaire(self.deck, None)).solve(
+        result, env = Solver(MTGSolitaire(self.deck, None)).solve(
             early_abort=False,
             start_time=solver_start_time,
             with_lucky_wins=with_lucky_wins,
             initial_hand_size=initial_hand_size,
         )
         solving_time = timeit.default_timer() - solver_start_time
-        if winning_env:
-            summary = SimulationSummary(winning_env, solving_time)
-            log.debug(summary)
+        if result == EXECUTION_TIMEOUT or result == EXECUTION_TRUNCATED or result == EXECUTION_SUCCEEDED:
+            # we have an env
+            summary = SimulationSummary(env, solving_time)
             return summary
-        else:  # no winning line
-            log.debug("No winning line.")
-            if (
-                    initial_hand_size  # we need to track mulls here
-                    and result == EXECUTION_FAILED
-            ):
-                summary = SimulationSummary(None, solving_time)
-                log.debug(summary)
-                return summary
-            else:
-                return None
+        # result == EXECUTION_FAILED
+        elif initial_hand_size:  # we need to track mulls here
+            summary = SimulationSummary(None, solving_time)
+            return summary
+        else:
+            return None
 
 def run_instance_method(args):
     # helper function for pickling: unwraps the instance + method call
@@ -152,11 +149,17 @@ class Simulator:
                 for k in sorted(deck_counter.keys()):
                     f.write(f"{deck_counter[k]} {k}\n")
 
-    def _get_games_won_by_turn(self, summaries, interested_in_turn_up_to, with_log=True):
+    def _get_games_won_by_turn(
+            self,
+            terminated_simulations,
+            summaries,
+            interested_in_turn_up_to,
+            with_log=True,
+    ):
         result_lines = []
         games_won_at_turn = {}
         for i in range(MIN_TURN_WIN_POSSIBLE, interested_in_turn_up_to):
-            games_won_at_i = len([s for s in summaries if s.counter_turn == i])
+            games_won_at_i = len([s for s in terminated_simulations if s.counter_turn == i])
             line = (
                 f"Games won at turn {i}: "
                 f"{games_won_at_i} "
@@ -168,7 +171,7 @@ class Simulator:
             with_interaction_lines = []
             for j in range(0, MAX_INTERACTION_CARDS_IN_DECK):
                 with_j_interaction = len(
-                    [s for s in summaries
+                    [s for s in terminated_simulations
                      if s.counter_turn == i and s.interaction_count == j]
                 )
                 if with_j_interaction > 0:
@@ -197,15 +200,32 @@ class Simulator:
             result_lines.append(line)
         return result_lines, games_won_at_turn, cumulatives
 
+    def _get_summaries_by_type(self, summaries):
+        mulliganed_simulations = []
+        terminated_simulations = []
+        not_terminated_simulations = []
+        for s in summaries:
+            if s.kept_at == -1:
+                mulliganed_simulations.append(s)
+            elif s.opponent_counter_life > 0:
+                not_terminated_simulations.append(s)
+            else:
+                terminated_simulations.append(s)
+        return mulliganed_simulations, terminated_simulations, not_terminated_simulations
+
     def log_stats(self):
         self._save_deck_if_needed()
 
         result_lines = [get_deck_diff(self.deck), ""]
-        max_turn = max(s.counter_turn for s in self.summaries)
+        mulliganed_simulations, terminated_simulations, not_terminated_simulations = self._get_summaries_by_type(self.summaries)
+        kept_simulations = terminated_simulations + not_terminated_simulations
+
+        max_turn = max(s.counter_turn for s in terminated_simulations)
         interested_in_turn_up_to = min(
-            max_turn, 7
+            max_turn, MAX_TURN
         )  # set 'max_turn + 1' to see all turns
         new_lines, _, _ = self._get_games_won_by_turn(
+            terminated_simulations,
             self.summaries,
             interested_in_turn_up_to,
         )
@@ -214,8 +234,8 @@ class Simulator:
         log.info("")
         result_lines.append("")
         hands_kept_by = {}
-        for i in range(3, 8):
-            hands_kept_at_i = len([s for s in self.summaries if s.kept_at == i])
+        for i in range(3, INITIAL_HAND_SIZE + 1):
+            hands_kept_at_i = len([s for s in kept_simulations if s.kept_at == i])
             line = (
                 f"Hands kept at {i}: "
                 f"{hands_kept_at_i} "
@@ -224,28 +244,29 @@ class Simulator:
             log.info(line)
             result_lines.append(line)
             hands_kept_by[i] = hands_kept_at_i
-        for i in range(3, 8):
-            cumulative = sum(hands_kept_by[j] for j in range(i, 8))
-            line = (
-                f"Hands kept at {i}+: "
-                f"{cumulative} "
-                f"({cumulative / len(self.summaries) * 100:.2f}%)"
-            )
-            log.info(line)
-            result_lines.append(line)
+        if not self.initial_hand_size:
+            for i in range(3, INITIAL_HAND_SIZE + 1):
+                cumulative = sum(hands_kept_by[j] for j in range(i, INITIAL_HAND_SIZE + 1))
+                line = (
+                    f"Hands kept at {i}+: "
+                    f"{cumulative} "
+                    f"({cumulative / len(self.summaries) * 100:.2f}%)"
+                )
+                log.info(line)
+                result_lines.append(line)
 
         log.info("")
         result_lines.append("")
         mana_t1 = defaultdict(int)  # mana_amount : occurrences
         mana_cards = [MTGLand, LotusPetal, TrollOfKhazadDum, GenerousEnt, LandGrant, SaguWildling]
-        for summary in self.summaries:
+        for summary in kept_simulations:
             initial_mana = sum(
                 1 for c in summary.initial_hand
                 if any(isinstance(c, i) for i in mana_cards)
             )
             mana_t1[initial_mana] += 1
         mana_t1_by = {}
-        for i in range(1, 8):
+        for i in range(1, INITIAL_HAND_SIZE + 1):
             line = (
                 f"T1 (pseudo-)mana {i}: "
                 f"{mana_t1[i]} "
@@ -254,8 +275,8 @@ class Simulator:
             log.info(line)
             result_lines.append(line)
             mana_t1_by[i] = mana_t1[i]
-        for i in range(1, 8):
-            cumulative = sum(mana_t1_by[j] for j in range(i, 8))
+        for i in range(1, INITIAL_HAND_SIZE + 1):
+            cumulative = sum(mana_t1_by[j] for j in range(i, INITIAL_HAND_SIZE + 1))
             line = (
                 f"T1 (pseudo-)mana {i}+: "
                 f"{cumulative} "
@@ -267,7 +288,7 @@ class Simulator:
 
         log.info("")
         result_lines.append("")
-        zero_cards_left = sum(1 for s in self.summaries if s.cards_in_library == 0)
+        zero_cards_left = sum(1 for s in terminated_simulations if s.cards_in_library == 0)
         line = (
             f"0 cards left in library: {zero_cards_left} "
             f"({zero_cards_left / len(self.summaries) * 100:.2f}%)"
@@ -276,8 +297,8 @@ class Simulator:
         result_lines.append(line)
 
         line = (
-            f"1+ cards left in library: {len(self.summaries) - zero_cards_left} "
-            f"({(len(self.summaries) - zero_cards_left) / len(self.summaries) * 100:.2f}%)"
+            f"1+ cards left in library: {len(terminated_simulations) - zero_cards_left} "
+            f"({(len(terminated_simulations) - zero_cards_left) / len(self.summaries) * 100:.2f}%)"
         )
         log.info(line)
         result_lines.append(line)
@@ -286,10 +307,10 @@ class Simulator:
         result_lines.append("")
 
         unknown_lands_in_deck_on_combo_1_plus = sum(
-            1 for s in self.summaries if s.unknown_lands_in_deck_on_combo > 0 and s.kept_at > 0
+            1 for s in terminated_simulations if s.unknown_lands_in_deck_on_combo > 0 and s.kept_at > 0
         )
-        not_played = sum(1 for s in self.summaries if s.kept_at == -1)
-        unknown_lands_in_deck_on_combo_0 = len(self.summaries) - unknown_lands_in_deck_on_combo_1_plus - not_played
+        not_played = len(mulliganed_simulations)
+        unknown_lands_in_deck_on_combo_0 = len(terminated_simulations) - unknown_lands_in_deck_on_combo_1_plus
         line = (
             f"Scientific wins: "
             f"{unknown_lands_in_deck_on_combo_0} "
@@ -313,7 +334,7 @@ class Simulator:
         result_lines.append(line)
         for i in range(MIN_TURN_WIN_POSSIBLE, interested_in_turn_up_to):
             lucky_wins_on_turn_i = sum(
-                1 for s in self.summaries
+                1 for s in terminated_simulations
                 if s.unknown_lands_in_deck_on_combo > 0 and s.counter_turn == i
             )
             if lucky_wins_on_turn_i > 0:
@@ -329,7 +350,7 @@ class Simulator:
         result_lines.append("")
         line = (
             f"Average solving time: "
-            f"{sum(s.solving_time for s in self.summaries) / len(self.summaries):.2f} s"
+            f"{sum(s.solving_time for s in kept_simulations) / len(kept_simulations):.2f} s"
 
         )
         log.info(line)
@@ -345,9 +366,10 @@ class Simulator:
     def log_aggregated_stats(self):
         result_lines = ["\nStats over all initial hand size:"]
         summaries = {}
-        for i in range(3, 8):
+        for i in range(3, INITIAL_HAND_SIZE + 1):
             pkl_file = f"{self.pkl_file[:-5]}{i}.pkl"
-            summaries[i] = self.load(pkl_file)
+            loaded_simulations = self.load(pkl_file)
+            summaries[i] = loaded_simulations
 
         def all_equal(iterable):
             g = groupby(iterable)
@@ -357,16 +379,15 @@ class Simulator:
             raise Exception("Unequal number of summaries across simulations")
 
         mulligan_number = {}  # k: initial hand size; v: number of hands mulligan'ed
-        for i in range(3, 8):
+        for i in range(3, INITIAL_HAND_SIZE + 1):
             mulligan_number[i] = sum(1 for s in summaries[i] if s.kept_at == -1)
 
-        max_turn = max(s.counter_turn for s in self.summaries)
-        interested_in_turn_up_to = min(
-            max_turn, 7
-        )  # set 'max_turn + 1' to see all turns
+        interested_in_turn_up_to = MAX_TURN
         all_games_won_at_turn = {}  # k: initial hand size; v: dictionary of games_won_at_turn_i
-        for i in range(3, 8):
+        for i in range(3, INITIAL_HAND_SIZE + 1):
+            _, terminated_simulations, _ = self._get_summaries_by_type(summaries[i])
             new_lines, games_won_at_turn, cumulatives = self._get_games_won_by_turn(
+                terminated_simulations,
                 summaries[i],
                 interested_in_turn_up_to,
                 with_log=False,
@@ -376,7 +397,7 @@ class Simulator:
         for i in range(MIN_TURN_WIN_POSSIBLE, interested_in_turn_up_to):
             prob_win_at_turn_i = 0
             prob_mulls = []
-            for j in range(7, 2, -1):
+            for j in range(INITIAL_HAND_SIZE, 2, -1):
                 hands_kept_at_j = len(summaries[j]) - mulligan_number[j]
                 p_keep_at_j = hands_kept_at_j / len(summaries[j])
                 games_won_on_turn_i_at_j = all_games_won_at_turn[j][i] / hands_kept_at_j
@@ -404,4 +425,8 @@ class Simulator:
     def load(self, pkl_file):
         log.debug(f"Loading simulator results from {pkl_file}")
         with open(pkl_file, "rb") as f:
-            return pickle.load(f).summaries
+            summaries = pickle.load(f).summaries
+            for s in summaries:
+                if not hasattr(s, 'opponent_counter_life'):  # attribute added later
+                    s.opponent_counter_life = 0
+            return summaries

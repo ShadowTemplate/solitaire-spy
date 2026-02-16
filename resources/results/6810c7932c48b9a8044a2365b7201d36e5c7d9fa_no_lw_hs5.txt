@@ -44,10 +44,10 @@ T1 (pseudo-)mana 6+: 0 (0.00%)
 T1 (pseudo-)mana 7+: 0 (0.00%)
 
 0 cards left in library: 426 (53.25%)
-1+ cards left in library: 374 (46.75%)
+1+ cards left in library: 0 (0.00%)
 
 Scientific wins: 426 (53.25%)
 Lucky wins (1+ land in deck): 0 (0.00%)
 Mulligan: 374 (46.75%)
 
-Average solving time: 32.34 s
+Average solving time: 60.73 s

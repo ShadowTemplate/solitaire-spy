@@ -83,31 +83,33 @@ def deck_generator():
                             for tinder_wall_number in range(2, 3):
                                 for gatecreeper_number in range(2, 3):
                                     for guard_number in range(0, 1):
-                                        total_number = (
-                                                forest_number + ornithopter_number +
-                                                farsight_number + gatecreeper_number +
-                                                quirion_number + troll_number +
-                                                tinder_wall_number + petal_number +
-                                                guard_number
-                                            )
-                                        flex_slots = 60 - len(base_deck)
-                                        if flex_slots - total_number > 4:  # too few cards
-                                            # we want to MesmericFiend-fill up to 4 slots
-                                            continue
-                                        if total_number > flex_slots:  # too many cards
-                                            continue
-                                        new_deck = deepcopy(base_deck)
-                                        new_deck += forest_number * [Forest()]
-                                        new_deck += ornithopter_number * [OrnithopterOfParadise()]
-                                        new_deck += farsight_number * [ElvenFarsight()]
-                                        new_deck += gatecreeper_number * [GatecreeperVine()]
-                                        new_deck += quirion_number * [QuirionRanger()]
-                                        new_deck += troll_number * [TrollOfKhazadDum()]
-                                        new_deck += tinder_wall_number * [TinderWall()]
-                                        new_deck += petal_number * [LotusPetal()]
-                                        new_deck += guard_number * [DimirHouseGuard()]
-                                        while len(new_deck) < 60:
-                                            new_deck.append(MesmericFiend())
-                                        decks.append(new_deck)
+                                        for rumble_number in range(0, 3):
+                                            total_number = (
+                                                    forest_number + ornithopter_number +
+                                                    farsight_number + gatecreeper_number +
+                                                    quirion_number + troll_number +
+                                                    tinder_wall_number + petal_number +
+                                                    guard_number + rumble_number
+                                                )
+                                            flex_slots = 60 - len(base_deck)
+                                            if flex_slots - total_number > 4:  # too few cards
+                                                # we want to MesmericFiend-fill up to 4 slots
+                                                continue
+                                            if total_number > flex_slots:  # too many cards
+                                                continue
+                                            new_deck = deepcopy(base_deck)
+                                            new_deck += forest_number * [Forest()]
+                                            new_deck += ornithopter_number * [OrnithopterOfParadise()]
+                                            new_deck += farsight_number * [ElvenFarsight()]
+                                            new_deck += gatecreeper_number * [GatecreeperVine()]
+                                            new_deck += quirion_number * [QuirionRanger()]
+                                            new_deck += troll_number * [TrollOfKhazadDum()]
+                                            new_deck += tinder_wall_number * [TinderWall()]
+                                            new_deck += petal_number * [LotusPetal()]
+                                            new_deck += guard_number * [DimirHouseGuard()]
+                                            new_deck += rumble_number * [MalevolentRumble()]
+                                            while len(new_deck) < 60:
+                                                new_deck.append(MesmericFiend())
+                                            decks.append(new_deck)
     log.info(f"Generated {len(decks)} decks")
     return decks
