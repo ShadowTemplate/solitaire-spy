@@ -50,13 +50,6 @@ class Solver:
         else:
             self.start_with(initial_hand_size)
         while sum(len(values) for _, values in self.env_queues.items()) > 0:
-            if start_time and timeit.default_timer() - start_time > MAX_SOLVER_RUNTIME:
-                log.info(
-                    f"Reached maximum computation time for solving "
-                    f"({MAX_SOLVER_RUNTIME:.2f} s). Aborting..."
-                )
-                return EXECUTION_TIMEOUT, None
-
             queue_size = sum(len(values) for _, values in self.env_queues.items())
             if queue_size % 100 == 0:
                 log.info(f"In queue: {queue_size}")
@@ -65,9 +58,20 @@ class Solver:
                 if len(self.env_queues[i]) > 0:
                     env = self.env_queues[i].pop(0)
                     break
+            if start_time and timeit.default_timer() - start_time > MAX_SOLVER_RUNTIME:
+                log.info(
+                    f"Reached maximum computation time for solving "
+                    f"({MAX_SOLVER_RUNTIME:.2f} s). Aborting..."
+                )
+                return EXECUTION_TIMEOUT, env
+
             if env.counter_turn > self.turns_explored:
                 log.info(f"Playing turn {env.counter_turn}")
                 self.turns_explored = env.counter_turn
+
+            if env.counter_turn >= MAX_TURN:
+                log.info(f"Playing turn {env.counter_turn}")
+                return EXECUTION_TRUNCATED, env
 
             if early_abort and self.is_useless_game(env):
                 log.debug("Optimization: early aborting useless game")
@@ -277,8 +281,9 @@ class Solver:
         mv2_draw = sum(1 for c in hand if isinstance(c, WindingWay) or isinstance(c, MalevolentRumble))
         dread_return_left = sum(1 for c in library if isinstance(c, DreadReturn))
         giant_left = sum(1 for c in library if isinstance(c, LotlethGiant))
+        draw_creatures = sum(1 for c in hand if isinstance(c, WindingWay) or isinstance(c, LeadTheStampede))
 
-        if dread_return_left == 0 or giant_left == 0:
+        if (dread_return_left == 0 or giant_left == 0) and draw_creatures == 0:
             return False
 
         if lands_num >= 2:
@@ -289,6 +294,8 @@ class Solver:
                 pass  # not a keep
             else:
                 return True
+        # TODO: fix below: if land is Swamp some plays are not possible (e.g. Elves ramp)
+        # TODO: improve below: maybe some hands with Forest + Tinder Wall are keep?
         if lands_num == 1 and free_mana_num >= 1 and mv2_tutor_num >= 1:
             return True
         if lands_num == 1 and mv1_dork_num >= 1 and mv2_tutor_num >= 1:
