@@ -1,0 +1,53 @@
++Gatecreeper Vine: 2
++Lotus Petal: 2
+-Tinder Wall: 2
++Tinder Wall: 4
++Troll of Khazad-dum: 1
+
+Games won at turn 3: 154 (19.25%)
+ L with x interactions: x=0: 152 (19.00%), x=1: 2 (0.25%)
+Games won at turn 4: 245 (30.63%)
+ L with x interactions: x=0: 201 (25.12%), x=1: 40 (5.00%), x=2: 4 (0.50%)
+Games won at turn 5: 33 (4.12%)
+ L with x interactions: x=0: 17 (2.12%), x=1: 13 (1.62%), x=2: 3 (0.38%)
+Games won at turn 6: 5 (0.62%)
+ L with x interactions: x=0: 1 (0.12%), x=1: 2 (0.25%), x=2: 2 (0.25%)
+Games won by turn <= 3: 154 (19.25%)
+Games won by turn <= 4: 399 (49.88%)
+Games won by turn <= 5: 432 (54.00%)
+Games won by turn <= 6: 437 (54.62%)
+
+Hands kept at 3: 0 (0.00%)
+Hands kept at 4: 0 (0.00%)
+Hands kept at 5: 0 (0.00%)
+Hands kept at 6: 0 (0.00%)
+Hands kept at 7: 443 (55.38%)
+Hands kept at 3+: 443 (55.38%)
+Hands kept at 4+: 443 (55.38%)
+Hands kept at 5+: 443 (55.38%)
+Hands kept at 6+: 443 (55.38%)
+Hands kept at 7+: 443 (55.38%)
+
+T1 (pseudo-)mana 1: 22 (2.75%)
+T1 (pseudo-)mana 2: 159 (19.88%)
+T1 (pseudo-)mana 3: 158 (19.75%)
+T1 (pseudo-)mana 4: 85 (10.62%)
+T1 (pseudo-)mana 5: 18 (2.25%)
+T1 (pseudo-)mana 6: 1 (0.12%)
+T1 (pseudo-)mana 7: 0 (0.00%)
+T1 (pseudo-)mana 1+: 443 (55.38%)
+T1 (pseudo-)mana 2+: 421 (52.62%)
+T1 (pseudo-)mana 3+: 262 (32.75%)
+T1 (pseudo-)mana 4+: 104 (13.00%)
+T1 (pseudo-)mana 5+: 19 (2.38%)
+T1 (pseudo-)mana 6+: 1 (0.12%)
+T1 (pseudo-)mana 7+: 0 (0.00%)
+
+0 cards left in library: 443 (55.38%)
+1+ cards left in library: 357 (44.62%)
+
+Scientific wins: 443 (55.38%)
+Lucky wins (1+ land in deck): 0 (0.00%)
+Mulligan: 357 (44.62%)
+
+Average solving time: 33.60 s
