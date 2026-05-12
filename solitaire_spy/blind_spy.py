@@ -1,3 +1,5 @@
+import csv
+import json
 import os
 import random
 
@@ -199,11 +201,27 @@ def simulate_double_dr():
 
 
 def consolidate_double_dr():
-    pass
+    source_dir = "../resources/blind_spy/double_dr"
+    output_file = "../resources/blind_spy/blind_spy_full_consolidated.json"
+    int_fields = {"creatures_on_board", "lands_in_deck", "drs_in_deck", "giants_in_deck", "spies_in_deck", "creatures_in_deck"}
+    records = []
+    for filename in sorted(os.listdir(source_dir)):
+        if not filename.endswith(".csv"):
+            continue
+        with open(os.path.join(source_dir, filename)) as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                records.append({
+                    k: int(v) if k in int_fields else float(v)
+                    for k, v in row.items()
+                })
+    with open(output_file, "w") as f:
+        json.dump(records, f, indent=2)
+    print(f"Consolidated {len(records)} records into {output_file}")
 
 
 if __name__ == '__main__':
     # uncomment the task you want to run
-    simulate_double_dr()
+    # simulate_double_dr()
     consolidate_double_dr()
 
