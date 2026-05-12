@@ -7,7 +7,8 @@ from concurrent.futures import ThreadPoolExecutor
 
 random.seed(42)
 
-STARTING_CREATURES_IN_DECK = 42
+# Change this parameter if you want to try different deck builds. I've tried [39, 42].
+STARTING_CREATURES_IN_DECK = 41
 
 # SIMULATION BOARD STATE (SPY TRIGGER ON THE STACK)
 MIN_LANDS_IN_DECK = 1  # otherwise it's not blind
@@ -222,6 +223,6 @@ def consolidate_double_dr():
 
 if __name__ == '__main__':
     # uncomment the task you want to run
-    # simulate_double_dr()
+    simulate_double_dr()
     consolidate_double_dr()
 
