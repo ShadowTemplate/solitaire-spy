@@ -207,12 +207,11 @@ def consolidate_double_dr():
         for d in damage_values:
             freq[d] = freq.get(d, 0) + 1
         record = dict(config)
-        count_gte = total
         for x in range(3, 2 * STARTING_CREATURES_IN_DECK + 1):
-            count_gte -= freq.get(x - 1, 0)
-            record[f"damage_{x}"] = count_gte
-            record[f"win_{x}%"] = count_gte / total
-            record[f"lose_{x}%"] = (total - count_gte) / total
+            at_least_x_damage = [d for d in damage_values if d >= x]
+            record[f"damage_{x}"] = len(at_least_x_damage)
+            record[f"win_{x}%"] = len(at_least_x_damage) / total
+            record[f"lose_{x}%"] = 1 - record[f"win_{x}%"]
         records.append(record)
     output_file = "../resources/blind_spy/blind_spy_full_consolidated.json"
     with open(output_file, "w") as f:
