@@ -192,24 +192,31 @@ def simulate_double_dr():
 
 def consolidate_double_dr():
     source_dir = "../resources/blind_spy/double_dr"
-    output_file = "../resources/blind_spy/blind_spy_full_consolidated.json"
-    int_fields = {"creatures_on_board", "lands_in_deck", "drs_in_deck", "giants_in_deck", "spies_in_deck", "creatures_in_deck", "damage"}
+    config_fields = ["creatures_on_board", "lands_in_deck", "drs_in_deck", "giants_in_deck", "spies_in_deck", "creatures_in_deck"]
     records = []
     for filename in sorted(os.listdir(source_dir)):
         if not filename.endswith(".csv"):
             continue
         with open(os.path.join(source_dir, filename)) as f:
             reader = csv.DictReader(f)
-            for row in reader:
-                records.append({
-                    k: int(v) if k in int_fields else float(v)
-                    for k, v in row.items()
-                })
-    for damage in range(3, 2 * STARTING_CREATURES_IN_DECK + 1):
-        for record in records:
-            print(record)
-    # with open(output_file, "w") as f:
-    #     json.dump(records, f, indent=2)
+            rows = list(reader)
+        total = len(rows)
+        damage_values = [int(row["damage"]) for row in rows]
+        config = {k: int(rows[0][k]) for k in config_fields}
+        freq = {}
+        for d in damage_values:
+            freq[d] = freq.get(d, 0) + 1
+        record = dict(config)
+        count_gte = total
+        for x in range(3, 2 * STARTING_CREATURES_IN_DECK + 1):
+            count_gte -= freq.get(x - 1, 0)
+            record[f"damage_{x}"] = count_gte
+            record[f"win_{x}%"] = count_gte / total
+            record[f"lose_{x}%"] = (total - count_gte) / total
+        records.append(record)
+    output_file = "../resources/blind_spy/blind_spy_full_consolidated.json"
+    with open(output_file, "w") as f:
+        json.dump(records, f, indent=2)
     print(f"Consolidated {len(records)} records into {output_file}")
 
 
