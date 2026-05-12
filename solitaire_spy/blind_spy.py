@@ -2,163 +2,227 @@ import csv
 import json
 import os
 import random
-import re
 
 from concurrent.futures import ThreadPoolExecutor
 
 random.seed(42)
 
+# Change this parameter if you want to try different deck builds. I've tried [39, 42].
+STARTING_CREATURES_IN_DECK = 41
 
-STARTING_LANDS_IN_DECK = 4  # 4L list
+# SIMULATION BOARD STATE (SPY TRIGGER ON THE STACK)
 MIN_LANDS_IN_DECK = 1  # otherwise it's not blind
-MAX_LANDS_IN_DECK = 2  # let's not consider 3 lands
-MIN_DR_IN_DECK = 1  # otherwise it's useless
+MAX_LANDS_IN_DECK = 2  # let's not consider 3+ lands (unlikely to go blind in that spot)
+MIN_CREATURES_ON_BOARD = 3  # otherwise you can't flashback anything
+MAX_CREATURES_ON_BOARD = 5  # with 5 creatures you enable a double Dread Return, for extra win-cons
+MIN_DR_IN_DECK = 1  # otherwise it's useless to go off
 MAX_DR_IN_DECK = 2  # 4L and 5L lists have 2 DR (stock)
-MIN_TARGET_IN_DECK = 1  # otherwise it's useless
-MAX_TARGET_IN_DECK = 2  # 4L and 5L lists have 2 Giant (stock)
-# With more time, we should set MAX_TARGET_IN_DECK to take into account a
-# blind-Spy for another Spy (5 creatures on the board).
-# This scenario is not easy, as you might not get Spy, but still win.
-
-# 4L list has 41 creatures, but 3 are on the battlefield
-MIN_CREATURES_IN_DECK = 17  # not counting the Giant to reanimate
-MAX_CREATURES_IN_DECK = 37  # not counting the Giant to reanimate
-# Below, blanks are all the remaining cards
-MIN_BLANK_IN_DECK = 0  # virtually impossible, but hey...
-MAX_BLANK_IN_DECK = 15  # 4L list has 14 spells and 1 Lotus Petal
+MIN_GIANT_IN_DECK = 1  # otherwise it's useless to go off
+MAX_GIANT_IN_DECK = 2  # 4L and 5L lists have 2 Giant (stock)
+MIN_SPY_IN_DECK = 0  # rare, but possible: 1 Spy on the battlefield and 3 in hand
+MAX_SPY_IN_DECK = 3  # 1 is on the battlefield, triggering the simulation, and 3 more in the deck
+MIN_CREATURES_IN_DECK = 17  # non-Spy, non-Giant creatures
 
 CARDS_IN_DECK = 60
-# The minimum number of cards required to win with a luck-spy is 5:
-# Forest, Swamp, Elves of Deep Shadow, Overgrown Battlement, Balustrade Spy.
-# For example, this could happen with a mulligan to 3 on turn 3 OTP.
-MIN_CARDS_FOR_COMBO = 5
 NUM_SIM = 1000000
-MIN_CREATURES_TO_WIN = 3  # not counting the Giant to reanimate
-MAX_CREATURES_TO_WIN = 37  # not counting the Giant to reanimate
+SIM_THREADS = 10
 
-THREADS = 6
+# LEGEND:
+# L = LAND [IN DECK]
+# DR = DREAD RETURN [IN DECK]
+# G = LOTLETH GIANT [IN DECK]
+# S = BALUSTRADE SPY
+# BS = BALUSTRADE SPY ON THE BATTLEFIELD
+# DS = BALUSTRADE SPY IN DECK
+# C = CREATURE (non-Spy, non-Giant)
+# BC = CREATURE ON THE BATTLEFIELD (non-Spy, non-Giant)
+# DC = CREATURE IN DECK (non-Spy, non-Giant)
 
-def blind_spy(min_creatures_to_win):
-    result_file = f"../resources/blind_spy/single_dr/blind_spy_{NUM_SIM}_{min_creatures_to_win + 3}.csv"
+
+def generate_configs():
+    configs = []
+    for lands_in_deck in range(MIN_LANDS_IN_DECK, MAX_LANDS_IN_DECK + 1):
+        for creatures_on_board in range(MIN_CREATURES_ON_BOARD, MAX_CREATURES_ON_BOARD + 1):
+            for drs_in_deck in range(MIN_DR_IN_DECK, MAX_DR_IN_DECK + 1):
+                for giants_in_deck in range(MIN_GIANT_IN_DECK, MAX_GIANT_IN_DECK + 1):
+                    for spies_in_deck in range(MIN_SPY_IN_DECK, MAX_SPY_IN_DECK + 1):
+                        for creatures_in_deck in range(MIN_CREATURES_IN_DECK, STARTING_CREATURES_IN_DECK + 1):
+                            if creatures_in_deck + spies_in_deck + giants_in_deck + creatures_on_board > STARTING_CREATURES_IN_DECK:
+                                continue
+                            configs.append((lands_in_deck, creatures_on_board, drs_in_deck, giants_in_deck, spies_in_deck, creatures_in_deck))
+    return configs
+
+
+def _go_blind(creatures_on_board, deck):
+    land_index = deck.index("L")
+    gy = deck[:land_index + 1]  # land is milled
+    remaining_deck = deck[land_index + 1:]
+    all_creatures_in_gy = gy.count("DC") + gy.count("G") + gy.count("DS")
+    lands_remaining = remaining_deck.count("L")
+    drs_milled = gy.count("DR")
+    giants_milled = gy.count("G")
+    spies_milled = gy.count("DS")
+    giant_damage = all_creatures_in_gy - 1 + 3  # -G to reanimate +3 creatures to sac
+
+    if drs_milled == 0:  # land milled before DR
+        return False, 0
+
+    # We have hit (at least) 1 DR before the land. Implement strategies described here:
+    # https://docs.google.com/spreadsheets/d/18xDeWn4Xl49WQNfKuFoKms785DGDeiP6dfzDv0W3zTA/edit?usp=sharing
+
+    # condition A
+    if creatures_on_board < 5 and giants_milled == 0:
+        return False, 0
+
+    # condition B
+    if creatures_on_board < 5 and giants_milled > 0:
+        return True, giant_damage
+
+    # condition C
+    if creatures_on_board >= 5 and giants_milled == 0 and spies_milled == 0:
+        return False, 0
+
+    # condition D
+    if creatures_on_board >= 5 and drs_milled == 2 and giants_milled == 2 and spies_milled == 0:
+        return True, 2 * giant_damage + 2
+
+    # condition E
+    if creatures_on_board >= 5 and giants_milled > 0 and spies_milled == 0:
+        return True, giant_damage
+
+    # condition F
+    if creatures_on_board >= 5 and lands_remaining == 1 and drs_milled == 1 and giants_milled > 0:
+        return True, giant_damage
+
+    # condition G
+    if creatures_on_board >= 5 and lands_remaining == 0 and drs_milled == 2 and giants_milled == 2 and spies_milled > 0:
+        # we are going to win anyway, but let's maximize damage
+        if 2 * giant_damage + 2 > STARTING_CREATURES_IN_DECK - 1:
+            return True, 2 * giant_damage + 2
+        else:
+            return True, deck.count("DC") + deck.count("G") + deck.count("DS") + 5 - 1
+
+    # condition H
+    if creatures_on_board >= 5 and lands_remaining == 0:
+        return True, deck.count("DC") + deck.count("G") + deck.count("DS") + 5 - 1  # board is sacced, 1 creature left on the battlefield
+
+    # condition I
+    if creatures_on_board >= 5 and lands_remaining == 1 and drs_milled == 2 and giants_milled == 2 and spies_milled > 0:
+        # in real life, you would count how many creatures you have in the gy and proceed as follows:
+        # a) 2 Giants are lethal: DR on Giant twice (can't afford the risk of a shitty Spy)
+        # b) 1 Giant is lethal: Blind-Spy + DR on Giant (no risk, maximize damage)
+        # c) 2 Giants are not lethal: Blind-Spy and hope it's enough (have to take the risk)
+        # For simplicity, we'll assume the opponent has 20 life and choose accordingly
+        if 2 * giant_damage + 2 >= 20:  # case a
+            return True, 2 * giant_damage + 2
+        else:  # case b and c
+            other_land_index = remaining_deck.index("L")
+            expanded_gy = deck[:other_land_index + 1]  # land is milled
+            return True, expanded_gy.count("DC") + expanded_gy.count("G") + expanded_gy.count("DS") + 5 - 1  # board is sacced, 1 creature left on the battlefield
+
+    # condition L
+    other_land_index = remaining_deck.index("L")
+    expanded_gy = deck[:other_land_index + 1]  # land is milled
+    return True, expanded_gy.count("DC") + expanded_gy.count("G") + expanded_gy.count("DS") + 5 - 1  # board is sacced, 1 creature left on the battlefield
+
+
+def blind_spy_double_dr(config):
+    lands_in_deck, creatures_on_board, drs_in_deck, giants_in_deck, spies_in_deck, creatures_in_deck = config
+    signature = f"{creatures_on_board}BC_{lands_in_deck}L_{drs_in_deck}DR_{giants_in_deck}G_{spies_in_deck}DS_{creatures_in_deck}DC"
+    result_file = f"../resources/blind_spy/double_dr/blind_spy_{signature}_{NUM_SIM}.csv"
+    print(result_file)
+    if os.path.isfile(result_file):  # simulation already executed, skip it
+        return
+    print(f"Board: 1 S, {creatures_on_board - 1} C")
+    print(f"Deck: {lands_in_deck} L, {drs_in_deck} DR, {giants_in_deck} G, {spies_in_deck} S, {creatures_in_deck} C")
+    print(f"Total: {lands_in_deck + drs_in_deck + giants_in_deck + spies_in_deck + creatures_in_deck} relevant cards in deck")
+    print(config)
+    # due to input config constraints, single-DR win is always possible (at least 1 Giant, DR, and 17 creatures in deck)
+    deck = lands_in_deck * ["L"] + drs_in_deck * ["DR"] + giants_in_deck * ["G"] + spies_in_deck * ["DS"] + creatures_in_deck * ["DC"]
+    success_count, fail_count = 0, 0
+    damages = []
+    for _ in range(NUM_SIM):
+        random.shuffle(deck)
+        success, damage = _go_blind(creatures_on_board, deck)
+        if success:
+            success_count += 1
+            damages.append(damage)
+        else:
+            fail_count += 1
+    win = 100 * success_count / NUM_SIM
+    fail = 100 * fail_count / NUM_SIM
+    try:
+        avg = sum(damages) / success_count
+        median = damages[len(damages) // 2]
+    except ZeroDivisionError:
+        avg, median = 0, 0
+    print(
+        f"Success count: {win:.2f}% "
+        f"(avg creatures: {avg:.2f}, median creatures: {median:.2f}), "
+        f"fail count: {fail:.2f}%."
+    )
     with open(result_file, "w") as out_f:
         out_f.write(
+            "creatures_on_board,"
             "lands_in_deck,"
             "drs_in_deck,"
-            "targets_in_deck,"
+            "giants_in_deck,"
+            "spies_in_deck,"
             "creatures_in_deck,"
-            "blanks_in_deck,"
-            "win_%,fail_%,"
-            "avg_creatures_in_gy\n"
+            "win_%,"
+            "fail_%,"
+            "avg_damage,"
+            "median_damage\n"
         )
-        for lands in range(MIN_LANDS_IN_DECK, MAX_LANDS_IN_DECK + 1):
-            for dr in range(MIN_DR_IN_DECK, MAX_DR_IN_DECK + 1):
-                for target in range(MIN_TARGET_IN_DECK, MAX_TARGET_IN_DECK + 1):
-                    for creature in range(MIN_CREATURES_IN_DECK,
-                                          MAX_CREATURES_IN_DECK + 1):
-                        for blank in range(MIN_BLANK_IN_DECK, MAX_BLANK_IN_DECK + 1):
-                            if lands + dr + target + blank + creature > CARDS_IN_DECK - MIN_CARDS_FOR_COMBO:
-                                continue
-                            print(
-                                f"Deck: {lands} L, "
-                                f"{dr} DR, "
-                                f"{target} T, "
-                                f"{creature} C, "
-                                f"{blank} B, "
-                                f"{min_creatures_to_win + 3} D"
-                            )
-                            deck = lands * ["L"] + dr * ["DR"] + target * [
-                                "T"] + creature * ["C"] + blank * ["B"]
-                            success_count, fail_count = 0, 0
-                            creatures_gy = []
-                            for _ in range(NUM_SIM):
-                                random.shuffle(deck)
-                                land_index = deck.index("L")
-                                dr_index = deck.index("DR")
-                                target_index = deck.index("T")
-                                creatures_milled = deck[:land_index].count("C")
-                                if (
-                                        dr_index < land_index and
-                                        target_index < land_index and
-                                        creatures_milled >= min_creatures_to_win
-                                ):
-                                    success_count += 1
-                                    creatures_gy.append(creatures_milled)
-                                else:
-                                    fail_count += 1
-                            win = 100 * success_count / NUM_SIM
-                            fail = 100 * fail_count / NUM_SIM
-                            try:
-                                avg = sum(creatures_gy) / success_count
-                            except ZeroDivisionError:
-                                avg = 0
-                            print(
-                                f"Success count: {win:.2f}% "
-                                f"(avg creatures: {avg:.2f}), "
-                                f"fail count: {fail:.2f}%."
-                            )
-                            out_f.write(
-                                f"{lands},{dr},{target},{creature},{blank},{win:.2f},{fail:.2f},{avg:.2f}\n"
-                            )
-    return 0
+        out_f.write(
+            f"{creatures_on_board},"
+            f"{lands_in_deck},"
+            f"{drs_in_deck},"
+            f"{giants_in_deck},"
+            f"{spies_in_deck},"
+            f"{creatures_in_deck},"
+            f"{win:.2f},"
+            f"{fail:.2f},"
+            f"{avg:.2f},"
+            f"{median:.2f}\n"
+        )
 
 
-def consolidate():
-    csv_dir = "../resources/blind_spy/single_dr/"
-    output_file = "../resources/blind_spy/blind_spy_consolidated.json"
-
-    int_fields = {
-        "lands_in_deck",
-        "drs_in_deck",
-        "targets_in_deck",
-        "creatures_in_deck",
-        "blanks_in_deck",
-    }
-    float_fields = {
-        "win_%",
-        "fail_%",
-        "avg_creatures_in_gy",
-    }
-
-    records = []
-    for filename in sorted(
-            os.listdir(csv_dir),
-            key=lambda f: int(re.search(r"_(\d+)\.csv$", f).group(1))
-    ):
-        if not filename.endswith(".csv"):
-            continue
-        match = re.search(r"_(\d+)\.csv$", filename)
-        if not match:
-            continue
-        creatures_to_win = int(match.group(1))
-        with open(os.path.join(csv_dir, filename), newline="") as f:
-            for row in csv.DictReader(f):
-                record = {"creatures_to_win": creatures_to_win}
-                for key, value in row.items():
-                    if key in int_fields:
-                        record[key] = int(value)
-                    elif key in float_fields:
-                        record[key] = float(value)
-                    else:
-                        record[key] = value
-                records.append(record)
-
-    with open(output_file, "w") as f:
-        json.dump(records, f, indent=2)
-
-
-def simulate():
-    with ThreadPoolExecutor(max_workers=THREADS) as executor:
+def simulate_double_dr():
+    configs = generate_configs()
+    print(f"Simulating {len(configs)} configs...")
+    with ThreadPoolExecutor(max_workers=SIM_THREADS) as executor:
         results = list(
             executor.map(
-                blind_spy,
-                range(MIN_CREATURES_TO_WIN, MAX_CREATURES_TO_WIN + 1)
+                blind_spy_double_dr,
+                configs
             )
         )
     return results
 
 
+def consolidate_double_dr():
+    source_dir = "../resources/blind_spy/double_dr"
+    output_file = "../resources/blind_spy/blind_spy_full_consolidated.json"
+    int_fields = {"creatures_on_board", "lands_in_deck", "drs_in_deck", "giants_in_deck", "spies_in_deck", "creatures_in_deck"}
+    records = []
+    for filename in sorted(os.listdir(source_dir)):
+        if not filename.endswith(".csv"):
+            continue
+        with open(os.path.join(source_dir, filename)) as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                records.append({
+                    k: int(v) if k in int_fields else float(v)
+                    for k, v in row.items()
+                })
+    with open(output_file, "w") as f:
+        json.dump(records, f, indent=2)
+    print(f"Consolidated {len(records)} records into {output_file}")
+
+
 if __name__ == '__main__':
     # uncomment the task you want to run
-    # simulate()
-    # consolidate()
-    pass
+    simulate_double_dr()
+    consolidate_double_dr()
+
