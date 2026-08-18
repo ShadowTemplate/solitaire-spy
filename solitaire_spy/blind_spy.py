@@ -25,7 +25,7 @@ MIN_CREATURES_IN_DECK = 17  # non-Spy, non-Giant creatures
 
 CARDS_IN_DECK = 60
 NUM_SIM = 1000000
-SIM_THREADS = 10
+SIM_THREADS = 8
 
 # LEGEND:
 # L = LAND [IN DECK]
@@ -139,28 +139,6 @@ def blind_spy_double_dr(config):
     print(config)
     # due to input config constraints, single-DR win is always possible (at least 1 Giant, DR, and 17 creatures in deck)
     deck = lands_in_deck * ["L"] + drs_in_deck * ["DR"] + giants_in_deck * ["G"] + spies_in_deck * ["DS"] + creatures_in_deck * ["DC"]
-    success_count, fail_count = 0, 0
-    damages = []
-    for _ in range(NUM_SIM):
-        random.shuffle(deck)
-        success, damage = _go_blind(creatures_on_board, deck)
-        if success:
-            success_count += 1
-            damages.append(damage)
-        else:
-            fail_count += 1
-    win = 100 * success_count / NUM_SIM
-    fail = 100 * fail_count / NUM_SIM
-    try:
-        avg = sum(damages) / success_count
-        median = damages[len(damages) // 2]
-    except ZeroDivisionError:
-        avg, median = 0, 0
-    print(
-        f"Success count: {win:.2f}% "
-        f"(avg creatures: {avg:.2f}, median creatures: {median:.2f}), "
-        f"fail count: {fail:.2f}%."
-    )
     with open(result_file, "w") as out_f:
         out_f.write(
             "creatures_on_board,"
@@ -169,23 +147,34 @@ def blind_spy_double_dr(config):
             "giants_in_deck,"
             "spies_in_deck,"
             "creatures_in_deck,"
-            "win_%,"
-            "fail_%,"
-            "avg_damage,"
-            "median_damage\n"
+            "damage\n"
         )
-        out_f.write(
-            f"{creatures_on_board},"
-            f"{lands_in_deck},"
-            f"{drs_in_deck},"
-            f"{giants_in_deck},"
-            f"{spies_in_deck},"
-            f"{creatures_in_deck},"
-            f"{win:.2f},"
-            f"{fail:.2f},"
-            f"{avg:.2f},"
-            f"{median:.2f}\n"
-        )
+        for _ in range(NUM_SIM):
+            random.shuffle(deck)
+            _, damage = _go_blind(creatures_on_board, deck)
+            out_f.write(
+                f"{creatures_on_board},"
+                f"{lands_in_deck},"
+                f"{drs_in_deck},"
+                f"{giants_in_deck},"
+                f"{spies_in_deck},"
+                f"{creatures_in_deck},"
+                f"{damage}\n"
+            )
+    # success_count, fail_count = 0, 0
+    # damages = []
+    # win = 100 * success_count / NUM_SIM
+    # fail = 100 * fail_count / NUM_SIM
+    # try:
+    #     avg = sum(damages) / success_count
+    #     median = damages[len(damages) // 2]
+    # except ZeroDivisionError:
+    #     avg, median = 0, 0
+    # print(
+    #     f"Success count: {win:.2f}% "
+    #     f"(avg creatures: {avg:.2f}, median creatures: {median:.2f}), "
+    #     f"fail count: {fail:.2f}%."
+    # )
 
 
 def simulate_double_dr():
@@ -203,19 +192,28 @@ def simulate_double_dr():
 
 def consolidate_double_dr():
     source_dir = "../resources/blind_spy/double_dr"
-    output_file = "../resources/blind_spy/blind_spy_full_consolidated.json"
-    int_fields = {"creatures_on_board", "lands_in_deck", "drs_in_deck", "giants_in_deck", "spies_in_deck", "creatures_in_deck"}
+    config_fields = ["creatures_on_board", "lands_in_deck", "drs_in_deck", "giants_in_deck", "spies_in_deck", "creatures_in_deck"]
     records = []
     for filename in sorted(os.listdir(source_dir)):
         if not filename.endswith(".csv"):
             continue
         with open(os.path.join(source_dir, filename)) as f:
             reader = csv.DictReader(f)
-            for row in reader:
-                records.append({
-                    k: int(v) if k in int_fields else float(v)
-                    for k, v in row.items()
-                })
+            rows = list(reader)
+        total = len(rows)
+        damage_values = [int(row["damage"]) for row in rows]
+        config = {k: int(rows[0][k]) for k in config_fields}
+        freq = {}
+        for d in damage_values:
+            freq[d] = freq.get(d, 0) + 1
+        record = dict(config)
+        for x in range(3, 2 * STARTING_CREATURES_IN_DECK + 1):
+            at_least_x_damage = [d for d in damage_values if d >= x]
+            record[f"damage_{x}"] = len(at_least_x_damage)
+            record[f"win_{x}%"] = len(at_least_x_damage) / total
+            record[f"lose_{x}%"] = 1 - record[f"win_{x}%"]
+        records.append(record)
+    output_file = "../resources/blind_spy/blind_spy_full_consolidated.json"
     with open(output_file, "w") as f:
         json.dump(records, f, indent=2)
     print(f"Consolidated {len(records)} records into {output_file}")
@@ -223,6 +221,6 @@ def consolidate_double_dr():
 
 if __name__ == '__main__':
     # uncomment the task you want to run
-    simulate_double_dr()
+    # simulate_double_dr()
     consolidate_double_dr()
 
