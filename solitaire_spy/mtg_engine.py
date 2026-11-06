@@ -5,6 +5,7 @@ from solitaire_spy.cards.creatures import *
 from solitaire_spy.cards.mtg_cards import MTGLand
 from solitaire_spy.cards.spells import *
 from solitaire_spy.constants import *
+from solitaire_spy.dungeon import enter_room, get_next_rooms, get_room_choices
 from solitaire_spy.log import get_logger
 
 log = get_logger(__name__, stdout_level=logging.WARNING)
@@ -29,6 +30,11 @@ class MtgEngine:
             return getattr(card, action_method)(self.env)
 
     def get_possible_actions(self):
+        if self.env.pending_venture:
+            # A venture trigger is on the stack: it is mandatory and nothing else can be
+            # done until the player has chosen a room to move the venture marker into.
+            return [(None, action) for action in self._get_venture_actions()]
+
         possible_actions = []
         possible_actions_cache = set()
 
@@ -70,6 +76,31 @@ class MtgEngine:
             log.debug(f"Available system action: system_start_new_turn")
             possible_actions.append((None, "system_start_new_turn"))
         return possible_actions
+
+    def _get_venture_actions(self):
+        actions = []
+        for room in get_next_rooms(self.env.dungeon_room):
+            for choice in get_room_choices(self.env, room):
+                suffix = f"|{choice}" if choice else ""
+                actions.append(f"system_venture@{room}{suffix}")
+        return actions
+
+    def take_initiative(self):
+        # CR 726.2/726.5: whenever a player takes the initiative they venture into
+        # Undercity, and taking it again while already having it ventures again without
+        # creating a second designation.
+        log.info("Taking the initiative")
+        self.env.has_initiative = True
+        self.env.pending_venture = True
+
+    def system_venture(self, argument):
+        room, _, choice = argument.partition("|")
+        self.env.pending_venture = False
+        enter_room(self.env, room, choice)
+        if self.env.pending_draw:
+            # the upkeep venture has resolved: we can finally take our draw for the turn
+            self.env.pending_draw = False
+            self.draw_cards(1)
 
     def discard_card(self, card):
         self.env.hand.remove(card)
@@ -139,7 +170,15 @@ class MtgEngine:
 
         self.env.played_land_this_turn = False
         self.system_switch_mana_strategy_allowed = True
-        self.draw_cards(1)
+        if self.env.has_initiative:
+            # CR 726.2: at the beginning of the upkeep of the player who has the
+            # initiative, that player ventures into Undercity. The upkeep comes before
+            # the draw step, so hold the draw back until the room has been chosen: it
+            # matters for Lost Well (scry before drawing) and for the rooms that shuffle.
+            self.env.pending_venture = True
+            self.env.pending_draw = True
+        else:
+            self.draw_cards(1)
 
     def system_switch_mana_strategy(self):
         if self.env.mana_strategy == MANA_STRATEGY_SCRBG:
