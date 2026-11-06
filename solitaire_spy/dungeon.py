@@ -1,8 +1,8 @@
 import logging
 
-from solitaire_spy.cards.creatures import SkeletonToken, WallOfRoots
+from solitaire_spy.cards.creatures import BalustradeSpy, SkeletonToken, WallOfRoots
 from solitaire_spy.cards.mtg_cards import MTGCreatureSpell, MTGLand
-from solitaire_spy.cards.spells import TreasureToken
+from solitaire_spy.cards.spells import LeadTheStampede, TreasureToken, WindingWay
 from solitaire_spy.log import get_logger
 
 log = get_logger(__name__, stdout_level=logging.WARNING)
@@ -64,18 +64,25 @@ def get_room_choices(env, room):
 
 
 def _scry(env, num_cards):
-    # This deck wants lands *out* of the library: Balustrade Spy only stops milling when
-    # it hits one. So bottom every land we see and keep everything else on top, in order.
+    # Lands we see are kept on top (so we draw one as the first card of the turn); every
+    # other card goes to the bottom, except the cards we still want to cast: Winding Way,
+    # Lead the Stampede and Balustrade Spy. Those stay on top, after the lands. A second
+    # Spy is dead weight if we already hold one, so in that case it goes to the bottom too.
     top = [env.library.pop(0) for _ in range(min(num_cards, len(env.library)))]
-    kept_on_top = [c for c in top if not isinstance(c, MTGLand)]
-    put_on_bottom = [c for c in top if isinstance(c, MTGLand)]
-    for card in reversed(kept_on_top):
+    spy_in_hand = any(isinstance(c, BalustradeSpy) for c in env.hand)
+    wanted = (WindingWay, LeadTheStampede) if spy_in_hand else (
+        BalustradeSpy, WindingWay, LeadTheStampede)
+    lands_left = any(isinstance(c, MTGLand) for c in top + env.library)
+    lands_on_top = [c for c in top if lands_left and isinstance(c, MTGLand)]
+    spells_on_top = [c for c in top if isinstance(c, wanted)]
+    on_top = lands_on_top + spells_on_top
+    on_bottom = [c for c in top if c not in on_top]
+    for card in reversed(on_top):
         log.info(f"Keeping on top {card}")
         env.library.insert(0, card)
-    for card in put_on_bottom:
+    for card in on_bottom:
         log.info(f"Putting on the bottom {card}")
         env.library.append(card)
-        env.known_lands_bottom += 1
 
 
 def _secret_entrance(env, choice):
