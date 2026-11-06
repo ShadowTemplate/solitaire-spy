@@ -44,6 +44,9 @@ class MTGCard(ABC):
 
 
 class MTGLand(MTGCard):
+    # only basic lands can be found by Undercity's Secret Entrance
+    is_basic = False
+
     def actions(self, env):
         return ["play"]
 
@@ -110,6 +113,10 @@ class MTGCreatureSpell(MTGSpell):
     def __init__(self, name, mana_cost, can_be_cast_for_black, is_defender):
         MTGSpell.__init__(self, name, mana_cost, can_be_cast_for_black)
         self.is_defender = is_defender
+        # +1/+1 counters, from Undercity's Forge and Throne of the Dead Three. They are
+        # irrelevant on every creature but Wall of Roots, which pays for its mana ability
+        # with -0/-1 counters and therefore cares about its toughness.
+        self.plus_counters = 0
 
     def cast(self, env):
         super().cast(env)

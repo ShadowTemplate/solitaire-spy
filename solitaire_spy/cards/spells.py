@@ -325,3 +325,41 @@ class MalevolentRumble(MTGSpell):
     def _create_eldrazi_spawn(self, env):
         log.debug("Creating Eldrazi Spawn creature token 0/1")
         env.battlefield.append(EldraziSpawn())
+
+
+class TreasureToken(MTGArtifactSpell):
+    # Created by Undercity's Stash room. Tokens are never in hand, so "cast" is not a
+    # legal action for it and only the sacrifice abilities are ever available.
+    def __init__(self):
+        MTGSpell.__init__(self, "Treasure", "0", False)
+
+    def actions(self, env):
+        # "Sacrifice this artifact: Add one mana of any color."
+        # As for Lotus Petal, only G and B are ever useful in this deck.
+        return ["sacrifice_for_mana_G", "sacrifice_for_mana_B"]
+
+    def cast(self, env):
+        raise ValueError("Treasure: cast - Not implemented")
+
+    def sacrifice_for_mana_G(self, env):
+        log.info(f"Sacrificing {self} for G")
+        env.engine.add_mana('G', 1)
+        env.engine.sacrifice_permanent(self)
+
+    def sacrifice_for_mana_G_available(self, env):
+        # optimization: disable sac at instant speed in oppo's turn. Mana made while
+        # passing *can* be spent, since cycling (Generous Ent, Troll, Sagu Wildling) has
+        # no such restriction. But a Treasure is a one-shot source, so cashing it while
+        # passing is never better than cashing it on our own turn, where it can pay for
+        # spells too. Note this reasoning does not extend to Wall of Roots or to lands:
+        # those refresh every turn, so using them while passing is genuinely free mana.
+        return self in env.battlefield and not env.engine.passing
+
+    def sacrifice_for_mana_B(self, env):
+        log.info(f"Sacrificing {self} for B")
+        env.engine.add_mana('B', 1)
+        env.engine.sacrifice_permanent(self)
+
+    def sacrifice_for_mana_B_available(self, env):
+        # same optimization as for G above
+        return self in env.battlefield and not env.engine.passing

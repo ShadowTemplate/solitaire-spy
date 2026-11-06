@@ -395,17 +395,19 @@ class WallOfRoots(MTGCreatureSpell):
         env.engine.add_mana('G', 1)
 
         self.minus_counters += 1
-        if self.minus_counters == 5:
+        # base toughness is 5, and each +1/+1 counter buys one more activation
+        if self.minus_counters >= 5 + self.plus_counters:
             log.info(f"Wall of Roots has 0 toughness and dies")
             self.minus_counters = 0
+            self.plus_counters = 0
             env.engine.sacrifice_creature(self)
 
     def put_counter_for_mana_G_available(self, env):
-        return self in env.battlefield and not self.ability_once_per_turn_activated and self.minus_counters < 5
+        return self in env.battlefield and not self.ability_once_per_turn_activated and self.minus_counters < 5 + self.plus_counters
 
     @property
     def functional_hash(self):
-        return super().functional_hash + str(self.minus_counters)
+        return super().functional_hash + str(self.minus_counters) + "+" + str(self.plus_counters)
 
 
 class GatecreeperVine(MTGCreatureSpell):
@@ -478,3 +480,30 @@ class EldraziSpawn(MTGCreatureSpell):
 
     def sacrifice_for_mana_C_available(self, env):
         return self in env.battlefield
+
+
+class AvengingHunter(MTGCreatureSpell):
+    def __init__(self):
+        super().__init__("Avenging Hunter", "4G", False, False)
+
+    def actions(self, env):
+        return super().actions(env)
+
+    def enters_the_battlefield(self, env):
+        super().enters_the_battlefield(env)
+        # "Trample. When this creature enters, you take the initiative."
+        # Trample is irrelevant while goldfishing: we never attack.
+        env.engine.take_initiative()
+
+
+class SkeletonToken(MTGCreatureSpell):
+    # 4/1 black Skeleton with menace, created by Undercity's Catacombs room.
+    # It has no abilities: it only matters as an extra body to sacrifice to Dread Return.
+    def __init__(self):
+        super().__init__("Skeleton", "0", False, False)
+
+    def actions(self, env):
+        return []
+
+    def enters_the_battlefield(self, env):
+        super().enters_the_battlefield(env)

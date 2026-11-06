@@ -42,6 +42,19 @@ class MTGSolitaire:
         self.unknown_lands_in_deck_on_combo = self.lands_in_deck
         self.mulled_bottom = []
 
+        # The Initiative (CR 726) and Undercity (CR 309).
+        # While goldfishing nobody can ever take the initiative away from us, so once we
+        # have it we keep venturing at the beginning of every upkeep, forever.
+        self.has_initiative = False
+        self.dungeon_room = None  # None means we are not in a dungeon
+        self.dungeons_completed = 0
+        # A venture trigger waiting for the player to pick a room. Nothing else can
+        # happen until it resolves.
+        self.pending_venture = False
+        # The upkeep venture has to resolve *before* the draw step, so the draw for the
+        # turn gets deferred until the room has been chosen.
+        self.pending_draw = False
+
         self.tk_root = tk_root
         self.gui_battlefield = None
         self.gui_lands = None
@@ -75,7 +88,11 @@ class MTGSolitaire:
         log.debug("*** step ***")
         self.steps_log.append((card, action))
         if action.startswith("system_"):
-            getattr(self.engine, action)()
+            if "@" in action:  # system action needs an argument (e.g. a dungeon room)
+                action, argument = action.split("@", maxsplit=1)
+                getattr(self.engine, action)(argument)
+            else:
+                getattr(self.engine, action)()
         elif "@" in action:  # action needs an indexed target
             action, target_index = action.split("@")
             getattr(card, action)(self, target_index)
@@ -154,4 +171,16 @@ class MTGSolitaire:
         # same mana strategy
         h += "|MS|"
         h += self.mana_strategy
+        # same initiative and same position in the dungeon: two games that differ only
+        # by which room we are in are *not* interchangeable
+        h += "|IN|"
+        h += str(self.has_initiative)
+        h += "|DR|"
+        h += str(self.dungeon_room)
+        h += "|DC|"
+        h += str(self.dungeons_completed)
+        h += "|PV|"
+        h += str(self.pending_venture)
+        h += "|PD|"
+        h += str(self.pending_draw)
         return h

@@ -2,6 +2,8 @@ from solitaire_spy.cards.mtg_cards import MTGLand, MTGCard
 
 
 class Forest(MTGLand):
+    is_basic = True
+
     def __init__(self):
         super().__init__("Forest", "")
 
@@ -20,6 +22,8 @@ class Forest(MTGLand):
 
 
 class Swamp(MTGLand):
+    is_basic = True
+
     def __init__(self):
         super().__init__("Swamp", "")
 
@@ -38,6 +42,9 @@ class Swamp(MTGLand):
 
 
 class HauntedMire(Swamp, Forest):
+    # it inherits from two basics, but it is not one itself
+    is_basic = False
+
     def __init__(self):
         MTGCard.__init__(self, "Haunted Mire", "")
 
