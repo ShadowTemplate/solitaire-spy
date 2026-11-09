@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sideboard Guide Dashboard</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+  <h1>Sideboard guide <span>Spy Walls</span></h1>
+  <label class="decksel">Deck list <select id="deckSelect"></select></label>
+  <span id="deckInfo" class="hint"></span>
+  <div class="spacer"></div>
+  <nav class="tabs">
+    <button id="tabMatchup" class="sel">Matchup</button>
+    <button id="tabMatrix">Overview</button>
+  </nav>
+  <span id="saveState" class="hint"></span>
+</header>
+<main>
+  <section id="matchupView" class="layout">
+    <aside class="card">
+      <input id="filter" type="text" placeholder="Filter matchups…">
+      <div id="matchupList"></div>
+      <p class="hint legend"><b>+</b> add Mountain<br><b>↔</b> Forest → Mountain<br><b>=</b> same lands</p>
+    </aside>
+    <section id="detail"></section>
+  </section>
+  <section id="matrixView" class="card" hidden></section>
+</main>
+<div id="toast"></div>
+<script src="/app.js"></script>
+</body>
+</html>

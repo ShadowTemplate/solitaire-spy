@@ -1,0 +1,10219 @@
+{
+ "version": 2,
+ "source": {
+  "url": "https://docs.google.com/spreadsheets/d/1uxYiWlNwzxCyzVcEL_-B1WD0LT-2BupbYDufa0BWmPQ/edit?gid=1601363831",
+  "tab": "4-land list (Geddon - 0LP3AM2FD2FM)"
+ },
+ "comment": "target = copies of each card in the post-board list for the matchup; a deck cuts max(0, have - target) and brings in max(0, target - have). 'out' is ordered from the first card to cut to the last; 'in' from the first card to bring in to the last (copies = explicit moves of the reference list, 0 = implied or filler). Re-order freely (drag and drop in the dashboard); order is the ranking.",
+ "reference_deck": {
+  "main": {
+   "Avenging Hunter": 3,
+   "Balustrade Spy": 4,
+   "Forest": 3,
+   "Dread Return": 2,
+   "Elves of Deep Shadow": 4,
+   "Gatecreeper Vine": 4,
+   "Generous Ent": 4,
+   "Land Grant": 4,
+   "Lead the Stampede": 4,
+   "Lotleth Giant": 2,
+   "Mesmeric Fiend": 1,
+   "Masked Vandal": 4,
+   "Overgrown Battlement": 4,
+   "Sagu Wildling": 4,
+   "Saruli Caretaker": 4,
+   "Swamp": 1,
+   "Wall of Roots": 4,
+   "Winding Way": 4
+  },
+  "sideboard": {
+   "Accursed Marauder": 3,
+   "Faerie Macabre": 2,
+   "Fang Dragon": 2,
+   "Flaring Pain": 1,
+   "Mesmeric Fiend": 3,
+   "Mountain": 1,
+   "Writhing Chrysalis": 3
+  }
+ },
+ "matchups": [
+  {
+   "id": "monou-terror",
+   "name": "MonoU Terror",
+   "lands": "add_mountain",
+   "notes": "",
+   "out": [
+    {
+     "card": "Avenging Hunter",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 4,
+     "basis": "sheet"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 2,
+     "basis": "sheet"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Accursed Marauder",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Mountain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 0,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 0,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 4,
+    "Swamp": 1,
+    "Wall of Roots": 1,
+    "Winding Way": 4,
+    "Accursed Marauder": 3,
+    "Faerie Macabre": 0,
+    "Fang Dragon": 0,
+    "Flaring Pain": 0,
+    "Mountain": 1,
+    "Writhing Chrysalis": 3
+   }
+  },
+  {
+   "id": "monor-madness",
+   "name": "MonoR Madness",
+   "lands": "same",
+   "notes": "",
+   "out": [
+    {
+     "card": "Avenging Hunter",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mountain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Accursed Marauder",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mountain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 0,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 1,
+    "Masked Vandal": 4,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 4,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 3,
+    "Faerie Macabre": 0,
+    "Fang Dragon": 0,
+    "Flaring Pain": 0,
+    "Mountain": 0,
+    "Writhing Chrysalis": 0
+   }
+  },
+  {
+   "id": "elves",
+   "name": "Elves",
+   "lands": "swap_forest_mountain",
+   "notes": "OTD, consider not swapping Forest for Mountain",
+   "out": [
+    {
+     "card": "Avenging Hunter",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 2,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 2,
+     "basis": "sheet"
+    },
+    {
+     "card": "Mountain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 0,
+    "Balustrade Spy": 4,
+    "Forest": 2,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 2,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 4,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 0,
+    "Faerie Macabre": 0,
+    "Fang Dragon": 2,
+    "Flaring Pain": 0,
+    "Mountain": 1,
+    "Writhing Chrysalis": 0
+   }
+  },
+  {
+   "id": "monor-rally",
+   "name": "MonoR Rally",
+   "lands": "swap_forest_mountain",
+   "notes": "",
+   "out": [
+    {
+     "card": "Avenging Hunter",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Forest",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Mountain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 0,
+    "Balustrade Spy": 4,
+    "Forest": 2,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 0,
+    "Masked Vandal": 4,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 4,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 0,
+    "Faerie Macabre": 0,
+    "Fang Dragon": 1,
+    "Flaring Pain": 0,
+    "Mountain": 1,
+    "Writhing Chrysalis": 3
+   }
+  },
+  {
+   "id": "jund-wildfire",
+   "name": "Jund Wildfire",
+   "lands": "add_mountain",
+   "notes": "Consider playing Accursed Marauder for a stronger plan B",
+   "out": [
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mountain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 3,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 1,
+    "Masked Vandal": 4,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 4,
+    "Swamp": 1,
+    "Wall of Roots": 3,
+    "Winding Way": 4,
+    "Accursed Marauder": 0,
+    "Faerie Macabre": 0,
+    "Fang Dragon": 0,
+    "Flaring Pain": 0,
+    "Mountain": 1,
+    "Writhing Chrysalis": 0
+   }
+  },
+  {
+   "id": "grixis-affinity",
+   "name": "Grixis Affinity",
+   "lands": "add_mountain",
+   "notes": "",
+   "out": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 2,
+     "basis": "sheet"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Accursed Marauder",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Mountain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 3,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 3,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 0,
+    "Masked Vandal": 4,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 4,
+    "Swamp": 1,
+    "Wall of Roots": 2,
+    "Winding Way": 4,
+    "Accursed Marauder": 3,
+    "Faerie Macabre": 0,
+    "Fang Dragon": 0,
+    "Flaring Pain": 0,
+    "Mountain": 1,
+    "Writhing Chrysalis": 0
+   }
+  },
+  {
+   "id": "rakdos-burn",
+   "name": "Rakdos Burn",
+   "lands": "add_mountain",
+   "notes": "",
+   "out": [
+    {
+     "card": "Avenging Hunter",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Mountain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 0,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 0,
+    "Masked Vandal": 4,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 4,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 0,
+    "Faerie Macabre": 0,
+    "Fang Dragon": 0,
+    "Flaring Pain": 0,
+    "Mountain": 1,
+    "Writhing Chrysalis": 3
+   }
+  },
+  {
+   "id": "caw-gates",
+   "name": "Caw-Gates",
+   "lands": "add_mountain",
+   "notes": "",
+   "out": [
+    {
+     "card": "Avenging Hunter",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Mountain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 0,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 3,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 3,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 0,
+    "Faerie Macabre": 0,
+    "Fang Dragon": 0,
+    "Flaring Pain": 1,
+    "Mountain": 1,
+    "Writhing Chrysalis": 0
+   }
+  },
+  {
+   "id": "spy-walls",
+   "name": "Spy Walls",
+   "lands": "same",
+   "notes": "Optional: -1 Wall of Roots, +1 Fang Dragon",
+   "out": [
+    {
+     "card": "Masked Vandal",
+     "copies": 4,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mountain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 2,
+     "basis": "sheet"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 1,
+     "basis": "optional"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mountain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 3,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 0,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 4,
+    "Swamp": 1,
+    "Wall of Roots": 3,
+    "Winding Way": 4,
+    "Accursed Marauder": 0,
+    "Faerie Macabre": 2,
+    "Fang Dragon": 0,
+    "Flaring Pain": 0,
+    "Mountain": 0,
+    "Writhing Chrysalis": 0
+   }
+  },
+  {
+   "id": "golgari-gardens",
+   "name": "Golgari Gardens",
+   "lands": "add_mountain",
+   "notes": "Optional: -1 Saruli Caretaker, -1 Gatecreeper Vines, + 2 Accursed Marauder/Chrys",
+   "out": [
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 1,
+     "basis": "optional"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mountain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 2,
+     "basis": "optional"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 3,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 1,
+    "Masked Vandal": 4,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 3,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 0,
+    "Faerie Macabre": 0,
+    "Fang Dragon": 0,
+    "Flaring Pain": 0,
+    "Mountain": 1,
+    "Writhing Chrysalis": 0
+   }
+  },
+  {
+   "id": "monou-faeries",
+   "name": "MonoU Faeries",
+   "lands": "add_mountain",
+   "notes": "",
+   "out": [
+    {
+     "card": "Avenging Hunter",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 4,
+     "basis": "sheet"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 2,
+     "basis": "sheet"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 2,
+     "basis": "sheet"
+    },
+    {
+     "card": "Mountain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 0,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 2,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 0,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 4,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 0,
+    "Faerie Macabre": 0,
+    "Fang Dragon": 2,
+    "Flaring Pain": 0,
+    "Mountain": 1,
+    "Writhing Chrysalis": 3
+   }
+  },
+  {
+   "id": "white-weenie",
+   "name": "White Weenie",
+   "lands": "swap_forest_mountain",
+   "notes": "",
+   "out": [
+    {
+     "card": "Avenging Hunter",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 4,
+     "basis": "sheet"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Mountain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 0,
+    "Balustrade Spy": 4,
+    "Forest": 2,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 0,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 4,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 0,
+    "Faerie Macabre": 0,
+    "Fang Dragon": 0,
+    "Flaring Pain": 1,
+    "Mountain": 1,
+    "Writhing Chrysalis": 3
+   }
+  },
+  {
+   "id": "altar-tron",
+   "name": "Altar Tron",
+   "lands": "same",
+   "notes": "",
+   "out": [
+    {
+     "card": "Avenging Hunter",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mountain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 2,
+     "basis": "sheet"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 2,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mountain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 0,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 4,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 2,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 0,
+    "Faerie Macabre": 2,
+    "Fang Dragon": 0,
+    "Flaring Pain": 0,
+    "Mountain": 0,
+    "Writhing Chrysalis": 0
+   }
+  },
+  {
+   "id": "cat-food-combo",
+   "name": "Cat-Food Combo",
+   "lands": "same",
+   "notes": "",
+   "out": [
+    {
+     "card": "Avenging Hunter",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mountain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 2,
+     "basis": "sheet"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 2,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mountain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 0,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 4,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 2,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 0,
+    "Faerie Macabre": 2,
+    "Fang Dragon": 0,
+    "Flaring Pain": 0,
+    "Mountain": 0,
+    "Writhing Chrysalis": 0
+   }
+  },
+  {
+   "id": "gruul-ramp",
+   "name": "Gruul Ramp",
+   "lands": "swap_forest_mountain",
+   "notes": "",
+   "out": [
+    {
+     "card": "Avenging Hunter",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Forest",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Mountain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 0,
+    "Balustrade Spy": 4,
+    "Forest": 2,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 0,
+    "Masked Vandal": 4,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 4,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 1,
+    "Faerie Macabre": 0,
+    "Fang Dragon": 0,
+    "Flaring Pain": 0,
+    "Mountain": 1,
+    "Writhing Chrysalis": 3
+   }
+  },
+  {
+   "id": "monow-heroic",
+   "name": "MonoW Heroic",
+   "lands": "same",
+   "notes": "",
+   "out": [
+    {
+     "card": "Avenging Hunter",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mountain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mountain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 0,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 4,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 1,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 3,
+    "Faerie Macabre": 0,
+    "Fang Dragon": 0,
+    "Flaring Pain": 0,
+    "Mountain": 0,
+    "Writhing Chrysalis": 0
+   }
+  },
+  {
+   "id": "dimir-faeries",
+   "name": "Dimir Faeries",
+   "lands": "add_mountain",
+   "notes": "",
+   "out": [
+    {
+     "card": "Avenging Hunter",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 4,
+     "basis": "sheet"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Mountain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 0,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 0,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 3,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 4,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 0,
+    "Faerie Macabre": 0,
+    "Fang Dragon": 1,
+    "Flaring Pain": 0,
+    "Mountain": 1,
+    "Writhing Chrysalis": 3
+   }
+  },
+  {
+   "id": "monob-sacrifice",
+   "name": "MonoB Sacrifice",
+   "lands": "same",
+   "notes": "",
+   "out": [
+    {
+     "card": "Avenging Hunter",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mountain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mountain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 0,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 3,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 4,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 0,
+    "Faerie Macabre": 1,
+    "Fang Dragon": 0,
+    "Flaring Pain": 0,
+    "Mountain": 0,
+    "Writhing Chrysalis": 0
+   }
+  },
+  {
+   "id": "dredge",
+   "name": "Dredge",
+   "lands": "same",
+   "notes": "",
+   "out": [
+    {
+     "card": "Avenging Hunter",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 4,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 2,
+     "basis": "sheet"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 2,
+     "basis": "sheet"
+    },
+    {
+     "card": "Mountain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 0,
+    "Balustrade Spy": 4,
+    "Forest": 2,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 0,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 4,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 0,
+    "Faerie Macabre": 2,
+    "Fang Dragon": 2,
+    "Flaring Pain": 0,
+    "Mountain": 1,
+    "Writhing Chrysalis": 0
+   }
+  },
+  {
+   "id": "familiars",
+   "name": "Familiars",
+   "lands": "add_mountain",
+   "notes": "",
+   "out": [
+    {
+     "card": "Masked Vandal",
+     "copies": 4,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 2,
+     "basis": "sheet"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 2,
+     "basis": "sheet"
+    },
+    {
+     "card": "Mountain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 3,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 0,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 2,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 0,
+    "Faerie Macabre": 2,
+    "Fang Dragon": 0,
+    "Flaring Pain": 0,
+    "Mountain": 1,
+    "Writhing Chrysalis": 0
+   }
+  },
+  {
+   "id": "flicker-tron",
+   "name": "Flicker Tron",
+   "lands": "add_mountain",
+   "notes": "",
+   "out": [
+    {
+     "card": "Masked Vandal",
+     "copies": 4,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 2,
+     "basis": "sheet"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 2,
+     "basis": "sheet"
+    },
+    {
+     "card": "Mountain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 3,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 0,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 2,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 0,
+    "Faerie Macabre": 2,
+    "Fang Dragon": 0,
+    "Flaring Pain": 0,
+    "Mountain": 1,
+    "Writhing Chrysalis": 0
+   }
+  },
+  {
+   "id": "monog-tron",
+   "name": "MonoG Tron",
+   "lands": "same",
+   "notes": "",
+   "out": [
+    {
+     "card": "Avenging Hunter",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mountain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mountain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 0,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 4,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 1,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 3,
+    "Faerie Macabre": 0,
+    "Fang Dragon": 0,
+    "Flaring Pain": 0,
+    "Mountain": 0,
+    "Writhing Chrysalis": 0
+   }
+  },
+  {
+   "id": "boros-tribe",
+   "name": "Boros Tribe",
+   "lands": "swap_forest_mountain",
+   "notes": "",
+   "out": [
+    {
+     "card": "Avenging Hunter",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 4,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Mountain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 0,
+    "Balustrade Spy": 4,
+    "Forest": 2,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 0,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 4,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 3,
+    "Faerie Macabre": 0,
+    "Fang Dragon": 0,
+    "Flaring Pain": 1,
+    "Mountain": 1,
+    "Writhing Chrysalis": 0
+   }
+  },
+  {
+   "id": "selesnya-naya-gates",
+   "name": "Selesnya/Naya Gates",
+   "lands": "add_mountain",
+   "notes": "Risky: in game 3, if they don't have Prismatic Strands, swap Flaring Pain for Macabre",
+   "out": [
+    {
+     "card": "Avenging Hunter",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 2,
+     "basis": "sheet"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Mountain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 0,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 4,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 2,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 0,
+    "Faerie Macabre": 0,
+    "Fang Dragon": 0,
+    "Flaring Pain": 1,
+    "Mountain": 1,
+    "Writhing Chrysalis": 0
+   }
+  },
+  {
+   "id": "jeskai-ephemerate-snow",
+   "name": "Jeskai Ephemerate (Snow)",
+   "lands": "add_mountain",
+   "notes": "",
+   "out": [
+    {
+     "card": "Masked Vandal",
+     "copies": 4,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Mountain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 3,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 0,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 3,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 0,
+    "Faerie Macabre": 0,
+    "Fang Dragon": 0,
+    "Flaring Pain": 1,
+    "Mountain": 1,
+    "Writhing Chrysalis": 0
+   }
+  },
+  {
+   "id": "jeskai-ephemerate-wildfire",
+   "name": "Jeskai Ephemerate (Wildfire)",
+   "lands": "add_mountain",
+   "notes": "",
+   "out": [
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 2,
+     "basis": "sheet"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 2,
+     "basis": "sheet"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Mountain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 3,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 4,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 2,
+    "Swamp": 1,
+    "Wall of Roots": 2,
+    "Winding Way": 4,
+    "Accursed Marauder": 0,
+    "Faerie Macabre": 0,
+    "Fang Dragon": 0,
+    "Flaring Pain": 0,
+    "Mountain": 1,
+    "Writhing Chrysalis": 0
+   }
+  },
+  {
+   "id": "orzhov-blade",
+   "name": "Orzhov Blade",
+   "lands": "swap_forest_mountain",
+   "notes": "",
+   "out": [
+    {
+     "card": "Avenging Hunter",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Forest",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Mountain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 0,
+    "Balustrade Spy": 4,
+    "Forest": 2,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 1,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 4,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 4,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 0,
+    "Faerie Macabre": 0,
+    "Fang Dragon": 0,
+    "Flaring Pain": 0,
+    "Mountain": 1,
+    "Writhing Chrysalis": 3
+   }
+  },
+  {
+   "id": "dimir-terror",
+   "name": "Dimir Terror",
+   "lands": "add_mountain",
+   "notes": "",
+   "out": [
+    {
+     "card": "Avenging Hunter",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Mountain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 0,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 1,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 3,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 4,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 0,
+    "Faerie Macabre": 0,
+    "Fang Dragon": 0,
+    "Flaring Pain": 0,
+    "Mountain": 1,
+    "Writhing Chrysalis": 3
+   }
+  },
+  {
+   "id": "bogles",
+   "name": "Bogles",
+   "lands": "same",
+   "notes": "",
+   "out": [
+    {
+     "card": "Avenging Hunter",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mountain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mountain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 0,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 4,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 1,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 3,
+    "Faerie Macabre": 0,
+    "Fang Dragon": 0,
+    "Flaring Pain": 0,
+    "Mountain": 0,
+    "Writhing Chrysalis": 0
+   }
+  },
+  {
+   "id": "walls-combo",
+   "name": "Walls Combo",
+   "lands": "same",
+   "notes": "",
+   "out": [
+    {
+     "card": "Avenging Hunter",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mountain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mountain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 0,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 1,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 4,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 3,
+    "Faerie Macabre": 0,
+    "Fang Dragon": 0,
+    "Flaring Pain": 0,
+    "Mountain": 0,
+    "Writhing Chrysalis": 0
+   }
+  },
+  {
+   "id": "cycle-storm",
+   "name": "Cycle Storm",
+   "lands": "same",
+   "notes": "",
+   "out": [
+    {
+     "card": "Avenging Hunter",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 2,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mountain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 2,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mountain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 0,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 2,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 4,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 0,
+    "Faerie Macabre": 2,
+    "Fang Dragon": 0,
+    "Flaring Pain": 0,
+    "Mountain": 0,
+    "Writhing Chrysalis": 0
+   }
+  },
+  {
+   "id": "poison-storm",
+   "name": "Poison Storm",
+   "lands": "same",
+   "notes": "",
+   "out": [
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mountain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mountain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 3,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 4,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 1,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 0,
+    "Faerie Macabre": 0,
+    "Fang Dragon": 0,
+    "Flaring Pain": 0,
+    "Mountain": 0,
+    "Writhing Chrysalis": 0
+   }
+  },
+  {
+   "id": "ruby-storm",
+   "name": "Ruby Storm",
+   "lands": "same",
+   "notes": "",
+   "out": [
+    {
+     "card": "Avenging Hunter",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 4,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mountain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 2,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mountain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 0,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 0,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 4,
+    "Swamp": 1,
+    "Wall of Roots": 3,
+    "Winding Way": 4,
+    "Accursed Marauder": 3,
+    "Faerie Macabre": 2,
+    "Fang Dragon": 0,
+    "Flaring Pain": 0,
+    "Mountain": 0,
+    "Writhing Chrysalis": 0
+   }
+  },
+  {
+   "id": "gruul-ponza",
+   "name": "Gruul Ponza",
+   "lands": "add_mountain",
+   "notes": "",
+   "out": [
+    {
+     "card": "Avenging Hunter",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Mountain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 0,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 4,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 4,
+    "Swamp": 1,
+    "Wall of Roots": 3,
+    "Winding Way": 4,
+    "Accursed Marauder": 0,
+    "Faerie Macabre": 0,
+    "Fang Dragon": 0,
+    "Flaring Pain": 0,
+    "Mountain": 1,
+    "Writhing Chrysalis": 0
+   }
+  },
+  {
+   "id": "pinger-burn",
+   "name": "Pinger Burn",
+   "lands": "same",
+   "notes": "",
+   "out": [
+    {
+     "card": "Avenging Hunter",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mountain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Accursed Marauder",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Mountain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 0,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 1,
+    "Masked Vandal": 4,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 4,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 3,
+    "Faerie Macabre": 0,
+    "Fang Dragon": 0,
+    "Flaring Pain": 0,
+    "Mountain": 0,
+    "Writhing Chrysalis": 0
+   }
+  },
+  {
+   "id": "izzet-skred-terror",
+   "name": "Izzet Skred/Terror",
+   "lands": "add_mountain",
+   "notes": "",
+   "out": [
+    {
+     "card": "Masked Vandal",
+     "copies": 4,
+     "basis": "sheet"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 4,
+     "basis": "sheet"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Mountain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 2,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 2,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 3,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 0,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 0,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 2,
+    "Faerie Macabre": 0,
+    "Fang Dragon": 0,
+    "Flaring Pain": 0,
+    "Mountain": 1,
+    "Writhing Chrysalis": 2
+   }
+  },
+  {
+   "id": "turbofog",
+   "name": "Turbofog",
+   "lands": "same",
+   "notes": "",
+   "out": [
+    {
+     "card": "Masked Vandal",
+     "copies": 4,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Mountain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 3,
+    "Balustrade Spy": 4,
+    "Forest": 3,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 4,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 0,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 3,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 0,
+    "Faerie Macabre": 0,
+    "Fang Dragon": 0,
+    "Flaring Pain": 1,
+    "Mountain": 1,
+    "Writhing Chrysalis": 0
+   }
+  },
+  {
+   "id": "boros-mardu-synth",
+   "name": "Boros/Mardu Synth",
+   "lands": "swap_forest_mountain",
+   "notes": "",
+   "out": [
+    {
+     "card": "Avenging Hunter",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Forest",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "untouchable"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "untouchable"
+    }
+   ],
+   "in": [
+    {
+     "card": "Mesmeric Fiend",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Writhing Chrysalis",
+     "copies": 3,
+     "basis": "sheet"
+    },
+    {
+     "card": "Mountain",
+     "copies": 1,
+     "basis": "sheet"
+    },
+    {
+     "card": "Balustrade Spy",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Gatecreeper Vine",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Generous Ent",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Land Grant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lead the Stampede",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Masked Vandal",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Overgrown Battlement",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Sagu Wildling",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Saruli Caretaker",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Wall of Roots",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Winding Way",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Dread Return",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Lotleth Giant",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Swamp",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Forest",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Elves of Deep Shadow",
+     "copies": 0,
+     "basis": "implied"
+    },
+    {
+     "card": "Accursed Marauder",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Faerie Macabre",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Flaring Pain",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Fang Dragon",
+     "copies": 0,
+     "basis": "inferred"
+    },
+    {
+     "card": "Avenging Hunter",
+     "copies": 0,
+     "basis": "inferred"
+    }
+   ],
+   "target": {
+    "Avenging Hunter": 0,
+    "Balustrade Spy": 4,
+    "Forest": 2,
+    "Dread Return": 2,
+    "Elves of Deep Shadow": 1,
+    "Gatecreeper Vine": 4,
+    "Generous Ent": 4,
+    "Land Grant": 4,
+    "Lead the Stampede": 4,
+    "Lotleth Giant": 2,
+    "Mesmeric Fiend": 4,
+    "Masked Vandal": 4,
+    "Overgrown Battlement": 4,
+    "Sagu Wildling": 4,
+    "Saruli Caretaker": 4,
+    "Swamp": 1,
+    "Wall of Roots": 4,
+    "Winding Way": 4,
+    "Accursed Marauder": 0,
+    "Faerie Macabre": 0,
+    "Fang Dragon": 0,
+    "Flaring Pain": 0,
+    "Mountain": 1,
+    "Writhing Chrysalis": 3
+   }
+  }
+ ]
+}
