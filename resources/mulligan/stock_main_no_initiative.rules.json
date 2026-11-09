@@ -1,0 +1,158 @@
+[
+  {
+    "id": "r3",
+    "name": "No mana",
+    "label": "",
+    "decision": "mull",
+    "enabled": true,
+    "note": "",
+    "sizes": [
+      7,
+      6,
+      5,
+      4,
+      3
+    ],
+    "modes": [
+      "play",
+      "draw"
+    ],
+    "bottom": [],
+    "include": [],
+    "exclude": [],
+    "condition": {
+      "type": "group",
+      "mode": "any",
+      "negate": false,
+      "children": [
+        {
+          "type": "count",
+          "target": "tag:_lands",
+          "metric": "count",
+          "zone": "seen",
+          "cmp": "==",
+          "value": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "r4",
+    "name": "One lander",
+    "decision": "mull",
+    "enabled": true,
+    "note": "",
+    "sizes": [
+      7,
+      6,
+      5,
+      4
+    ],
+    "modes": [
+      "play",
+      "draw"
+    ],
+    "include": [],
+    "exclude": [],
+    "condition": {
+      "type": "group",
+      "mode": "any",
+      "negate": false,
+      "children": [
+        {
+          "type": "count",
+          "target": "tag:_lands",
+          "metric": "count",
+          "cmp": "==",
+          "value": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "r1",
+    "name": "~Forest + Tutor + WW",
+    "label": "",
+    "decision": "keep",
+    "enabled": true,
+    "note": "",
+    "sizes": [
+      7,
+      6,
+      5,
+      4,
+      3
+    ],
+    "modes": [
+      "play",
+      "draw"
+    ],
+    "bottom": [],
+    "include": [
+      {
+        "target": "tag:_forest",
+        "min": 1
+      },
+      {
+        "target": "tag:mv1_land_tutor",
+        "min": 1
+      },
+      {
+        "target": "card:Generous Ent",
+        "min": 2
+      },
+      {
+        "target": "card:Winding Way",
+        "min": 1
+      }
+    ],
+    "exclude": [],
+    "condition": {
+      "type": "group",
+      "mode": "all",
+      "negate": false,
+      "children": []
+    }
+  },
+  {
+    "id": "r2",
+    "name": "Swamp + Ent + WW",
+    "label": "",
+    "decision": "keep",
+    "enabled": true,
+    "note": "",
+    "sizes": [
+      7,
+      6,
+      5,
+      4,
+      3
+    ],
+    "modes": [
+      "play",
+      "draw"
+    ],
+    "bottom": [],
+    "include": [
+      {
+        "target": "card:Swamp",
+        "min": 1
+      },
+      {
+        "target": "card:Generous Ent",
+        "min": 1
+      },
+      {
+        "target": "card:Winding Way",
+        "min": 1
+      }
+    ],
+    "exclude": [],
+    "condition": {
+      "type": "group",
+      "mode": "all",
+      "negate": false,
+      "children": []
+    }
+  }
+]

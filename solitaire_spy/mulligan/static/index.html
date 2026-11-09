@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Keep / Mull Dashboard</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+  <h1>Keep / Mull</h1>
+  <label class="decksel">Deck list <select id="deckSelect"></select></label>
+  <span id="deckInfo" class="hint"></span>
+  <div class="spacer"></div>
+  <button id="btnTags">Tags…</button>
+  <button id="btnNewRule" class="primary">+ New rule</button>
+</header>
+<main>
+  <section id="scopes" class="card"></section>
+  <div class="cols">
+    <section class="card" id="rulesPanel">
+      <h2>Rules <small id="rulesScopeLabel"></small></h2>
+      <p class="hint">First matching rule decides; order is priority. Percentages are exact for the selected scope.</p>
+      <div id="rulesList"></div>
+    </section>
+    <section class="card" id="handsPanel">
+      <h2>Hands <small id="handsScopeLabel"></small></h2>
+      <div class="toolbar">
+        <select id="handsFilter"></select>
+        <input id="handsHas" type="text" placeholder="contains cards, e.g. Generous Ent, Forest">
+      </div>
+      <div id="handsInfo" class="hint"></div>
+      <div id="handsList"></div>
+      <div class="toolbar pager">
+        <button id="prevPage">‹ Prev</button><span id="pageLabel"></span><button id="nextPage">Next ›</button>
+      </div>
+    </section>
+  </div>
+</main>
+<dialog id="ruleDialog"></dialog>
+<dialog id="tagsDialog"></dialog>
+<div id="toast"></div>
+<script src="/app.js"></script>
+</body>
+</html>
