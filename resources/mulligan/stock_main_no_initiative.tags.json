@@ -1,0 +1,32 @@
+{
+  "basic": [
+    "Forest",
+    "Swamp"
+  ],
+  "mv1_land_tutor": [
+    "Generous Ent",
+    "Sagu Wildling"
+  ],
+  "draw": [
+    "Winding Way",
+    "Lead the Stampede"
+  ],
+  "wall": [
+    "Gatecreeper Vine",
+    "Wall of Roots",
+    "Saruli Caretaker",
+    "Overgrown Battlement"
+  ],
+  "mv2_land_tutor": [
+    "Gatecreeper Vine"
+  ],
+  "_lands": [
+    "Forest",
+    "Swamp",
+    "Land Grant"
+  ],
+  "_forest": [
+    "Forest",
+    "Land Grant"
+  ]
+}
